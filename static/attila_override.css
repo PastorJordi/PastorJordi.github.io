@@ -142,7 +142,8 @@ li p {
     text-decoration: underline;
 }
 
-/*attempting to disable annoying In []*/
+/*attempting to disable annoying In []
+apparently it does not work*/
 .input_prompt {
     visibility: hidden
 }
