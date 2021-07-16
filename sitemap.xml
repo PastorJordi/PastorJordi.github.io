@@ -5,119 +5,98 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pastorjordi.github.io/</loc>
-<lastmod>2021-07-14T19:17:01-00:00</lastmod>
+<lastmod>2021-07-16T18:34:37-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://pastorjordi.github.io/tags.html</loc>
-<lastmod>2021-07-14T19:17:01-00:00</lastmod>
+<loc>https://pastorjordi.github.io/tags/</loc>
+<lastmod>2021-07-16T18:34:37-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://pastorjordi.github.io/categories.html</loc>
-<lastmod>2021-07-14T19:17:01-00:00</lastmod>
+<loc>https://pastorjordi.github.io/archive/</loc>
+<lastmod>2021-07-16T18:34:37-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://pastorjordi.github.io/authors.html</loc>
-<lastmod>2021-07-14T19:17:01-00:00</lastmod>
-<changefreq>daily</changefreq>
+<loc>https://pastorjordi.github.io/blog/2021/Barccsyn2021-poster/</loc>
+<lastmod>2021-07-16T20:00:00+02:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://pastorjordi.github.io/archives.html</loc>
-<lastmod>2021-07-14T19:17:01-00:00</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://pastorjordi.github.io/tarifes_EBM_Terrassa.html</loc>
+<loc>https://pastorjordi.github.io/terrassa/2021/tarifes_EBM_Terrassa/</loc>
 <lastmod>2021-06-22T21:49:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://pastorjordi.github.io/hello_world.html</loc>
+<loc>https://pastorjordi.github.io/blog/2021/hello_world/</loc>
 <lastmod>2021-06-18T12:00:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://pastorjordi.github.io/Eleccions_14F.html</loc>
+<loc>https://pastorjordi.github.io/terrassa/2021/Eleccions_14F/</loc>
 <lastmod>2021-02-17T21:49:00+01:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://pastorjordi.github.io/category/blog.html</loc>
-<lastmod>2021-06-18T12:00:00+00:09</lastmod>
+<loc>https://pastorjordi.github.io/tags/scientific-content/</loc>
+<lastmod>2021-07-16T20:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://pastorjordi.github.io/category/terrassa.html</loc>
+<loc>https://pastorjordi.github.io/tags/terrassa/</loc>
 <lastmod>2021-06-22T21:49:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://pastorjordi.github.io/tag/terrassa.html</loc>
+<loc>https://pastorjordi.github.io/tags/ajuntament/</loc>
 <lastmod>2021-06-22T21:49:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://pastorjordi.github.io/tag/ajuntament.html</loc>
-<lastmod>2021-06-22T21:49:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://pastorjordi.github.io/tag/tools.html</loc>
+<loc>https://pastorjordi.github.io/tags/tools/</loc>
 <lastmod>2021-06-18T12:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://pastorjordi.github.io/tag/personal.html</loc>
+<loc>https://pastorjordi.github.io/tags/personal/</loc>
 <lastmod>2021-06-18T12:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://pastorjordi.github.io/tag/eleccions.html</loc>
+<loc>https://pastorjordi.github.io/tags/eleccions/</loc>
 <lastmod>2021-02-17T21:49:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://pastorjordi.github.io/tag/maps.html</loc>
+<loc>https://pastorjordi.github.io/tags/maps/</loc>
 <lastmod>2021-02-17T21:49:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://pastorjordi.github.io/author/jordi-pastor.html</loc>
-<lastmod>2021-06-22T21:49:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>

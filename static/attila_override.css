@@ -1,0 +1,143 @@
+/*taken from
+https://github.com/sio/potyarkin.ml/blob/master/content/static/attila_override.css*/
+
+/* Pretty fonts, thanks to Google */
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,700&amp;subset=cyrillic,cyrillic-ext,latin-ext');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+
+body {
+    font-family:"PT Sans", Verdana, sans-serif;
+}
+
+/* Wider page */
+.inner {
+    max-width:40em;
+}
+
+/* More conventional bullet list marker */
+ul>li:before {
+    margin-top: -0.05em;
+    content: "–";
+}
+
+/* Cleaner print style */
+@media print {
+    #blog-header h1 a {
+        font-size:130%!important;
+    }
+    html * {
+        font-size:12pt!important;
+        color:black!important;
+    }
+    body {line-height:1.3em;}
+    h1 {font-size:125%!important;}
+    h2 {font-size:115%!important;}
+    h3 {font-size:110%!important;}
+    p ul ol {margin:0.5em auto!important;}
+    .inner {
+        max-width:100%!important;
+    }
+    #menu, #navigation,
+    .blog-cover, .post-cover,
+    .progress-container {
+        display:none!important;
+    }
+    #blog-header, #post-header {
+        background-color: white!important;
+        padding:2em 0 0 0!important;
+        margin-bottom:2em!important;
+    }
+    .post {
+        padding-top:0!important;
+    }
+    code, tt {
+        border: none!important;
+        background: none!important;
+        top: 0!important;
+        margin: 0!important;
+        padding: 0!important;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid!important;
+        break-after: avoid-page!important;
+    }
+    ul, ol {
+        page-break-before: avoid!important;
+        break-before: avoid-page!important;
+    }
+    .toc {
+        display:none!important;
+    }
+}
+
+/* Narrow margins for inline code */
+code, tt {
+    padding: 0.2em 0.4em;
+    margin: 0;
+}
+pre code {
+    margin:0!important;
+    padding:0!important;
+}
+
+/* Smaller padding between paragraphs */
+p, ul, ol, details {
+    margin: 1.5em auto;
+}
+li p {
+    margin: auto;
+}
+
+/* Do not scale images up */
+.post-content img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height:  35em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Do not highlight links in headings */
+.toclink {
+    border-bottom: none!important;
+}
+
+.toc {
+    float: right;
+    width: 16em;
+    max-width: 95%;
+    background: #FAF9F7;
+    font-size: 0.8em;
+    padding: 0.5em 1em;
+    margin: 1em 0 1em 0.5em;
+}
+.toctitle {
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+.toc ul {
+    padding: 0;
+    margin: 0;
+}
+.toc li {
+    margin: 0.9em 0 0.25em 0;
+    line-height: 1em;
+}
+.toc li ul {
+    margin-left: 1em;
+}
+.toc li:before {
+    content:"";
+}
+.toc li, .toc ul, .toc ul li {
+    list-style: outside none none !important;
+}
+.toc a {
+    text-decoration: none;
+    border-bottom: none;
+}
+.toc a:hover,
+.toc a:active {
+    text-decoration: underline;
+}
