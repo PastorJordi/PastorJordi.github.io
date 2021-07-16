@@ -144,7 +144,11 @@ li p {
 }
 
 /*attempting to disable annoying In []
-apparently it does not work*/
+apparently it does not work, but it works in theme*/
 .input_prompt {
     visibility: hidden
+}
+/*new attempt to reduce code fontsize*/
+.syntaxhighlighter {
+	font-size: 11px !important;
 }
