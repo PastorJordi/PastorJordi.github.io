@@ -74,7 +74,7 @@ ul>li:before {
 code, tt {
     padding: 0.2em 0.4em;
     margin:  0!important;
-    /*font-size: 0.5em!important; 90%!important; this is new*/
+    font-size: 0.2em!important;  /*90%!important; this is new*/
 }
 pre code {
     margin:0!important;
