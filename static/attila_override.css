@@ -154,3 +154,8 @@ apparently it does not work, but it works in theme
 .syntaxhighlighter {
 	font-size: 11px !important;
 } does not work*/
+
+}
+.input_prompt {
+    visibility: hidden!important
+}

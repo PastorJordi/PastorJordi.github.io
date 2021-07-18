@@ -82,20 +82,3 @@
 .highlight .vi { color: teal; }
 .highlight .il { color: #009999; }
 .highlight .gc { color: #999; background-color: #EAF2F5; }
-
-
-/*
-.highlight code {
-	font-size: 0.25em !important;
-}
-
-.syntaxhighlighter,
-.syntaxhighlighter div,
-.syntaxhighlighter code,
-.syntaxhighlighter table,
-.syntaxhighlighter table td,
-.syntaxhighlighter table tr,
-.syntaxhighlighter table tbody {
-	font-size: 0.25em !important;
-}
-*/
