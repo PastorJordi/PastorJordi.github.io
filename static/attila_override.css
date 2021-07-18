@@ -73,12 +73,12 @@ ul>li:before {
 /* Narrow margins for inline code */
 code, tt {
     padding: 0.2em 0.4em;
-    margin:  0!important;
-    font-size: 0.2em!important;  /*90%!important; this is new*/
+    margin: 0;
 }
 pre code {
     margin:0!important;
     padding:0!important;
+    font-size: 0.25em!important;
 }
 
 /* Smaller padding between paragraphs */
@@ -90,7 +90,6 @@ li p {
 }
 
 /* Do not scale images up */
-/*
 .post-content img {
     width: auto;
     height: auto;
@@ -99,7 +98,7 @@ li p {
     margin-left: auto;
     margin-right: auto;
 }
-*/
+
 /* Do not highlight links in headings */
 .toclink {
     border-bottom: none!important;
@@ -143,6 +142,7 @@ li p {
 .toc a:active {
     text-decoration: underline;
 }
+
 
 /*attempting to disable annoying In []
 apparently it does not work, but it works in theme
