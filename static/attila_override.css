@@ -74,6 +74,7 @@ ul>li:before {
 code, tt {
     padding: 0.2em 0.4em;
     margin: 0;
+    font-size: 0.25em!important
 }
 pre code {
     margin:0!important;
@@ -89,7 +90,7 @@ li p {
     margin: auto;
 }
 
-/* Do not scale images up */
+/* Do not scale images up 
 .post-content img {
     width: auto;
     height: auto;
@@ -98,6 +99,7 @@ li p {
     margin-left: auto;
     margin-right: auto;
 }
+*/
 
 /* Do not highlight links in headings */
 .toclink {
@@ -145,7 +147,7 @@ li p {
 
 
 /*attempting to disable annoying In []
-apparently it does not work, but it works in theme
+apparently it does not work, but it works in theme style
 .input_prompt {
     visibility: hidden
 }does not work*/
