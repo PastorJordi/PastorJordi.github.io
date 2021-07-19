@@ -5,22 +5,29 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pastorjordi.github.io/</loc>
-<lastmod>2021-07-19T14:35:54-00:00</lastmod>
+<lastmod>2021-07-19T19:36:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pastorjordi.github.io/tags/</loc>
-<lastmod>2021-07-19T14:35:54-00:00</lastmod>
+<lastmod>2021-07-19T19:36:41-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pastorjordi.github.io/archive/</loc>
-<lastmod>2021-07-19T14:35:54-00:00</lastmod>
+<lastmod>2021-07-19T19:36:41-00:00</lastmod>
 <changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pastorjordi.github.io/blog/2021/Why_req_minimum_irpf/</loc>
+<lastmod>2021-07-19T21:00:00+02:00</lastmod>
+<changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -49,6 +56,27 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <loc>https://pastorjordi.github.io/terrassa/2021/Eleccions_14F/</loc>
 <lastmod>2021-02-17T21:49:00+01:00</lastmod>
 <changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pastorjordi.github.io/tags/etf/</loc>
+<lastmod>2021-07-19T21:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pastorjordi.github.io/tags/taxes/</loc>
+<lastmod>2021-07-19T21:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pastorjordi.github.io/tags/miser/</loc>
+<lastmod>2021-07-19T21:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
