@@ -158,7 +158,8 @@ apparently it does not work, but it works in theme style
 } does not work*/
 
 
-.input_prompt {
+.input_prompt,
+.output_prompt {
     visibility: hidden!important
 }
 
@@ -166,7 +167,7 @@ apparently it does not work, but it works in theme style
 /*jupyter fixes stolen from here
 https://github.com/danielfrg/danielfrg.com/blob/main/nbconvert/jupyter-fixes.css
 */
-/* Theme reset: Links use whatever the theme does */
+/* Theme reset: Links use whatever the theme does
 
 .jupyter-notebook {
     --jp-content-font-family: var(--font-family);
@@ -193,3 +194,4 @@ h3:hover .anchor-link {
 .jupyter-notebook .highlight-ipynb pre {
     font-size: 0.5em;
 }
+*/
