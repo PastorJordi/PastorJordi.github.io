@@ -74,12 +74,12 @@ ul>li:before {
 code, tt {
     padding: 0.2em 0.4em;
     margin: 0;
-    font-size: 0.25em!important
+    /*font-size: 0.25em!important*/
 }
 pre code {
     margin:0!important;
     padding:0!important;
-    font-size: 0.25em!important;
+    /*font-size: 0.25em!important;*/
 }
 
 /* Smaller padding between paragraphs */
@@ -166,7 +166,7 @@ apparently it does not work, but it works in theme style
 /*jupyter fixes stolen from here
 https://github.com/danielfrg/danielfrg.com/blob/main/nbconvert/jupyter-fixes.css
 */
-/* Theme reset: Links use whatever the theme does 
+/* Theme reset: Links use whatever the theme does */
 
 .jupyter-notebook {
     --jp-content-font-family: var(--font-family);
@@ -193,4 +193,3 @@ h3:hover .anchor-link {
 .jupyter-notebook .highlight-ipynb pre {
     font-size: 0.5em;
 }
-*/
