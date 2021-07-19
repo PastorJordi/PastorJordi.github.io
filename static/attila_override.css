@@ -157,11 +157,11 @@ apparently it does not work, but it works in theme style
 	font-size: 11px !important;
 } does not work*/
 
-
+/*removes in[] and out[], however then it is difficult to follow whats input and what's output
 .input_prompt,
 .output_prompt {
     visibility: hidden!important
-}
+}*/
 
 
 /*jupyter fixes stolen from here
