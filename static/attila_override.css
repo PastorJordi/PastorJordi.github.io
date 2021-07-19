@@ -161,3 +161,35 @@ apparently it does not work, but it works in theme style
 .input_prompt {
     visibility: hidden!important
 }
+
+
+/*jupyter fixes stolen from here
+https://github.com/danielfrg/danielfrg.com/blob/main/nbconvert/jupyter-fixes.css
+*/
+/* Theme reset: Links use whatever the theme does */
+
+.jupyter-notebook {
+    --jp-content-font-family: var(--font-family);
+    --jp-content-font-size1: 1.1rem;
+    --jp-content-line-height: 1.5;
+    --jp-content-font-color1: var(--color-txt--dark);
+    --jp-content-link-color: var(--color-txt--action);
+}
+
+.jp-RenderedHTMLCommon p {
+    font-size: 1.1rem;
+}
+
+.jupyter-notebook .anchor-link {
+    display: none;
+}
+
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link {
+    display: none;
+}
+
+.jupyter-notebook .highlight-ipynb pre {
+    font-size: 0.5em;
+}
