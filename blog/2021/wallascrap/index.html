@@ -152,10 +152,10 @@
 <p>It is obvious that search query gets url encoded, so it appeared as a quite straight-forward task. Not that easy bud. Using beautiful soup directly with the query url returned nothing. After inspecting the page source, I noticed that the page is loaded/rendered on the air using react/javascript (excuse me if I am not technically correct because I ignore this kind of jargon/technology). Then I asked god google what I could do next (using python). Some people suggested to use <a href="https://www.selenium.dev/">Selenium</a>, so I tried (and succeeded).</p>
 <p>Selenium is a webDriver (<em>browser emulator</em>) that have some bindings build upon it, providing an API-like functionalities (e.g. <a href="https://selenium-python.readthedocs.io/]">selenium-python</a>). So then, let's go to the point.</p>
 <h4 id="bot-structureinfinite-loop"><a class="toclink" href="#bot-structureinfinite-loop">bot structure/infinite loop</a></h4>
-<p>We'll build a bot that :
-* queries one or more URLs, <br>
-<em> refine the search using custom filters (string pattern matching)  <br>
-</em> it notifies us through our personal slack if it finds any new item.    </p>
+<p>We'll build a bot that:<br>
++ queries one or more URLs, <br>
++ refine the search using custom filters (string pattern matching)<br>
++ it notifies us through our personal slack if it finds any new item.  </p>
 <p>I used Slack because it is what I am used to, it has a free version and it does not require to install additional dependencies to use webhooks, ofc you can use whatever you want (e.g. telegram bot, discord ...). If you never did that before, <a href="https://www.youtube.com/watch?v=jDqjSd42024">here</a>'s an Abhishek's video explaining how to set up webhooks using slack that may come in handy</p>
 <p>You can do a first search (try to refine it using price ranges, dates, etc.) and reuse that url, in this post we will use this url as an example query (splitted for readability): </p>
 <div class="highlight"><pre><span></span><code>&#39;https://es.wallapop.com/search?&#39;
@@ -169,13 +169,13 @@
 </code></pre></div>
 
 <p>Then, using selenium we will:<br>
-<em> (click on accept cookies)<br>
-</em> scroll-down the page so products get loaded and it reaches "show more" button.<br>
-<em> loop over last point till there are no more items<br>
-</em> retrieve info from tags using beautiful soup<br>
-* store new (filtered) items in a dataframe and trigger a slack message with the item and the link  </p>
++ (click on accept cookies)<br>
++ scroll-down the page so products get loaded and it reaches "show more" button.<br>
++ loop over last point till there are no more items<br>
++ retrieve info from tags using beautiful soup<br>
++ store new (filtered) items in a dataframe and trigger a slack message with the item and the link  </p>
 <p>I did it with an endless script with 4 functions. I'll briefly comment those functions and then just paste the whole script. (Later me: I'll share the whole script and comment it)</p>
-<p>Here's the anonymized code. I am not sharing the entire repo because my code ended up intermingled with other stuff and had even poorer coding practices.</p>
+<p>Here's the anonymized code. I am not sharing the entire repo because my code ended up intermingled with other stuff and had even poorer coding practices.  </p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span> <span class="c1"># post to webhook</span>
 <span class="kn">import</span> <span class="nn">json</span> <span class="c1"># post to webhook</span>
 <span class="kn">import</span> <span class="nn">os</span> <span class="c1"># retrieve environmental var webhook</span>
