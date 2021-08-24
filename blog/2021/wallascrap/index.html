@@ -153,17 +153,27 @@
 <p>Selenium is a webDriver (<em>browser emulator</em>) that have some bindings build upon it, providing an API-like functionalities (e.g. <a href="https://selenium-python.readthedocs.io/]">selenium-python</a>). So then, let's go to the point.</p>
 <h4 id="bot-structureinfinite-loop"><a class="toclink" href="#bot-structureinfinite-loop">bot structure/infinite loop</a></h4>
 <p>We'll build a bot that :
-* queries one or more URLs, 
-* refine the search using custom filters (string pattern matching)<br>
-* it notifies us through our personal slack if it finds any new item.  </p>
+- queries one or more URLs, 
+- refine the search using custom filters (string pattern matching)<br>
+- it notifies us through our personal slack if it finds any new item.  </p>
 <p>I used Slack because it is what I am used to, it has a free version and it does not require to install additional dependencies to use webhooks, ofc you can use whatever you want (e.g. telegram bot, discord ...). If you never did that before, <a href="https://www.youtube.com/watch?v=jDqjSd42024">here</a>'s an Abhishek's video explaining how to set up webhooks using slack that may come in handy</p>
-<p>You can do a first search (try to refine it using price ranges, dates, etc.) and reuse that url, in this post we will use this url as an example query: <code>'https://es.wallapop.com/search?time_filter=lastWeek&amp;keywords=thermomix%20lidl&amp;min_sale_price=100&amp;max_sale_price=350&amp;latitude=19.9033824&amp;longitude=-75.1018545&amp;filters_source=search_box'</code> </p>
+<p>You can do a first search (try to refine it using price ranges, dates, etc.) and reuse that url, in this post we will use this url as an example query: </p>
+<div class="highlight"><pre><span></span><code>&#39;https://es.wallapop.com/search?&#39;
+    &#39;time_filter=lastWeek&amp;&#39;
+    &#39;keywords=thermomix%20lidl&amp;&#39;
+    &#39;min_sale_price=100&amp;&#39;
+    &#39;max_sale_price=350&amp;&#39;
+    &#39;latitude=19.9033824&amp;&#39;
+    &#39;longitude=-75.1018545&amp;&#39;
+    &#39;filters_source=search_box&#39;
+</code></pre></div>
+
 <p>Then, using selenium we will:
-* (click on accept cookies)
-* scroll-down the page so products get loaded and it reaches "show more" button.
-* loop over last point till there are no more items
-* retrieve info from tags using beautiful soup
-* store new (filtered) items in a dataframe and trigger a slack message with the item and the link</p>
+- (click on accept cookies)
+- scroll-down the page so products get loaded and it reaches "show more" button.
+- loop over last point till there are no more items
+- retrieve info from tags using beautiful soup
+- store new (filtered) items in a dataframe and trigger a slack message with the item and the link</p>
 <p>I did it with an endless script with 4 functions. I'll briefly comment those functions and then just paste the whole script. (Later me: I'll share the whole script and comment it)</p>
 <p>Here's the anonymized code. I am not sharing the entire repo because my code ended up intermingled with other stuff and had even poorer coding practices.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span> <span class="c1"># post to webhook</span>
@@ -182,13 +192,20 @@
 <span class="kn">import</span> <span class="nn">time</span> <span class="c1"># sleeps</span>
 
 
-<span class="c1"># settings</span>
+<span class="c1"># fixed settings</span>
 <span class="n">SCROLL_PAUSE_TIME</span> <span class="o">=</span> <span class="mi">5</span>
 <span class="n">SLEEP_BETWEEN_CRAWL</span> <span class="o">=</span> <span class="mi">300</span>
 
-<span class="n">urls</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;https://es.wallapop.com/search?time_filter=lastWeek&amp;keywords=thermomix</span><span class="si">%20li</span><span class="s1">dl&amp;min_sale_price=100&amp;max_sale_price=350&amp;latitude=19.9033824&amp;longitude=-75.1018545&amp;filters_source=search_box&#39;</span>
-<span class="p">]</span> <span class="c1"># add more urls if required.</span>
+<span class="n">urls</span> <span class="o">=</span> <span class="p">[(</span>
+    <span class="s1">&#39;https://es.wallapop.com/search?&#39;</span>
+    <span class="s1">&#39;time_filter=lastWeek&amp;&#39;</span>
+    <span class="s1">&#39;keywords=thermomix</span><span class="si">%20li</span><span class="s1">dl&amp;&#39;</span>
+    <span class="s1">&#39;min_sale_price=100&amp;&#39;</span>
+    <span class="s1">&#39;max_sale_price=350&amp;&#39;</span>
+    <span class="s1">&#39;latitude=19.9033824&amp;&#39;</span>
+    <span class="s1">&#39;longitude=-75.1018545&amp;&#39;</span>
+    <span class="s1">&#39;filters_source=search_box&#39;</span>
+<span class="p">)]</span> <span class="c1"># add more urls if required.</span>
 
 <span class="c1"># filters below are done in product description (?)</span>
 <span class="n">words_included</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;thermomix&#39;</span><span class="p">,</span><span class="s1">&#39;robot&#39;</span><span class="p">,</span> <span class="s1">&#39;cocina&#39;</span><span class="p">]</span>
@@ -215,7 +232,8 @@
 
 
 <span class="k">def</span> <span class="nf">pull_wallapop</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">words_included</span><span class="o">=</span><span class="p">[],</span> <span class="n">words_excluded</span><span class="o">=</span><span class="p">[]):</span>
-    <span class="sd">&quot;&quot;&quot;core function of the script, this one is the one that will run in the endless loop&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;core function of the script, </span>
+<span class="sd">    it will run in the endless loop&quot;&quot;&quot;</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">: pulling wallapop&quot;</span><span class="p">)</span>
     <span class="c1"># some config (else headless driver wont work)</span>
     <span class="n">capabilities</span> <span class="o">=</span> <span class="n">DesiredCapabilities</span><span class="o">.</span><span class="n">CHROME</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -234,13 +252,22 @@
     <span class="n">option</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--disable-dev-shm-usage&#39;</span><span class="p">)</span>
     <span class="n">option</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s1">&#39;--ignore-certificate-errors&#39;</span><span class="p">)</span>
 
-    <span class="c1">#browser = webdriver.Chrome(&quot;./notebooks/chromedriver_win32/chromedriver.exe&quot;, options=option, desired_capabilities=capabilities) # debugging in a windows box</span>
-    <span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="s2">&quot;/usr/bin/chromedriver&quot;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="n">option</span><span class="p">,</span> <span class="n">desired_capabilities</span><span class="o">=</span><span class="n">capabilities</span><span class="p">)</span> <span class="c1"># raspbian</span>
+    <span class="c1"># browser = webdriver.Chrome(</span>
+        <span class="c1"># &quot;./notebooks/chromedriver_win32/chromedriver.exe&quot;, </span>
+        <span class="c1"># options=option, desired_capabilities=capabilities</span>
+        <span class="c1"># ) # debugging in a windows box</span>
+    <span class="n">browser</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span>
+        <span class="s2">&quot;/usr/bin/chromedriver&quot;</span><span class="p">,</span> <span class="c1"># path to binary</span>
+        <span class="n">options</span><span class="o">=</span><span class="n">option</span><span class="p">,</span> <span class="c1"># options defined above</span>
+        <span class="n">desired_capabilities</span><span class="o">=</span><span class="n">capabilities</span> <span class="c1"># idem</span>
+        <span class="p">)</span> <span class="c1"># raspbian</span>
     <span class="n">browser</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="c1"># loads page</span>
     <span class="n">browser</span><span class="o">.</span><span class="n">implicitly_wait</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="c1"># let it load :)</span>
     <span class="k">try</span><span class="p">:</span> <span class="c1"># apparently not required with headless</span>
         <span class="c1"># click on accept cookies</span>
-        <span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_xpath</span><span class="p">(</span><span class="s1">&#39;/html/body/div[1]/div/div/div/div/div/div[3]/button[2]&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+        <span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_xpath</span><span class="p">(</span>
+            <span class="s1">&#39;/html/body/div[1]/div/div/div/div/div/div[3]/button[2]&#39;</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
     <span class="k">except</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;xpath button not found&#39;</span><span class="p">)</span>
         <span class="k">pass</span>
@@ -258,11 +285,15 @@
         <span class="c1"># Wait to load page</span>
         <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">SCROLL_PAUSE_TIME</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_xpath</span><span class="p">(</span><span class="s1">&#39;//*[@id=&quot;more-products-btn&quot;]/div/button&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span> <span class="c1"># clicks on &quot;more products&quot; button</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">: clicked in more products already&quot;</span><span class="p">)</span>
+            <span class="n">browser</span><span class="o">.</span><span class="n">find_element_by_xpath</span><span class="p">(</span>
+                <span class="s1">&#39;//*[@id=&quot;more-products-btn&quot;]/div/button&#39;</span>
+                <span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span> <span class="c1"># clicks on &quot;more products&quot; button</span>
+            <span class="nb">print</span><span class="p">((</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">: &quot;</span>
+            <span class="s2">&quot;clicked in more products already&quot;</span><span class="p">))</span>
             <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">SCROLL_PAUSE_TIME</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">())</span>
         <span class="k">except</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M:S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">: &#39;click more products&#39; not found in iter </span><span class="si">{</span><span class="nb">iter</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">((</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M:S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">: &quot;</span>
+            <span class="s2">&quot;&#39;click more products&#39; not found in iter </span><span class="si">{iter}</span><span class="s2">&quot;</span><span class="p">))</span>
             <span class="n">browser</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="s2">&quot;window.scrollTo(0,document.body.scrollHeight)&quot;</span><span class="p">)</span>
             <span class="k">pass</span>
         <span class="c1"># Calculate new scroll height and compare with last scroll height</span>
@@ -284,7 +315,10 @@
         <span class="n">ll</span> <span class="o">+=</span> <span class="p">[</span><span class="n">get_wallapop_fields</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="n">i</span><span class="p">])]</span>
 
     <span class="c1"># create a table with it</span>
-    <span class="n">df</span> <span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">ll</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;item_id&#39;</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;link&#39;</span><span class="p">,</span> <span class="s1">&#39;descr&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;item_id&#39;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+        <span class="n">ll</span><span class="p">,</span> <span class="c1"># our list of lists </span>
+        <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;item_id&#39;</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">,</span> <span class="s1">&#39;title&#39;</span><span class="p">,</span> <span class="s1">&#39;link&#39;</span><span class="p">,</span> <span class="s1">&#39;descr&#39;</span><span class="p">]</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;item_id&#39;</span><span class="p">)</span>
     <span class="n">df</span><span class="p">[</span><span class="s1">&#39;keep&#39;</span><span class="p">]</span><span class="o">=</span><span class="kc">False</span>
 
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">words_included</span><span class="p">):</span> <span class="c1"># apply filtering in title/description</span>
@@ -316,7 +350,8 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="n">df_prev</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_pickle</span><span class="p">(</span><span class="s1">&#39;frame.pkl&#39;</span><span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;if first run, this is fine, else you should not read this aka something is not working&#39;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">((</span><span class="s1">&#39;if first run, this is fine, &#39;</span>
+            <span class="s1">&#39;else you should not read this aka something is not working&#39;</span><span class="p">))</span>
             <span class="n">df_prev</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([])</span>
 
         <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
@@ -324,9 +359,13 @@
             <span class="n">dflist</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
-                    <span class="n">dflist</span> <span class="o">+=</span> <span class="p">[</span><span class="n">pull_wallapop</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">words_included</span><span class="o">=</span><span class="n">words_included</span><span class="p">,</span> <span class="n">words_excluded</span><span class="o">=</span><span class="n">words_excluded</span><span class="p">)]</span>
+                    <span class="n">dflist</span> <span class="o">+=</span> <span class="p">[</span><span class="n">pull_wallapop</span><span class="p">(</span>
+                        <span class="n">url</span><span class="p">,</span> 
+                        <span class="n">words_included</span><span class="o">=</span><span class="n">words_included</span><span class="p">,</span> 
+                        <span class="n">words_excluded</span><span class="o">=</span><span class="n">words_excluded</span><span class="p">)]</span>
                 <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
-                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;exception while pulling wallapop.</span><span class="se">\n</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="se">\n</span><span class="s1">sleeping for </span><span class="si">{</span><span class="n">SLEEP_BETWEEN_CRAWL</span><span class="si">}</span><span class="s1">  and trying again&#39;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">((</span><span class="sa">f</span><span class="s1">&#39;exception while pulling wallapop.</span><span class="se">\n</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span>
+                    <span class="sa">f</span><span class="s1">&#39;sleeping for </span><span class="si">{</span><span class="n">SLEEP_BETWEEN_CRAWL</span><span class="si">}</span><span class="s1"> and trying again&#39;</span><span class="p">))</span>
                     <span class="c1">#raise e # uncomment to debug</span>
                     <span class="n">continueflag</span>  <span class="o">=</span> <span class="kc">True</span>
                     <span class="k">break</span>
@@ -349,12 +388,15 @@
                     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;found all these new item ids&#39;</span><span class="p">,</span><span class="n">new_indexes</span><span class="p">)</span>
                     <span class="n">report_</span><span class="p">(</span><span class="n">curr_df</span><span class="p">,</span><span class="n">new_indexes</span><span class="p">)</span>
 
+                <span class="c1"># update old and store. Clean manually from time to time*</span>
+                <span class="n">df_prev</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_prev</span><span class="p">,</span><span class="n">curr_df</span><span class="p">])</span> 
+                <span class="c1"># if ads get updated, this won&#39;t warn</span>
+                <span class="n">df_prev</span> <span class="o">=</span> <span class="n">df_prev</span><span class="p">[</span><span class="o">~</span><span class="n">df_prev</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s1">&#39;last&#39;</span><span class="p">)]</span> 
+                <span class="c1"># saving table avoids spamming after restarting the script</span>
+                <span class="n">df_prev</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s1">&#39;frame.pkl&#39;</span><span class="p">)</span> 
 
-                <span class="n">df_prev</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_prev</span><span class="p">,</span><span class="n">curr_df</span><span class="p">])</span> <span class="c1"># update old and store. Clean manually from time to time*</span>
-                <span class="n">df_prev</span> <span class="o">=</span> <span class="n">df_prev</span><span class="p">[</span><span class="o">~</span><span class="n">df_prev</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">duplicated</span><span class="p">(</span><span class="n">keep</span><span class="o">=</span><span class="s1">&#39;last&#39;</span><span class="p">)]</span> <span class="c1"># if ads get updated, this won&#39;t warn</span>
-                <span class="n">df_prev</span><span class="o">.</span><span class="n">to_pickle</span><span class="p">(</span><span class="s1">&#39;frame.pkl&#39;</span><span class="p">)</span> <span class="c1"># saving table, avoids spamming after restarting the script</span>
-
-            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">: waiting </span><span class="si">{</span><span class="n">SLEEP_BETWEEN_CRAWL</span><span class="si">}</span><span class="s2">s till next crawl&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">((</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%H:%M:%S&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">: &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;waiting </span><span class="si">{</span><span class="n">SLEEP_BETWEEN_CRAWL</span><span class="si">}</span><span class="s2">s till next crawl&quot;</span><span class="p">))</span>
             <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">SLEEP_BETWEEN_CRAWL</span><span class="p">)</span>
 
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
@@ -363,8 +405,8 @@
 </code></pre></div>
 
 <p>You can run it in a headless raspberry pi using ~1€/month power consumption. If that's the case, take a look at <a href="https://github.com/jjhelmus/berryconda">berryconda</a> (saves a lot of time when installing pandas) and <a href="https://ivanderevianko.com/2020/01/selenium-chromedriver-for-raspberrypi">how to install chromedriver in armv7l</a>.</p>
-<p>Disclaimer: Do not abuse. I am not encouraging to do anything illegal. Also, after some time this script stopped working on the raspberry (still worked in a windows box) so perhaps chromium/webdriver interaction was broken or it got black-listed somehow. This strategy is widely used, when talking with sellers, most of the times I was not the first to contact them (5 min latency max.)
-You can find similar resources <a href="https://programadorwebvalencia.com/wallaviso-por-que-no-funciono-un-servicio-de-avisos-para-wallapop/">here</a> and <a href="https://www.youtube.com/watch?v=aZ7j9V3FQK4">here</a> (Spanish).</p>
+<p>Disclaimer: Do not abuse. I am not encouraging you to do anything illegal. Also, after some time this script stopped working on the raspberry (still worked in a windows box) so perhaps chromium/webdriver interaction was broken or it got black-listed somehow. This strategy is widely used, when talking with sellers, most of the times I was not the first to contact them (5 min latency max.)<br>
+You can find similar resources <a href="https://programadorwebvalencia.com/wallaviso-por-que-no-funciono-un-servicio-de-avisos-para-wallapop/">here</a> and <a href="https://www.youtube.com/watch?v=aZ7j9V3FQK4">here</a> in Spanish.</p>
 <p>Cheers and happy shopping :)</p>
             </section>
 
