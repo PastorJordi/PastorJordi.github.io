@@ -49,6 +49,7 @@
     <meta name="tags" content="selenium">
     <meta name="tags" content="wallapop">
     <meta name="tags" content="miser">
+    <meta name="tags" content="bots">
 
 
 
@@ -68,6 +69,7 @@
 <meta property="article:tag" content="selenium"/>
 <meta property="article:tag" content="wallapop"/>
 <meta property="article:tag" content="miser"/>
+<meta property="article:tag" content="bots"/>
 <meta property="og:image" content="https://s1.eestatic.com/2019/02/15/social/wallapop-twitter-redes_sociales_376474087_114819743_1706x960.jpg">
 
 <!-- Twitter Card -->
@@ -147,8 +149,8 @@
         <article class="post">
         <div class="inner">
             <section class="post-content">
-                <h3 id="how-i-scrapped-wallapop"><a class="toclink" href="#how-i-scrapped-wallapop">How I scrapped wallapop</a></h3>
-<p>Hehe, you took the bait? I did not scrap them. Probably scrapping their content is illegal. So I did not scrap wallapop <em>per se</em> but tried to extend their built-in functionalities. They can deliver <del>quite inaccurate</del> results for custom-saved searches once a day. Unfortunately, this latency was too high for the kind of product I was interested in and it gave poor results. Instead of pressing f5 every 5 minutes personally, I guess it is fine to program something that does it for you (legitimate purpose mantra accomplished).</p>
+                <h3 id="how-i-scraped-wallapop"><a class="toclink" href="#how-i-scraped-wallapop">How I scraped wallapop</a></h3>
+<p>Hehe, you took the bait? I did not scrap them. Probably scraping their content is illegal. So I did not scrap wallapop <em>per se</em> but tried to extend their built-in functionalities. They can deliver <del>quite inaccurate</del> results for custom-saved searches once a day. Unfortunately, this latency was too high for the kind of product I was interested in and it gave poor results. Instead of pressing f5 every 5 minutes personally, I guess it is fine to program something that does it for you (legitimate purpose mantra accomplished).</p>
 <p>It is obvious that search query gets url encoded, so it appeared as a quite straight-forward task. Not that easy bud. Using beautiful soup directly with the query url returned nothing. After inspecting the page source, I noticed that the page is loaded/rendered on the air using react/javascript (excuse me if I am not technically correct because I ignore this kind of jargon/technology). Then I asked god google what I could do next (using python). Some people suggested to use <a href="https://www.selenium.dev/">Selenium</a>, so I tried (and succeeded).</p>
 <p>Selenium is a webDriver (<em>browser emulator</em>) that have some bindings build upon it, providing an API-like functionalities (e.g. <a href="https://selenium-python.readthedocs.io/]">selenium-python</a>). So then, let's go to the point.</p>
 <h4 id="bot-structureinfinite-loop"><a class="toclink" href="#bot-structureinfinite-loop">bot structure/infinite loop</a></h4>
@@ -179,7 +181,7 @@
 <li>store new (filtered) items in a dataframe and trigger a slack message with the item and the link  </li>
 </ul>
 <p>I did it with an endless script with 4 functions. I'll briefly comment those functions and then just paste the whole script. (Later me: I'll share the whole script and comment it)</p>
-<p>Here's the anonymized code. I am not sharing the entire repo because my code ended up intermingled with other stuff and had even poorer coding practices.  </p>
+<p>Here's the anonymized code (<a href="https://gist.github.com/PastorJordi/189d660a7d4498e71fc4a3a84d8f6427">gist</a>). I am not sharing the entire repo because my code ended up intermingled with other stuff and had even poorer coding practices.   </p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span> <span class="c1"># post to webhook</span>
 <span class="kn">import</span> <span class="nn">json</span> <span class="c1"># post to webhook</span>
 <span class="kn">import</span> <span class="nn">os</span> <span class="c1"># retrieve environmental var webhook</span>
@@ -429,7 +431,7 @@ You can find similar resources <a href="https://programadorwebvalencia.com/walla
                 </div>
 
                 <aside class="post-tags">
-<a href="https://pastorjordi.github.io/tags/python/">python</a><a href="https://pastorjordi.github.io/tags/selenium/">selenium</a><a href="https://pastorjordi.github.io/tags/wallapop/">wallapop</a><a href="https://pastorjordi.github.io/tags/miser/">miser</a>                </aside>
+<a href="https://pastorjordi.github.io/tags/python/">python</a><a href="https://pastorjordi.github.io/tags/selenium/">selenium</a><a href="https://pastorjordi.github.io/tags/wallapop/">wallapop</a><a href="https://pastorjordi.github.io/tags/miser/">miser</a><a href="https://pastorjordi.github.io/tags/bots/">bots</a>                </aside>
 
                 <div class="clear"></div>
 
