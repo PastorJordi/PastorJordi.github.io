@@ -5,21 +5,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pastorjordi.github.io/</loc>
-<lastmod>2021-08-30T15:25:35-00:00</lastmod>
+<lastmod>2021-09-01T14:05:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pastorjordi.github.io/tags/</loc>
-<lastmod>2021-08-30T15:25:35-00:00</lastmod>
+<lastmod>2021-09-01T14:05:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pastorjordi.github.io/archive/</loc>
-<lastmod>2021-08-30T15:25:35-00:00</lastmod>
+<lastmod>2021-09-01T14:05:48-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -172,6 +172,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://pastorjordi.github.io/tags/salary/</loc>
+<lastmod>2021-08-09T14:30:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://pastorjordi.github.io/tags/etf/</loc>
 <lastmod>2021-07-19T21:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -180,6 +187,20 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pastorjordi.github.io/tags/taxes/</loc>
+<lastmod>2021-07-19T21:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pastorjordi.github.io/tags/irpf/</loc>
+<lastmod>2021-07-19T21:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pastorjordi.github.io/tags/yahoofinance/</loc>
 <lastmod>2021-07-19T21:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -201,6 +222,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pastorjordi.github.io/tags/ajuntament/</loc>
+<lastmod>2021-06-22T21:49:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pastorjordi.github.io/tags/redistribution/</loc>
 <lastmod>2021-06-22T21:49:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
@@ -229,6 +257,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pastorjordi.github.io/tags/maps/</loc>
+<lastmod>2021-02-17T21:49:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pastorjordi.github.io/tags/plotly/</loc>
 <lastmod>2021-02-17T21:49:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>

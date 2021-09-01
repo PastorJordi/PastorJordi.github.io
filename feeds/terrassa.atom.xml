@@ -740,7 +740,7 @@ respecte 2018, això suposa un increment del 0.61 % del pressupost total, un inc
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="Terrassa"></category><category term="Terrassa"></category><category term="Ajuntament"></category></entry><entry><title>Resultat eleccions 14F Generalitat</title><link href="https://pastorjordi.github.io/terrassa/2021/Eleccions_14F/" rel="alternate"></link><published>2021-02-17T21:49:00+01:00</published><updated>2021-02-17T21:49:00+01:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2021-02-17:/terrassa/2021/Eleccions_14F/</id><summary type="html">&lt;p&gt;Distribució de vots per secció egarenca.&lt;/p&gt;</summary><content type="html">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"&gt;&lt;/script&gt;
+</content><category term="Terrassa"></category><category term="Terrassa"></category><category term="Ajuntament"></category><category term="redistribution"></category></entry><entry><title>Resultat eleccions 14F Generalitat</title><link href="https://pastorjordi.github.io/terrassa/2021/Eleccions_14F/" rel="alternate"></link><published>2021-02-17T21:49:00+01:00</published><updated>2021-02-17T21:49:00+01:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2021-02-17:/terrassa/2021/Eleccions_14F/</id><summary type="html">&lt;p&gt;Distribució de vots per secció egarenca.&lt;/p&gt;</summary><content type="html">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"&gt;&lt;/script&gt;
 
 &lt;style type="text/css"&gt;
 div.code_cell {
@@ -843,4 +843,4 @@ Com la divisió més petita del cens (mapa) que vaig saber trobar al portal de d
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="Terrassa"></category><category term="Terrassa"></category><category term="Eleccions"></category><category term="Maps"></category></entry></feed>
+</content><category term="Terrassa"></category><category term="Terrassa"></category><category term="Eleccions"></category><category term="Maps"></category><category term="plotly"></category></entry></feed>
