@@ -5,21 +5,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pastorjordi.github.io/</loc>
-<lastmod>2021-09-03T12:25:31-00:00</lastmod>
+<lastmod>2021-09-08T10:18:59-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pastorjordi.github.io/tags/</loc>
-<lastmod>2021-09-03T12:25:31-00:00</lastmod>
+<lastmod>2021-09-08T10:18:59-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pastorjordi.github.io/archive/</loc>
-<lastmod>2021-09-03T12:25:31-00:00</lastmod>
+<lastmod>2021-09-08T10:18:59-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -34,6 +34,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://pastorjordi.github.io/Links_of_interest/</loc>
 <lastmod>2021-07-25T00:10:00+02:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pastorjordi.github.io/blog/2021/spanish_paywalled_articles/</loc>
+<lastmod>2021-09-08T10:15:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -88,8 +95,29 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
+<loc>https://pastorjordi.github.io/tags/beautifulsoup/</loc>
+<lastmod>2021-09-08T10:15:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pastorjordi.github.io/tags/paywall/</loc>
+<lastmod>2021-09-08T10:15:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
 <loc>https://pastorjordi.github.io/tags/python/</loc>
-<lastmod>2021-08-24T20:00:00+00:09</lastmod>
+<lastmod>2021-09-08T10:15:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pastorjordi.github.io/tags/miser/</loc>
+<lastmod>2021-09-08T10:15:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -103,13 +131,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pastorjordi.github.io/tags/wallapop/</loc>
-<lastmod>2021-08-24T20:00:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://pastorjordi.github.io/tags/miser/</loc>
 <lastmod>2021-08-24T20:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>

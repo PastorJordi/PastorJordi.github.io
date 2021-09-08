@@ -1,5 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>JP's word salads</title><link href="https://pastorjordi.github.io/" rel="alternate"></link><link href="https://pastorjordi.github.io/feeds/all-en.atom.xml" rel="self"></link><id>https://pastorjordi.github.io/</id><updated>2021-08-24T20:00:00+02:00</updated><subtitle>random thoughts that might be worth sharing (?)</subtitle><entry><title>Scraping wallapop</title><link href="https://pastorjordi.github.io/blog/2021/wallascrap/" rel="alternate"></link><published>2021-08-24T20:00:00+02:00</published><updated>2021-08-24T20:00:00+02:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2021-08-24:/blog/2021/wallascrap/</id><summary type="html">&lt;p&gt;Automatically look for products in wallapop (2nd hand portal) using selenium&lt;/p&gt;</summary><content type="html">&lt;h3 id="how-i-scraped-wallapop"&gt;&lt;a class="toclink" href="#how-i-scraped-wallapop"&gt;How I scraped wallapop&lt;/a&gt;&lt;/h3&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>JP's word salads</title><link href="https://pastorjordi.github.io/" rel="alternate"></link><link href="https://pastorjordi.github.io/feeds/all-en.atom.xml" rel="self"></link><id>https://pastorjordi.github.io/</id><updated>2021-09-08T10:15:00+02:00</updated><subtitle>random thoughts that might be worth sharing (?)</subtitle><entry><title>Reading Spanish articles behind paywalls</title><link href="https://pastorjordi.github.io/blog/2021/spanish_paywalled_articles/" rel="alternate"></link><published>2021-09-08T10:15:00+02:00</published><updated>2021-09-08T10:15:00+02:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2021-09-08:/blog/2021/spanish_paywalled_articles/</id><summary type="html">&lt;p&gt;exporing whether a trick found on twitter actually works.&lt;/p&gt;</summary><content type="html">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"&gt;&lt;/script&gt;
+
+&lt;style type="text/css"&gt;
+div.code_cell {
+    //border: 2px solid red;
+    font-size: 0.75em;
+}
+
+
+/* div.markdown_cell 
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h1 
+disabling links in notebooks till i cannot fix newline char*/
+.anchor-link {
+    display: none;
+    visibility: hidden;
+{
+
+}
+&lt;/style&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h1 id="Bypassing-dumb-article-paywalls"&gt;&lt;em&gt;Bypassing&lt;/em&gt; dumb article paywalls&lt;a class="anchor-link" href="#Bypassing-dumb-article-paywalls"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Nowadays there's a tendency to pay for other people's effort. Which is nice. However, it is annoying to get lured by a tweet or link and then not being able to read the content (in a place that you are not going to subscribe for an article a year).  Some of them can (could?) be bypassed using incognito mode. Others don't. But there's a next step that you can make to &lt;em&gt;bypass&lt;/em&gt; the paywall.&lt;br&gt;
+I am not OK with massive piracy but, you know, I guess this is what happens when things are poorly done. Like it happened with SQL databases back in 2010s.&lt;/p&gt;
+&lt;h1 id="How-to."&gt;How-to.&lt;a class="anchor-link" href="#How-to."&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;The other day, when checking my twitter feed I saw @fouroctets tweet about this (this idea is not mine). Unfortunately he has a lock now and I cannot share the tweet. In summary, you can read plaintext paywalled articles in page source (sometimes). This was in a popular US newsletter, I'll check few in Spain using BeautifulSoup.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[24]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;bs4&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;BeautifulSoup&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;json&lt;/span&gt;
+
+&lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;https://elpais.com/opinion/2021-09-01/vacunarse-es-una-obligacion-civica-y-solidaria.html&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;page&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;soup&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;BeautifulSoup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;page&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;html.parser&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[25]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# page.content # #uncomment for spam&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;here we can see that after &lt;code&gt;"a pesar de su oposici\xc3\xb3n."&lt;/code&gt; we have a &lt;code&gt;/p&amp;gt;&amp;lt;section class="more_info | border_1 border_top pull_right"&amp;gt;...&lt;/code&gt; just skip it until &lt;code&gt;target="_blank"&amp;gt;&lt;/code&gt; and voilá! full article text is there (ends in &lt;code&gt;&amp;lt;/p&amp;gt;&amp;lt;section id="ctn_closed_article"&lt;/code&gt;)&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[27]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# with this we can retrieve paragraphs&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;soup&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;findAll&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;p&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attrs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;class&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;})[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:]:&lt;/span&gt;
+    &lt;span class="c1"&gt;# print(item.contents) # uncomment to print :) &lt;/span&gt;
+    &lt;span class="c1"&gt;# Won&amp;#39;t share text that is not mine in the site&lt;/span&gt;
+    &lt;span class="k"&gt;pass&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[74]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;body_content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;soup&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;findAll&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;p&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attrs&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;class&amp;#39;&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;})[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt; 
+    &lt;span class="c1"&gt;# concat paragraph content&lt;/span&gt;
+    &lt;span class="n"&gt;c_content&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;item&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;contents&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;c_content&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;continue&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c_content&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;body_content&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+            &lt;span class="s2"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;c_content&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+        &lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;body_content&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c_content&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])]&lt;/span&gt;
+&lt;span class="c1"&gt;# print(&amp;#39;\n\n&amp;#39;.join(body_content))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[28]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# look for &amp;lt;/script&amp;gt;&amp;lt;script type=&amp;quot;application/ld+json&amp;quot;&amp;gt;&lt;/span&gt;
+&lt;span class="c1"&gt;# there we have **everything**, but hyperlinks are not present in bodyContent, &lt;/span&gt;
+&lt;span class="c1"&gt;# just retrieve title and subtitle&lt;/span&gt;
+&lt;span class="n"&gt;scr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;soup&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;findAll&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;script&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;application/ld+json&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;json&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loads&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;scr&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="c1"&gt;# actual content&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[&amp;nbsp;]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;html_header&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;lt;meta charset=&amp;quot;utf-8&amp;quot;/&amp;gt;&lt;/span&gt;
+&lt;span class="s2"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;output.html&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;w&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;write&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="n"&gt;html_header&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;
+            &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&amp;lt;h1&amp;gt;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;headline&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;lt;/h1&amp;gt;&amp;lt;h2&amp;gt;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;description&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;lt;/h2&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;
+            &lt;span class="s1"&gt;&amp;#39;&amp;lt;p&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;lt;/p&amp;gt;&amp;lt;p&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;body_content&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;lt;/p&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="c1"&gt;# join paragraphs with p tags&lt;/span&gt;
+            &lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s1"&gt;  &amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;
+                &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;lt;img src=&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;image&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;url&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;&amp;quot; width=&amp;quot;280&amp;quot;&amp;gt;&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;image&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt; 
+                &lt;span class="c1"&gt;# append images at the bottom. TODO: since this might be crucial in some articles,&lt;/span&gt;
+                &lt;span class="c1"&gt;# it would be nice to rework it at some point so that they get inserted where they should&lt;/span&gt;
+            &lt;span class="p"&gt;])&lt;/span&gt;
+        &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="c1"&gt;# once all of them work, try using some css so it is not that ugly&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;And that's it. We have an ugly html with the "paywalled" content.&lt;br&gt;
+You can find a small utility &lt;a href="https://github.com/PastorJordi/novullpagar"&gt;here&lt;/a&gt;, to make your life easier (supports several sites, tested in ubuntu).&lt;br&gt;
+I'd like to thank AFont24 for his help, suggestions and pull requests while preparing the repo.&lt;br&gt;
+Cheers!&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+ 
+
+
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;
+</content><category term="Blog"></category><category term="beautifulsoup"></category><category term="paywall"></category><category term="python"></category><category term="miser"></category></entry><entry><title>Scraping wallapop</title><link href="https://pastorjordi.github.io/blog/2021/wallascrap/" rel="alternate"></link><published>2021-08-24T20:00:00+02:00</published><updated>2021-08-24T20:00:00+02:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2021-08-24:/blog/2021/wallascrap/</id><summary type="html">&lt;p&gt;Automatically look for products in wallapop (2nd hand portal) using selenium&lt;/p&gt;</summary><content type="html">&lt;h3 id="how-i-scraped-wallapop"&gt;&lt;a class="toclink" href="#how-i-scraped-wallapop"&gt;How I scraped wallapop&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Hehe, you took the bait? I did not scrap them. Probably scraping their content is illegal. So I did not scrap wallapop &lt;em&gt;per se&lt;/em&gt; but tried to extend their built-in functionalities. They can deliver &lt;del&gt;quite inaccurate&lt;/del&gt; results for custom-saved searches once a day. Unfortunately, this latency was too high for the kind of product I was interested in and it gave poor results. Instead of pressing f5 every 5 minutes personally, I guess it is fine to program something that does it for you (legitimate purpose mantra accomplished).&lt;/p&gt;
 &lt;p&gt;It is obvious that search query gets url encoded, so it appeared as a quite straight-forward task. Not that easy bud. Using beautiful soup directly with the query url returned nothing. After inspecting the page source, I noticed that the page is loaded/rendered on the air using react/javascript (excuse me if I am not technically correct because I ignore this kind of jargon/technology). Then I asked god google what I could do next (using python). Some people suggested to use &lt;a href="https://www.selenium.dev/"&gt;Selenium&lt;/a&gt;, so I tried (and succeeded).&lt;/p&gt;
 &lt;p&gt;Selenium is a webDriver (&lt;em&gt;browser emulator&lt;/em&gt;) that have some bindings build upon it, providing an API-like functionalities (e.g. &lt;a href="https://selenium-python.readthedocs.io/]"&gt;selenium-python&lt;/a&gt;). So then, let's go to the point.&lt;/p&gt;
