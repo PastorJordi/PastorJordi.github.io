@@ -5,21 +5,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pastorjordi.github.io/</loc>
-<lastmod>2021-10-19T16:04:44-00:00</lastmod>
+<lastmod>2022-05-13T14:44:31-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pastorjordi.github.io/tags/</loc>
-<lastmod>2021-10-19T16:04:44-00:00</lastmod>
+<lastmod>2022-05-13T14:44:31-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pastorjordi.github.io/archive/</loc>
-<lastmod>2021-10-19T16:04:44-00:00</lastmod>
+<lastmod>2022-05-13T14:44:31-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -34,6 +34,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://pastorjordi.github.io/Links_of_interest/</loc>
 <lastmod>2021-07-25T00:10:00+02:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pastorjordi.github.io/blog/2022/vscode-macros/</loc>
+<lastmod>2022-02-06T20:00:00+01:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -91,6 +98,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <loc>https://pastorjordi.github.io/terrassa/2021/Eleccions_14F/</loc>
 <lastmod>2021-02-17T21:49:00+01:00</lastmod>
 <changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pastorjordi.github.io/tags/programming/</loc>
+<lastmod>2022-02-06T20:00:00+00:09</lastmod>
+<changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
