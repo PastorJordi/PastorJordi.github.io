@@ -143,24 +143,24 @@
             <section class="post-content">
                 <h1 id="how-i-wasted-30-min-to-create-a-shortcut-in-vscode"><a class="toclink" href="#how-i-wasted-30-min-to-create-a-shortcut-in-vscode">How I wasted 30 min to create a shortcut in vscode</a></h1>
 <h2 id="some-context"><a class="toclink" href="#some-context">Some context</a></h2>
-<p>The other day I was using Rstudio because I found few functions I needed already written in R. At some point I realized that some widely used operators are EXTREMELY ANNOYING to type. Specifically, I mean assignment "<code>&lt;-</code>" and pipe "<code>%&gt;%</code>" operators. Perhaps I have this feeling because their python counterparts are as simple as "<code>=</code>" and "<code>.</code>". Luckily, someone thought about this before, and there are plenty of <a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE">already written shortcuts</a> to type such combination of symbols. <code>Alt</code> + <code>-</code> and <code>Ctrl</code> + <code>Shift</code> + <code>M</code>, respecively.  </p>
+<p>The other day I was using Rstudio because I found few functions I needed already written in R. At some point I realized that some widely used operators are EXTREMELY ANNOYING to type. Specifically, I mean assignment "<code>&lt;-</code>" and pipe "<code>%&gt;%</code>" operators. Perhaps I have this feeling because their python counterparts are as simple as "<code>=</code>" and "<code>.</code>". Luckily, someone thought about this before, and there are plenty of <a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE">already written shortcuts</a> to type such combination of symbols. <code>Alt</code> + <code>-</code> and <code>Ctrl</code> + <code>Shift</code> + <code>M</code>, respectively.  </p>
 <h2 id="vscode-shortcuts"><a class="toclink" href="#vscode-shortcuts">Vscode shortcuts</a></h2>
-<p>In the long run you may end up saving quite a lot of time. Then I wondered why I am not exploiting all of the vscode shortcuts (vscode is my IDE of choice most of the times). Afterwards I opened the shortcuts tab and I remembered. There are so many of them that in such list-like presentation they can be quite overwhelming. While scrolling down I refreshed some of them that could be useful that I am not using simply because I don't have the habit or I do not remembery the key combination. Recently, those that involve creating multiple cursors caught my attention</p>
+<p>In the long run you may end up saving quite a lot of time. Then I wondered why I am not exploiting all the vscode shortcuts (vscode is my IDE of choice most of the times). Afterwards, I opened shortcuts tab and I remembered. There are so many of them that in such list-like presentation they can be quite overwhelming. While scrolling down, I refreshed some of them that could be useful that I am not using simply because I don't have the habit or I do not remember the key combination. Recently, those that involve creating multiple cursors caught my attention</p>
 <h2 id="multiple-cursors"><a class="toclink" href="#multiple-cursors">multiple cursors</a></h2>
-<p>There are few shortcuts that create cursors and that can come in handy but I missed the following. Woudn't it be cool to have a keybind that types an equal sign <code>=</code> with a cursor in each side? It would be quite usefull when updating a column value in pandas such as here  </p>
+<p>There are few shortcuts that create cursors and that can come in handy but I missed the following. Wouldn't it be cool to have a key bind that types an equal sign <code>=</code> with a cursor in each side? It would be quite useful when updating a column value in pandas such as here  </p>
 <div class="highlight"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s2">&quot;ugly colname that can&#39;t be .attr autocompleted&quot;</span><span class="p">]</span> <span class="o">=</span> \
     <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ugly colname that can&#39;t be .attr autocompleted&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">whatever_method</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 </code></pre></div>
 
 <p>and after escaping the 2nd cursor, just keep appending methods.  </p>
-<p>Unfortunately, this does not exist <em>natively</em> at the time I am writting this. In other words, there's not such command in vscode, so to <em>execute</em> it, I had to chain several commands,</p>
-<h2 id="creating-a-macro-and-biding-it-to-a-key"><a class="toclink" href="#creating-a-macro-and-biding-it-to-a-key">Creating a macro and biding it to a key</a></h2>
+<p>Unfortunately, this does not exist <em>natively</em> at the time I am writing this. In other words, there's not such a command in vscode, so to <em>execute</em> it, I had to chain several commands.</p>
+<h2 id="creating-a-macro-and-binding-it-to-a-key"><a class="toclink" href="#creating-a-macro-and-binding-it-to-a-key">Creating a macro and binding it to a key</a></h2>
 <p>A couple of google searches revealed that I could try making a macro and binding it to a key.</p>
 <p>So then, these are the steps I followed:</p>
 <h3 id="1-download-macros-extension"><a class="toclink" href="#1-download-macros-extension">1. Download macros extension</a></h3>
 <p>I tried with the most downloaded vscode macro extension I found. It was <a href="https://marketplace.visualstudio.com/items?itemName=geddski.macros">this one</a>, wisely named <em>macros</em>, by geddski. The documentation is quite succinct (perhaps too much)</p>
 <h3 id="2-create-a-keyboard-shortcut"><a class="toclink" href="#2-create-a-keyboard-shortcut">2. Create a keyboard shortcut</a></h3>
-<p>Edit Keyboard Shortcuts as geddski says in the readme. I had to edit directly <code>keybindings.json</code>. If you do not know where it is located, the fastest way to reach it is opening the Keyboard Shortcuts tab (<code>Ctrl</code> + <code>k</code>, <code>Ctrl</code> + <code>s</code>) and clicking in the symbol on the top-right. Append your desired combination of keys and the name of the command!. Here's mine as example:  </p>
+<p>Edit Keyboard Shortcuts as geddski says in the readme. I had to edit directly <code>keybindings.json</code>. If you do not know where it is located, the fastest way to reach it is opening the Keyboard Shortcuts tab (<code>Ctrl</code> + <code>k</code>, <code>Ctrl</code> + <code>s</code>) and clicking in the symbol on the top-right. Append your desired combination of keys and the name of the command!. Here's mine as an example:  </p>
 <div class="highlight"><pre><span></span><code><span class="o">[</span> <span class="c1">// I am omitting other shortcuts</span>
     <span class="p">{</span>
         <span class="s">&quot;key&quot;</span><span class="p">:</span> <span class="s">&quot;ctrl+shift+=&quot;</span><span class="p">,</span>
@@ -171,8 +171,8 @@
 
 <p>Vscode might complain until it finds a macro named <code>equalCursors</code> using <em>macros</em> extension.</p>
 <h3 id="3-write-the-macro"><a class="toclink" href="#3-write-the-macro">3. Write the macro</a></h3>
-<p>This step is the tricky one, particularly if the macro is complex. In my case it was quite simple because it did not require any variable nor many steps. Despite this, it was the step that took longer because I did not find any detailed list/documentation on vscodes programable actions. <a href="https://gist.github.com/skfarhat/4e88ef386c93b9dceb98121d9457edbf">Here's a gist</a> of them, which are named with a quite clear name. I wish I had found it before crawling vscodes documentation...
-After a short trial and error I got it working using the following:</p>
+<p>This step is the tricky one, particularly if the macro is complex. In my case it was quite simple because it did not require any variable nor many steps. Despite this, it was the step that took longer because I did not find any detailed list/documentation on vscode's programmable actions. <a href="https://gist.github.com/skfarhat/4e88ef386c93b9dceb98121d9457edbf">Here's a gist</a> of them, which are named with a quite clear name. I wish I had found it before crawling vscode's documentation...
+After a short trial and error, I got it working using the following:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
     <span class="s">&quot;macros&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s">&quot;equalCursors&quot;</span><span class="p">:</span> <span class="o">[</span> <span class="c1">// same name as previous step</span>
@@ -186,7 +186,7 @@ After a short trial and error I got it working using the following:</p>
 </code></pre></div>
 
 <h2 id="how-long-will-it-take-to-be-worth-investing-30-min-on-that-a-blog-entry"><a class="toclink" href="#how-long-will-it-take-to-be-worth-investing-30-min-on-that-a-blog-entry">How long will it take to be worth investing 30 min on that (+ a blog entry)</a></h2>
-<p>I do not know. Probably never. I am happier now, though. </p>
+<p>I do not know. Probably &gt;2000? I am happier now, though. </p>
 <h3 id="other-productivity-related-vscode-resources-that-are-worth-checking-imho"><a class="toclink" href="#other-productivity-related-vscode-resources-that-are-worth-checking-imho">Other productivity-related vscode resources that are worth checking IMHO.</a></h3>
 <ul>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=dbankier.vscode-quick-select">Quick and Simple Text Selection</a> allows selecting content between tags, quotes, parenthesis, etc.  </li>
@@ -249,11 +249,11 @@ After a short trial and error I got it working using the following:</p>
                 </section>
 
                 <aside class="post-nav">
-                    <a class="post-nav-prev" href="https://pastorjordi.github.io/blog/2021/spanish_paywalled_articles/">
+                    <a class="post-nav-prev" href="https://pastorjordi.github.io/blog/2021/Spanish_paywalled_articles/">
                         <section class="post-nav-teaser">
                             <i class="ic ic-arrow-right"></i>
                                 <h2 class="post-nav-title">Reading Spanish articles behind paywalls</h2>
-                            <p class="post-nav-excerpt">exporing whether a trick found on twitter actually works.</p>
+                            <p class="post-nav-excerpt">exploring whether a trick found on twitter actually works.</p>
                         </section>
                     </a>
                     <div class="clear"></div>
