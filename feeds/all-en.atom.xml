@@ -228,10 +228,10 @@ decorated with @add_bootstrap which appends following kwargs:
 
  
  
-&lt;div id="0df2ef13-ddf7-4809-b320-9800bd0fa10f"&gt;&lt;/div&gt;
+&lt;div id="f3e49387-b783-45ea-a04e-97168ad357a3"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#0df2ef13-ddf7-4809-b320-9800bd0fa10f');
+var element = $('#f3e49387-b783-45ea-a04e-97168ad357a3');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "5649c5811f514783b0d7b4c46a7f9492", "version_major": 2, "version_minor": 0}
@@ -267,10 +267,10 @@ decorated with @add_bootstrap which appends following kwargs:
 
  
  
-&lt;div id="0d4f6172-4564-4e32-ac0c-7b4b860084af"&gt;&lt;/div&gt;
+&lt;div id="0a6bfed5-68ee-46dc-abac-f6587f0d0ba4"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#0d4f6172-4564-4e32-ac0c-7b4b860084af');
+var element = $('#0a6bfed5-68ee-46dc-abac-f6587f0d0ba4');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "499de5979a5b4b44a8eb78a351d325e0", "version_major": 2, "version_minor": 0}
@@ -350,6 +350,7 @@ In short, it is advised to avoid percentile method and use alternative bootstrap
 }
 &lt;/script&gt;
 </content><category term="Blog"></category><category term="python"></category><category term="productivity"></category></entry><entry><title>Vscode macros</title><link href="https://pastorjordi.github.io/blog/2022/vscode-macros/" rel="alternate"></link><published>2022-02-06T20:00:00+01:00</published><updated>2022-02-06T20:00:00+01:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2022-02-06:/blog/2022/vscode-macros/</id><summary type="html">&lt;p&gt;Thoughts about productivity + a custom solution&lt;/p&gt;</summary><content type="html">&lt;h1 id="how-i-wasted-30-min-to-create-a-shortcut-in-vscode"&gt;&lt;a class="toclink" href="#how-i-wasted-30-min-to-create-a-shortcut-in-vscode"&gt;How I wasted 30 min to create a shortcut in vscode&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;You can find the process I followed below  &lt;/p&gt;
 &lt;h2 id="some-context"&gt;&lt;a class="toclink" href="#some-context"&gt;Some context&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The other day I was using Rstudio because I found few functions I needed already written in R. At some point I realized that some widely used operators are EXTREMELY ANNOYING to type. Specifically, I mean assignment "&lt;code&gt;&amp;lt;-&lt;/code&gt;" and pipe "&lt;code&gt;%&amp;gt;%&lt;/code&gt;" operators. Perhaps I have this feeling because their python counterparts are as simple as "&lt;code&gt;=&lt;/code&gt;" and "&lt;code&gt;.&lt;/code&gt;". Luckily, someone thought about this before, and there are plenty of &lt;a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE"&gt;already written shortcuts&lt;/a&gt; to type such combination of symbols. &lt;code&gt;Alt&lt;/code&gt; + &lt;code&gt;-&lt;/code&gt; and &lt;code&gt;Ctrl&lt;/code&gt; + &lt;code&gt;Shift&lt;/code&gt; + &lt;code&gt;M&lt;/code&gt;, respectively.  &lt;/p&gt;
 &lt;h2 id="vscode-shortcuts"&gt;&lt;a class="toclink" href="#vscode-shortcuts"&gt;Vscode shortcuts&lt;/a&gt;&lt;/h2&gt;
@@ -366,9 +367,9 @@ In short, it is advised to avoid percentile method and use alternative bootstrap
 &lt;p&gt;A couple of google searches revealed that I could try making a macro and binding it to a key.&lt;/p&gt;
 &lt;p&gt;So then, these are the steps I followed:&lt;/p&gt;
 &lt;h3 id="1-download-macros-extension"&gt;&lt;a class="toclink" href="#1-download-macros-extension"&gt;1. Download macros extension&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;I tried with the most downloaded vscode macro extension I found. It was &lt;a href="https://marketplace.visualstudio.com/items?itemName=geddski.macros"&gt;this one&lt;/a&gt;, wisely named &lt;em&gt;macros&lt;/em&gt;, by geddski. The documentation is quite succinct (perhaps too much)&lt;/p&gt;
+&lt;p&gt;I just tried the most downloaded vscode macro extension I found, and it worked. It was &lt;a href="https://marketplace.visualstudio.com/items?itemName=geddski.macros"&gt;this one&lt;/a&gt;, wisely named &lt;em&gt;macros&lt;/em&gt;, by geddski. The documentation is quite succinct (perhaps too much)&lt;/p&gt;
 &lt;h3 id="2-create-a-keyboard-shortcut"&gt;&lt;a class="toclink" href="#2-create-a-keyboard-shortcut"&gt;2. Create a keyboard shortcut&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Edit Keyboard Shortcuts as geddski says in the readme. I had to edit directly &lt;code&gt;keybindings.json&lt;/code&gt;. If you do not know where it is located, the fastest way to reach it is opening the Keyboard Shortcuts tab (&lt;code&gt;Ctrl&lt;/code&gt; + &lt;code&gt;k&lt;/code&gt;, &lt;code&gt;Ctrl&lt;/code&gt; + &lt;code&gt;s&lt;/code&gt;) and clicking in the symbol on the top-right. Append your desired combination of keys and the name of the command!. Here's mine as an example:  &lt;/p&gt;
+&lt;p&gt;Edit Keyboard Shortcuts as geddski states in &lt;a href="https://github.com/geddski/macros#readme"&gt;readme&lt;/a&gt;. I had to edit directly &lt;code&gt;keybindings.json&lt;/code&gt;. If you do not know where it is located, the fastest way to reach it is opening the Keyboard Shortcuts tab (&lt;code&gt;Ctrl&lt;/code&gt; + &lt;code&gt;k&lt;/code&gt;, &lt;code&gt;Ctrl&lt;/code&gt; + &lt;code&gt;s&lt;/code&gt;) and clicking in the file icon located on the top-right corner. Append your desired combination of keys and the name of the command!. Here's mine as an example:  &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="c1"&gt;// I am omitting other shortcuts&lt;/span&gt;
     &lt;span class="p"&gt;{&lt;/span&gt;
         &lt;span class="s"&gt;&amp;quot;key&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;ctrl+shift+=&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
@@ -379,7 +380,7 @@ In short, it is advised to avoid percentile method and use alternative bootstrap
 
 &lt;p&gt;Vscode might complain until it finds a macro named &lt;code&gt;equalCursors&lt;/code&gt; using &lt;em&gt;macros&lt;/em&gt; extension.&lt;/p&gt;
 &lt;h3 id="3-write-the-macro"&gt;&lt;a class="toclink" href="#3-write-the-macro"&gt;3. Write the macro&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;This step is the tricky one, particularly if the macro is complex. In my case it was quite simple because it did not require any variable nor many steps. Despite this, it was the step that took longer because I did not find any detailed list/documentation on vscode's programmable actions. &lt;a href="https://gist.github.com/skfarhat/4e88ef386c93b9dceb98121d9457edbf"&gt;Here's a gist&lt;/a&gt; of them, which are named with a quite clear name. I wish I had found it before crawling vscode's documentation...
+&lt;p&gt;You must edit &lt;code&gt;settings.json&lt;/code&gt; (&lt;code&gt;Ctrl&lt;/code&gt;+&lt;code&gt;Shift&lt;/code&gt;+&lt;code&gt;P&lt;/code&gt; and select &lt;code&gt;Preferences: Open Settings (JSON)&lt;/code&gt;). This step is the tricky one, particularly if the macro is complex. In my case it was quite simple because it did not require any variable nor many steps. Despite this, it was the step that took longer because I did not find any detailed list/documentation on vscode's programmable actions. &lt;a href="https://gist.github.com/skfarhat/4e88ef386c93b9dceb98121d9457edbf"&gt;Here's a gist&lt;/a&gt; of them, which are named with a quite clear name. I wish I had found it before crawling vscode's documentation...
 After a short trial and error, I got it working using the following:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="s"&gt;&amp;quot;macros&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
@@ -404,7 +405,19 @@ After a short trial and error, I got it working using the following:&lt;/p&gt;
 &lt;img alt="git blame meme: where I find out that spaghetti code was written by me" src="https://pastorjordi.github.io/images/git_blame.jpeg" title="git blame"&gt;  &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I stole the meme from &lt;a href="https://twitter.com/threepointone/status/1419345341317533705"&gt;here&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Cheers!&lt;/p&gt;</content><category term="Blog"></category><category term="programming"></category><category term="vscode"></category><category term="macros"></category><category term="productivity"></category><category term="memes"></category></entry><entry><title>Reading Spanish articles behind paywalls</title><link href="https://pastorjordi.github.io/blog/2021/Spanish_paywalled_articles/" rel="alternate"></link><published>2021-09-08T10:15:00+02:00</published><updated>2021-09-08T10:15:00+02:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2021-09-08:/blog/2021/Spanish_paywalled_articles/</id><summary type="html">&lt;p&gt;exploring whether a trick found on twitter actually works.&lt;/p&gt;</summary><content type="html">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"&gt;&lt;/script&gt;
+&lt;p&gt;Cheers!&lt;/p&gt;
+&lt;h4 id="edit-bonus-macro"&gt;&lt;a class="toclink" href="#edit-bonus-macro"&gt;edit: bonus macro&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;This one replaces selected(highlighted) variable with a list comprehension iterating over original variable. Remember to add &lt;code&gt;editorHasSelection &amp;amp;&amp;amp; editorTextFocus&lt;/code&gt; as "When" clause when setting the binding. Perhaps this one could be achieved with snippets, idk.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;        &lt;span class="s"&gt;&amp;quot;listComprehension_selection&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; 
+            &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;command&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;args&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;[&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}},&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;cursorLeft&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;command&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;args&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;x for x in &amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}},&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;editor.action.selectToBracket&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;cursorRight&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;quot;cursorLeft&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;command&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;type&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;args&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;text&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot; if x&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}}&lt;/span&gt;
+        &lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Blog"></category><category term="programming"></category><category term="vscode"></category><category term="macros"></category><category term="productivity"></category><category term="memes"></category></entry><entry><title>Reading Spanish articles behind paywalls</title><link href="https://pastorjordi.github.io/blog/2021/Spanish_paywalled_articles/" rel="alternate"></link><published>2021-09-08T10:15:00+02:00</published><updated>2021-09-08T10:15:00+02:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2021-09-08:/blog/2021/Spanish_paywalled_articles/</id><summary type="html">&lt;p&gt;exploring whether a trick found on twitter actually works.&lt;/p&gt;</summary><content type="html">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"&gt;&lt;/script&gt;
 
 &lt;style type="text/css"&gt;
 div.code_cell {

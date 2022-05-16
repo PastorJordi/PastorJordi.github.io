@@ -150,6 +150,7 @@
         <div class="inner">
             <section class="post-content">
                 <h1 id="how-i-wasted-30-min-to-create-a-shortcut-in-vscode"><a class="toclink" href="#how-i-wasted-30-min-to-create-a-shortcut-in-vscode">How I wasted 30 min to create a shortcut in vscode</a></h1>
+<p>You can find the process I followed below  </p>
 <h2 id="some-context"><a class="toclink" href="#some-context">Some context</a></h2>
 <p>The other day I was using Rstudio because I found few functions I needed already written in R. At some point I realized that some widely used operators are EXTREMELY ANNOYING to type. Specifically, I mean assignment "<code>&lt;-</code>" and pipe "<code>%&gt;%</code>" operators. Perhaps I have this feeling because their python counterparts are as simple as "<code>=</code>" and "<code>.</code>". Luckily, someone thought about this before, and there are plenty of <a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE">already written shortcuts</a> to type such combination of symbols. <code>Alt</code> + <code>-</code> and <code>Ctrl</code> + <code>Shift</code> + <code>M</code>, respectively.  </p>
 <h2 id="vscode-shortcuts"><a class="toclink" href="#vscode-shortcuts">Vscode shortcuts</a></h2>
@@ -166,9 +167,9 @@
 <p>A couple of google searches revealed that I could try making a macro and binding it to a key.</p>
 <p>So then, these are the steps I followed:</p>
 <h3 id="1-download-macros-extension"><a class="toclink" href="#1-download-macros-extension">1. Download macros extension</a></h3>
-<p>I tried with the most downloaded vscode macro extension I found. It was <a href="https://marketplace.visualstudio.com/items?itemName=geddski.macros">this one</a>, wisely named <em>macros</em>, by geddski. The documentation is quite succinct (perhaps too much)</p>
+<p>I just tried the most downloaded vscode macro extension I found, and it worked. It was <a href="https://marketplace.visualstudio.com/items?itemName=geddski.macros">this one</a>, wisely named <em>macros</em>, by geddski. The documentation is quite succinct (perhaps too much)</p>
 <h3 id="2-create-a-keyboard-shortcut"><a class="toclink" href="#2-create-a-keyboard-shortcut">2. Create a keyboard shortcut</a></h3>
-<p>Edit Keyboard Shortcuts as geddski says in the readme. I had to edit directly <code>keybindings.json</code>. If you do not know where it is located, the fastest way to reach it is opening the Keyboard Shortcuts tab (<code>Ctrl</code> + <code>k</code>, <code>Ctrl</code> + <code>s</code>) and clicking in the symbol on the top-right. Append your desired combination of keys and the name of the command!. Here's mine as an example:  </p>
+<p>Edit Keyboard Shortcuts as geddski states in <a href="https://github.com/geddski/macros#readme">readme</a>. I had to edit directly <code>keybindings.json</code>. If you do not know where it is located, the fastest way to reach it is opening the Keyboard Shortcuts tab (<code>Ctrl</code> + <code>k</code>, <code>Ctrl</code> + <code>s</code>) and clicking in the file icon located on the top-right corner. Append your desired combination of keys and the name of the command!. Here's mine as an example:  </p>
 <div class="highlight"><pre><span></span><code><span class="o">[</span> <span class="c1">// I am omitting other shortcuts</span>
     <span class="p">{</span>
         <span class="s">&quot;key&quot;</span><span class="p">:</span> <span class="s">&quot;ctrl+shift+=&quot;</span><span class="p">,</span>
@@ -179,7 +180,7 @@
 
 <p>Vscode might complain until it finds a macro named <code>equalCursors</code> using <em>macros</em> extension.</p>
 <h3 id="3-write-the-macro"><a class="toclink" href="#3-write-the-macro">3. Write the macro</a></h3>
-<p>This step is the tricky one, particularly if the macro is complex. In my case it was quite simple because it did not require any variable nor many steps. Despite this, it was the step that took longer because I did not find any detailed list/documentation on vscode's programmable actions. <a href="https://gist.github.com/skfarhat/4e88ef386c93b9dceb98121d9457edbf">Here's a gist</a> of them, which are named with a quite clear name. I wish I had found it before crawling vscode's documentation...
+<p>You must edit <code>settings.json</code> (<code>Ctrl</code>+<code>Shift</code>+<code>P</code> and select <code>Preferences: Open Settings (JSON)</code>). This step is the tricky one, particularly if the macro is complex. In my case it was quite simple because it did not require any variable nor many steps. Despite this, it was the step that took longer because I did not find any detailed list/documentation on vscode's programmable actions. <a href="https://gist.github.com/skfarhat/4e88ef386c93b9dceb98121d9457edbf">Here's a gist</a> of them, which are named with a quite clear name. I wish I had found it before crawling vscode's documentation...
 After a short trial and error, I got it working using the following:</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
     <span class="s">&quot;macros&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -205,6 +206,18 @@ After a short trial and error, I got it working using the following:</p>
 </ul>
 <p>I stole the meme from <a href="https://twitter.com/threepointone/status/1419345341317533705">here</a></p>
 <p>Cheers!</p>
+<h4 id="edit-bonus-macro"><a class="toclink" href="#edit-bonus-macro">edit: bonus macro</a></h4>
+<p>This one replaces selected(highlighted) variable with a list comprehension iterating over original variable. Remember to add <code>editorHasSelection &amp;&amp; editorTextFocus</code> as "When" clause when setting the binding. Perhaps this one could be achieved with snippets, idk.</p>
+<div class="highlight"><pre><span></span><code>        <span class="s">&quot;listComprehension_selection&quot;</span><span class="p">:</span> <span class="o">[</span> 
+            <span class="p">{</span><span class="s">&quot;command&quot;</span><span class="p">:</span> <span class="s">&quot;type&quot;</span><span class="p">,</span> <span class="s">&quot;args&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;[&quot;</span><span class="p">}},</span>
+            <span class="s">&quot;cursorLeft&quot;</span><span class="p">,</span>
+            <span class="p">{</span><span class="s">&quot;command&quot;</span><span class="p">:</span> <span class="s">&quot;type&quot;</span><span class="p">,</span> <span class="s">&quot;args&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot;x for x in &quot;</span><span class="p">}},</span>
+            <span class="s">&quot;editor.action.selectToBracket&quot;</span><span class="p">,</span>
+            <span class="s">&quot;cursorRight&quot;</span><span class="p">,</span>
+            <span class="s">&quot;cursorLeft&quot;</span><span class="p">,</span>
+            <span class="p">{</span><span class="s">&quot;command&quot;</span><span class="p">:</span> <span class="s">&quot;type&quot;</span><span class="p">,</span> <span class="s">&quot;args&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s">&quot;text&quot;</span><span class="p">:</span> <span class="s">&quot; if x&quot;</span><span class="p">}}</span>
+        <span class="o">]</span>
+</code></pre></div>
             </section>
 
             <section class="post-info">
