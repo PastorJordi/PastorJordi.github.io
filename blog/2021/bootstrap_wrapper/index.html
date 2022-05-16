@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+  <title>Writing a wrapper to bootstrap</title>
+
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="origin" />
+  <meta name="generator" content="Pelican" />
+<link href="https://pastorjordi.github.io/blog/2021/bootstrap_wrapper/" rel="canonical" />
+  <!-- Feed -->
+      <link href="/feeds/" type="application/atom+xml" rel="alternate" title="JP's word salads Full Atom Feed" />
+
+  <link href="https://pastorjordi.github.io/theme/css/style.css" type="text/css" rel="stylesheet" />
+
+  <!-- Code highlight color scheme -->
+      <link href="https://pastorjordi.github.io/theme/css/code_blocks/github.css" rel="stylesheet">
+
+    <!-- CSS specified by the user -->
+
+
+    <link href="https://pastorjordi.github.io/static/attila_override.css" type="text/css" rel="stylesheet" />
+
+  <!-- Custom fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,300' rel='stylesheet' type='text/css' />
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+
+
+    <meta name="description" content="Adding bootstrap capabilities to your functions using a single wrapper function instead of repeating code">
+
+    <meta name="author" content="Jordi Pastor">
+
+    <meta name="tags" content="python">
+    <meta name="tags" content="productivity">
+
+
+
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="JP's word salads"/>
+<meta property="og:title" content="Writing a wrapper to bootstrap"/>
+<meta property="og:description" content="Adding bootstrap capabilities to your functions using a single wrapper function instead of repeating code"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://pastorjordi.github.io/blog/2021/bootstrap_wrapper/"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2021-05-15 22:15:00+02:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="https://pastorjordi.github.io/">
+<meta property="article:section" content="Blog"/>
+<meta property="article:tag" content="python"/>
+<meta property="article:tag" content="productivity"/>
+<meta property="og:image" content="https://pastorjordi.github.io/theme/images/post-bg.jpg">
+
+<!-- Twitter Card -->
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "name": "Writing a wrapper to bootstrap",
+  "headline": "Writing a wrapper to bootstrap",
+  "datePublished": "2021-05-15 22:15:00+02:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "Jordi Pastor",
+    "url": "https://pastorjordi.github.io/"
+  },
+  "image": "https://pastorjordi.github.io/theme/images/post-bg.jpg",
+  "url": "https://pastorjordi.github.io/blog/2021/bootstrap_wrapper/",
+  "description": "Adding bootstrap capabilities to your functions using a single wrapper function instead of repeating code"
+}
+</script>
+</head>
+<!-- TODO : Body class -->
+<body class="home-template">
+
+<nav id="menu">
+  <a class="close-button">Close</a>
+  <div class="nav-wrapper">
+    <p class="nav-label">Menu</p>
+    <ul>
+          <li><a href="/archive/" role="presentation">Archive</a></li>
+          <li><a href="/tags/" role="presentation">Tags</a></li>
+          <li><a href="https://linkedin.com/in/jpastorciurana" role="presentation">Linkedin</a></li>
+          <li><a href="https://github.com/PastorJordi" role="presentation">Github</a></li>
+
+              <li role="presentation"><a href="https://pastorjordi.github.io/about/">About me</a></li>
+              <li role="presentation"><a href="https://pastorjordi.github.io/Links_of_interest/">Links of interest</a></li>
+
+        <li class="nav-rss"><a href="/feeds/"><i class="ic ic-rss"></i> Subscribe</a></li>
+    </ul>
+  </div>
+</nav>
+    <!-- Progressbar -->
+    <div class="progress-container">
+        <span class="progress-bar"></span>
+    </div>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header id="post-header" class="has-cover">
+      <div class="inner">
+        <nav id="navigation">
+            <span id="home-button" class="nav-button">
+                <a class="home-button" href="https://pastorjordi.github.io/" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+            </span>
+          <span id="menu-button" class="nav-button">
+            <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+          </span>
+        </nav>
+        <h1 class="post-title">Writing a wrapper to bootstrap</h1>
+        <!-- TODO : Proper class for headline -->
+        <span class="post-meta">
+                <a href="https://pastorjordi.github.io/">Jordi Pastor</a>
+            | <time datetime="2021-05-15">2021-05-15</time>
+        </span>
+        <!-- TODO : Modified check -->
+            <div class="post-cover cover" style="background-color: rgb(0,0,0)">
+      </div>
+    </header>
+
+  <section id="wrapper">
+    <a class="hidden-close"></a>
+
+    <!-- Post content -->
+    <main class="content" role="main">
+        <article class="post">
+        <div class="inner">
+            <section class="post-content">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<style type="text/css">
+div.code_cell {
+    //border: 2px solid red;
+    font-size: 0.75em;
+}
+
+
+/* div.markdown_cell 
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h1 
+disabling links in notebooks till i cannot fix newline char*/
+.anchor-link {
+    display: none;
+    visibility: hidden;
+{
+
+}
+</style>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Motivation">Motivation<a class="anchor-link" href="#Motivation">&#182;</a></h1><p>Often times I find myself re-writing functions to add an optional calculation of confidence interval by sampling with replacement (a.k.a bootstrap).
+I'll try to write a wrapper which adds this functionality in order to:</p>
+<ul>
+<li>Avoid writing repetitive code and minimizing maintenance</li>
+<li>Improve my coding skills / practice something that I tend to overlook</li>
+<li>Increase productivity by saving future time</li>
+<li>Share some piece of code that is actually useful in this site</li>
+</ul>
+<p>So then, here we go!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="wrapper">wrapper<a class="anchor-link" href="#wrapper">&#182;</a></h2><p>The idea is to pass a function as an argument to a wrapping function that will return the 1st function "modified"</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">tqdm.notebook</span> <span class="k">as</span> <span class="nn">tqdm</span>
+
+<span class="k">def</span> <span class="nf">add_bootstrap</span><span class="p">(</span>
+    <span class="n">func</span><span class="p">,</span> <span class="n">bootstrap</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">n_bootstrap</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> 
+    <span class="n">ci</span><span class="o">=</span><span class="mf">.95</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">threads</span><span class="o">=</span><span class="kc">False</span> <span class="c1"># TODO: bool to use threading or multiproc.</span>
+<span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decorator that adds bootstrapping capabilities to a given function. If kwarg bootstrap==True</span>
+<span class="sd">    wrapped function will return -&gt; tuple (original output, lower_ci, upper_ci)</span>
+<span class="sd">    It will do the sampling without replacement in the 0th axis of args. Uses ndarrays.</span>
+<span class="sd">    It will bootstrap all args, either if it is a single multidimensional or various single, etc.</span>
+<span class="sd">    As long as axis to bootstrap is 0th, all good. CI are also calculated in 0th axis of the outcome</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">tweaked_inner</span><span class="p">(</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">bootstrap</span><span class="o">=</span><span class="n">bootstrap</span><span class="p">,</span> <span class="n">n_bootstrap</span><span class="o">=</span><span class="n">n_bootstrap</span><span class="p">,</span> <span class="n">ci</span><span class="o">=</span><span class="n">ci</span><span class="p">,</span> 
+        <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span> <span class="n">threads</span><span class="o">=</span><span class="n">threads</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">args</span><span class="p">])</span><span class="o">.</span><span class="n">size</span><span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;first dimension of args must match and they&#39;</span>\
+                <span class="sa">f</span><span class="s1">&#39; are </span><span class="si">{</span><span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">args</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        
+        <span class="n">original_output</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">bootstrap</span><span class="p">:</span>
+            <span class="n">N</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># number of samples</span>
+            <span class="k">if</span> <span class="n">random_state</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;randomstate not set&#39;</span><span class="p">)</span>
+                <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">random_state</span><span class="p">)</span>
+
+            <span class="c1"># sampling with replacement indexing original args</span>
+            <span class="n">strap_indexes</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">high</span><span class="o">=</span><span class="n">N</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">n_bootstrap</span><span class="p">,</span> <span class="n">N</span><span class="p">))</span>
+            
+            <span class="n">res_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="k">for</span> <span class="n">strap</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="o">.</span><span class="n">tqdm</span><span class="p">(</span><span class="n">strap_indexes</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;bootstrapping </span><span class="si">{</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">...&#39;</span><span class="p">):</span>
+                <span class="n">res_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="c1"># Check addendum at the bottom of the page about why</span>
+                    <span class="c1"># switching from percentile to empirical bootstrapping</span>
+                    <span class="n">original_output</span> <span class="o">-</span> <span class="n">func</span><span class="p">(</span>
+                        <span class="o">*</span><span class="p">[</span><span class="n">arg</span><span class="p">[</span><span class="n">strap</span><span class="p">]</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">],</span> <span class="c1"># resampled args</span>
+                        <span class="o">**</span><span class="n">kwargs</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+
+            <span class="n">CIs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">.5</span><span class="p">,</span> <span class="mf">.5</span><span class="p">])</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span> <span class="o">*</span> <span class="n">ci</span>
+            <span class="n">lower_ci</span><span class="p">,</span> <span class="n">upper_ci</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">(</span><span class="n">res_list</span><span class="p">),</span> <span class="n">CIs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+                <span class="p">)</span>
+            <span class="k">return</span> <span class="n">original_output</span><span class="p">,</span> <span class="n">lower_ci</span><span class="p">,</span> <span class="n">upper_ci</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">original_output</span>
+
+    <span class="n">tweaked_inner</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;decorated with @add_bootstrap which appends following kwargs:</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">bootstrap: bool, whether to calc CI by bootstrapping 0th dimension of args</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">n_bootstrap: int, number of bootstrap iterations to compute CI</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">ci: size of confidence interval (0 to 1)</span><span class="se">\n</span><span class="s2">&quot;</span>
+    <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">random_state: int, if not None, sets random state for reproducibility&quot;</span>
+    <span class="p">)</span>
+    <span class="n">tweaked_inner</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span>
+    <span class="k">return</span> <span class="n">tweaked_inner</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Minimal-testing">Minimal testing<a class="anchor-link" href="#Minimal-testing">&#182;</a></h2><p>Adding <code>@decorator_name</code> above a function definition, we tell python that we actually want to define is <code>new_fun = decorator_name(new_fun)</code> or, in other words, we wrap <code>new_fun</code> inside <code>decorator_name</code>.<br>
+So below we define functions to test the decorator and some data to feed as args for those functions.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@add_bootstrap</span>
+<span class="k">def</span> <span class="nf">return_mean_matrix</span><span class="p">(</span><span class="n">matrix</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;function to test decorator&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">matrix</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="nd">@add_bootstrap</span>
+<span class="k">def</span> <span class="nf">return_means_arrays</span><span class="p">(</span><span class="n">arr1</span><span class="p">,</span> <span class="n">arr2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;function to test decorator with alternative dimensionality&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">arr1</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">arr2</span><span class="o">.</span><span class="n">mean</span><span class="p">()])</span>
+
+
+<span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">10</span> <span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=-</span><span class="mi">3</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Time to test!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1"># test</span>
+<span class="n">xposition</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">return_mean_matrix</span><span class="p">,</span> <span class="n">return_means_arrays</span><span class="p">],</span>
+    <span class="p">[[</span><span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">]],</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">]]</span>
+<span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">fun</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">fun</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+    <span class="n">m</span><span class="p">,</span> <span class="n">l_ci</span><span class="p">,</span> <span class="n">u_ci</span> <span class="o">=</span> <span class="n">fun</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">bootstrap</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">123</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span>
+        <span class="n">xposition</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">m</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="p">[</span><span class="nb">abs</span><span class="p">(</span><span class="n">l_ci</span><span class="p">),</span> <span class="n">u_ci</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="n">fun</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+        <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">3</span>
+    <span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">.5</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>return_mean_matrix
+function to test decorator
+decorated with @add_bootstrap which appends following kwargs:
+	bootstrap: bool, whether to calc CI by bootstrapping 0th dimension of args
+	n_bootstrap: int, number of bootstrap iterations to compute CI
+	ci: size of confidence interval (0 to 1)
+	random_state: int, if not None, sets random state for reproducibility
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+
+ 
+ 
+<div id="bb1460a1-a5aa-4272-9db6-6f05761ac179"></div>
+<div class="output_subarea output_widget_view ">
+<script type="text/javascript">
+var element = $('#bb1460a1-a5aa-4272-9db6-6f05761ac179');
+</script>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "5649c5811f514783b0d7b4c46a7f9492", "version_major": 2, "version_minor": 0}
+</script>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>return_means_arrays
+function to test decorator with alternative dimensionality
+decorated with @add_bootstrap which appends following kwargs:
+	bootstrap: bool, whether to calc CI by bootstrapping 0th dimension of args
+	n_bootstrap: int, number of bootstrap iterations to compute CI
+	ci: size of confidence interval (0 to 1)
+	random_state: int, if not None, sets random state for reproducibility
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+
+ 
+ 
+<div id="dec1f0d4-e32b-4bcf-bef4-5283db56fc16"></div>
+<div class="output_subarea output_widget_view ">
+<script type="text/javascript">
+var element = $('#dec1f0d4-e32b-4bcf-bef4-5283db56fc16');
+</script>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "499de5979a5b4b44a8eb78a351d325e0", "version_major": 2, "version_minor": 0}
+</script>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYQAAAD4CAYAAADsKpHdAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjQuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8rg+JYAAAACXBIWXMAAAsTAAALEwEAmpwYAAAqXUlEQVR4nO3deXwUhf3/8dcnIRxyKkTkUg4BQcIZRIpyVAGFFhARrfpVtIi2Vb+VeoD4q6i1Imip59divaq2VakXBEQUqFpFDIIEQUUlXKJSkEsRAnx+f+wkhpiQYye7m+T9fDzmkZ3Z2ZnPDmw+2Zl5z5i7IyIikhTvAkREJDGoIYiICKCGICIiATUEEREB1BBERCRQLd4FHE6jRo28ZcuW8S5DRKTCWLp06X/dPbUsr03ohtCyZUsyMzPjXYaISIVhZuvK+lrtMhIREUANQUREAmoIIiICJPgxBJGqJCcnh40bN/L999/HuxSpAGrWrEnz5s1JSUkJbZlqCCIJYuPGjdStW5eWLVtiZvEuRxKYu7N161Y2btxIq1atQluudhmJJIjvv/+ehg0bqhlIscyMhg0bhv5tUg1BJIGoGUhJlcf/Fe0yEqmAps//hHteX/Oj6f97WluuGdguDhVJZaCGUAL68EnoFt4B/55y6LTBz8LOBlCvSbEvv2ZgO64Z2I5z//IOAM9c3rscipSqRruMSuCage3InjKUXq2Oolero8ieMpTsKUPVDKTsBkyEyTvguFMiw+Qd0ODYEjWDXC8u28Sy9dt5d+02+kxZwIvLNpVjwT/Yvn07Dz74YEzWVdEtWrSIt99+u8jnX375ZaZMmVLk87GmhiBSAb24bBMTn89i34GDAGzavoeJz2eF2hTcnYMHD/5oelkbwoEDB8Ioq0I5XEPYv38/w4YNY8KECTGuqmjaZSSSgG6Z9SGrvthZ5PPL1m/Pawa59uQc4PqZK/jHkvWFvqZj03rc/PMTD7ve7OxsBg8eTK9evVi6dCmjR49m9uzZ7N27l7POOotbbrmFCRMm8Nlnn9G1a1cGDhzI0KFDueuuu5g9ezYAV155Jenp6YwZM4aWLVty7rnnMn/+fK6//nomTJjAxRdfzKxZs8jJyeG5557jhBNOKLSWyZMns3btWj7//HPWr1/P9OnTWbx4MXPnzqVZs2bMmjWLlJQUli5dyvjx49m9ezeNGjXi8ccfp0mTJjz88MPMmDGDffv2cfzxx/Pkk09yxBFHMGbMGOrVq0dmZiZffvklU6dOZdSoUYXWsGjRIm6++WYaNGhAVlYWo0ePJi0tjXvuuYc9e/bw4osv0qZNG2bNmsUf/vAH9u3bR8OGDXn66afZs2cPDz30EMnJyTz11FPcd999PPLII9SsWZNly5bRp08fOnfuTGZmJvfffz/Dhw/n7LPP5qKLLuIvf/kLb7zxBk8//fRh/73Cpm8IIhVQwWZQ3PTSWLNmDb/+9a+ZPn06mzZtYsmSJSxfvpylS5fyxhtvMGXKFNq0acPy5cuZNm1asctr2LAh77//Pueddx4AjRo14v333+dXv/oVd91112Ff+9lnn7FgwQJefvllLrzwQgYMGEBWVha1atUiIyODnJwcrrrqKmbOnMnSpUu59NJLmTRpEgAjR47kvffe44MPPqBDhw488sgjecvdvHkzb731FrNnzy72L/QPPviAhx56iNWrV/Pkk0/yySefsGTJEsaOHct9990HwCmnnMLixYtZtmwZ5513HlOnTqVly5ZcccUVXHPNNSxfvpxTTz0ViORN3n77bf70pz8dsp4ZM2Zw66238uabb3L33XfnLTuW9A1BJAEV95d8nykL2LR9z4+mN2tQK+oDzMcddxwnn3wy1157La+++irdunUDYPfu3axZs4Zjjz22VMs799xzDxkfOXIkAD169OD5558/7GvPPPNMUlJSSEtL48CBA5xxxhkApKWlkZ2dzccff8zKlSsZOHAgENkt1aRJ5DjMypUruemmm9i+fTu7d+9m8ODBecsdMWIESUlJdOzYka+++uqwNfTs2TNvmW3atGHQoEF5NSxcuBCI/JI/99xz2bx5M/v27TtsWOycc84hOTn5R9MbN27MrbfeyoABA3jhhRc46qijDltXeVBDEKmArhvcnonPZ7En54f98rVSkrlucPuol127dm0gcgxh4sSJXH755Yc8n52dfch4tWrVDjnWUDAslbu8XDVq1AAgOTmZ/fv3H7aW3HmTkpJISUnJO/c+KSmJ/fv34+6ceOKJvPPOOz967ZgxY3jxxRfp0qULjz/+OIsWLfrRcnPfZ0lqyF1v/ppy67/qqqsYP348w4YNY9GiRUyePLnI5RXcHvllZWXRsGFDvvjii8PWVF5C2WVkZmeY2cdm9qmZ/ej7l5nVMLNnguffNbOWYaxXpKoa0a0Zd4xMo3py5CPcrEEt7hiZxohuzUJbx+DBg3n00UfZvXs3AJs2beLrr7+mbt267Nq1K2++4447jlWrVrF37162b9/O66+/HloNxWnfvj1btmzJawg5OTl8+OGHAOzatYsmTZqQk5NT7vvid+zYQbNmkW3/xBNP5E0vuK0OZ8mSJcydO5dly5Zx1113sXbt2nKp9XCibghmlgw8AJwJdAR+YWYdC8z2S+Abdz8emA7cGe16Raq6Ed2a0e3YBvRqdRT/mfDTUJsBwKBBgzj//PPp3bs3aWlpjBo1il27dtGwYUP69OlDp06duO6662jRogWjR4+mU6dOjB49Om8XUyxUr16dmTNncsMNN9ClSxe6du2ad1bPbbfdRq9evejTp0+RB67DMnnyZM455xx69OhBo0aN8qb//Oc/54UXXqBr1668+eabRb5+7969XHbZZTz66KM0bdqUu+++m0svvbTYby9hs2hXaGa9gcnuPjgYnwjg7nfkm2deMM87ZlYN+BJI9WJWnp6e7ol0xzSFgCR0jw2N/Lwkg9WrV9OhQ4cSvUxhSQEK/T9jZkvdPb0sywvjGEIzYEO+8Y1Ar6Lmcff9ZrYDaAj8t+DCzGwcMA4o9cErkaoiN6ksEqaEO6js7jOAGRD5hhDnckSknD322GPcc889h0zr06cPDzzwQMxqyMrK4n/+538OmVajRg3efffdmNWQCMJoCJuAFvnGmwfTCptnY7DLqD6wNYR1i0gFd8kll3DJJZfEtYa0tDSWL18e1xoSQRhnGb0HtDWzVmZWHTgPeLnAPC8DFwePRwELijt+ICIisRX1N4TgmMCVwDwgGXjU3T80s1uBTHd/GXgEeNLMPgW2EWkaIiKSQEI5huDuc4A5Bab9Pt/j74FzwliXiFD45bMB+k2IXElVpAx0LSORiqiwy2dP3hGTZqDLX1deaggiFdWKZ2Hje7DuLZjeKTIeIl3+OjoF329FeP9qCCIV0YpnYdbVcGBvZHzHhsh4lE0hOzub9u3bc9FFF9GpUyduu+02evbsSefOnbn55psBDrn89XXXXceiRYv42c9+lreMK6+8kscffxyAli1bcsMNN9C9e3eee+45WrZsyc0330z37t1JS0vjo48+KrKWyZMnc/HFF3Pqqady3HHH8fzzz3P99deTlpbGGWecQU5ODgBLly6lX79+9OjRg8GDB7N582YAHn74YXr27EmXLl04++yz+e6774DINY6uvvpqfvKTn9C6dWtmzpwJRK6A2rdvX7p27UqnTp0Omyz+1a9+RXp6OieeeGLedinq/eYfL6ymXbt20apVq7z3s3Pnzrzxe++9l44dO9K5c+e8q8WWp4TLIYgIMHcCfJlV9PMb3/uhGeTK2QMvXQlLnyj8NcekwZnF351rzZo1PPHEE+zcuZOZM2eyZMkS3J1hw4blXf565cqVeadp5r9oXGFyL38NkWaSe/nrBx98kLvuuou//vWvRb72s88+Y+HChaxatYrevXvzr3/9i6lTp3LWWWeRkZHB0KFDueqqq3jppZdITU3lmWeeYdKkSTz66KOMHDmSyy67DICbbrqJRx55hKuuugr44fLXH330EcOGDWPUqFH8/e9/Z/DgwUyaNIkDBw7kNZDC3H777Rx11FEcOHCA0047jRUrVtC5c+dC32/+8a1btxZaU//+/cnIyGDEiBH885//ZOTIkaSkpDBlyhTWrl1LjRo12L59++H/4UKghiBSERVsBsVNL4Wqevnrnj17cumll5KTk8OIESPo2rVrkXU9++yzzJgxg/3797N582ZWrVqV1xAKvt/840XVNHbsWKZOncqIESN47LHHePjhhwHo3LkzF1xwASNGjGDEiBGH3VZhUEMQSUTF/SU/vVNkN1FB9VvAJRlRrbqqXv66b9++vPHGG2RkZDBmzBjGjx/PRRdd9KPlrl27lrvuuov33nuPI488kjFjxhzyngu+3/zjRdXUp08fsrOzWbRoEQcOHKBTp04AZGRk8MYbbzBr1ixuv/12srKyqFat/H5t6xiCSEV02u8hpdah01JqRaaHpKpd/nrdunU0btyYyy67jLFjx+bt5ilo586d1K5dm/r16/PVV18xd+7cEtd7uJouuugizj///LzU9sGDB9mwYQMDBgzgzjvvZMeOHXn/FuVF3xBEKqLOoyM/X7oyspuofotIM8idHoJBgwaxevVqeveOXN23Tp06PPXUU7Rp0ybv8tdnnnkm06ZNy7v8datWreJy+eurr76aHTt2sH//fn77299y4okn5l3+OjU1lV69ehV7X4JFixYxbdo0UlJSqFOnDn/7298Kna9Lly5069aNE044gRYtWtCnT58S13u4mi644AJuuukmfvGLXwCR3V8X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"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>So far, so good! (there could be something wrong there, still though)</p>
+<p>Happy bootstrapping!</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Addendum">Addendum<a class="anchor-link" href="#Addendum">&#182;</a></h3><p>Looking for a image for the header I came across <a href="https://elizavetalebedeva.com/bootstrapping-confidence-intervals-the-basics/">this</a> which cites <a href="https://klein.mit.edu/~dav/05.dir/class24-prep-a.pdf">this</a> which cites <a href="https://books.google.es/books/about/Mathematical_Statistics_and_Data_Analysi.html?id=7SI8AAAAQBAJ&amp;redir_esc=y">this</a>.  The latter looks non-open but a using <code>Mathematical Statistics and Data Analysis 2006 filetype:pdf</code> as a query in a popular search engine led some results :)<br>
+In short, it is advised to avoid percentile method and use alternative bootstrapping methods like empirical bootstrap. I adapted the code and hence the edits/commented lines on the code.</p>
+<blockquote><p>Note for future-me: could you actually simulate this and see what happens with non-symmetric distributions using both methods?</p>
+</blockquote>
+<p>Cheers!</p>
+
+</div>
+</div>
+</div>
+ 
+
+
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+
+            </section>
+
+            <section class="post-info">
+                <div class="post-share">
+                    <a class="twitter" href="https://twitter.com/share?text=Writing a wrapper to bootstrap&amp;url=https://pastorjordi.github.io/blog/2021/bootstrap_wrapper/" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
+                    </a>
+                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://pastorjordi.github.io/blog/2021/bootstrap_wrapper/" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <i class="ic ic-facebook"></i><span class="hidden">Facebook</span>
+                    </a>
+                    <a class="googleplus" href="https://plus.google.com/share?url=https://pastorjordi.github.io/blog/2021/bootstrap_wrapper/" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <i class="ic ic-googleplus"></i><span class="hidden">Google+</span>
+                    </a>
+                    <div class="clear"></div>
+                </div>
+
+                <aside class="post-tags">
+<a href="https://pastorjordi.github.io/tags/python/">python</a><a href="https://pastorjordi.github.io/tags/productivity/">productivity</a>                </aside>
+
+                <div class="clear"></div>
+
+                <aside class="post-author">
+
+
+                        <figure class="post-author-avatar">
+                            <img src="https://pastorjordi.github.io//images/avatar.jpg" alt="Jordi Pastor" />
+                        </figure>
+                    <div class="post-author-bio">
+                        <h4 class="post-author-name"><a href="https://pastorjordi.github.io/">Jordi Pastor</a></h4>
+                            <p class="post-author-about">Neuroscientist. I like tinkering PCs, GPUs, other cheaper devices, science, data analysis... Not in any strict order.</p>
+                            <span class="post-author-location"><i class="ic ic-location"></i> Terrassa</span>
+                            <span class="post-author-website"><a href="https://pastorjordi.github.io"><i class="ic ic-link"></i> Website</a></span>
+                        <!-- Social linkes in alphabet order. -->
+                    </div>
+                    <div class="clear"></div>
+                </aside>
+
+                </section>
+
+                <script type="text/javascript">
+                    var disqus = 'https-pastorjordi-github-io';
+                    var disqus_shortname = 'https-pastorjordi-github-io';
+                    var disqus_identifier = '/blog/2021/bootstrap_wrapper/';
+                    var disqus_url = 'https://pastorjordi.github.io/blog/2021/bootstrap_wrapper/';
+                </script>
+                <noscript>Please enable JavaScript to view the comments.</noscript>
+                <section class="post-comments">
+                        <a id="show-disqus" class="post-comments-activate" data-disqus-identifier="/blog/2021/bootstrap_wrapper/" >Show Comments</a>
+                    <div id="disqus_thread"></div>
+                </section>
+
+                <aside class="post-nav">
+                    <a class="post-nav-next" href="https://pastorjordi.github.io/blog/2021/hello_world/">
+                        <section class="post-nav-teaser">
+                            <i class="ic ic-arrow-left"></i>
+                                <h2 class="post-nav-title">Hello World</h2>
+                            <p class="post-nav-excerpt">First post/test/intro</p>
+                        </section>
+                    </a>
+                    <a class="post-nav-prev" href="https://pastorjordi.github.io/terrassa/2021/Eleccions_14F/">
+                        <section class="post-nav-teaser">
+                            <i class="ic ic-arrow-right"></i>
+                                <h2 class="post-nav-title">Resultat eleccions 14F Generalitat</h2>
+                            <p class="post-nav-excerpt">Distribució de vots per secció egarenca.</p>
+                        </section>
+                    </a>
+                    <div class="clear"></div>
+                </aside>
+
+            </div>
+        </article>
+    </main>
+      <!-- TODO : Body class -->
+    <div id="body-class" style="display: none;" class=""></div>
+
+    <footer id="footer">
+      <div class="inner">
+        <section class="credits">
+
+
+          <span class="credits-theme">Theme <a href="https://github.com/arulrajnet/attila">Attila</a>
+ based on <a href="https://potyarkin.ml/">potyarkin.ml</a></span>
+          <span class="credits-software">Published with <a href="https://github.com/getpelican/pelican">Pelican</a></span>
+        </section>
+      </div>
+    </footer>
+  </section>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://pastorjordi.github.io/theme/js/script.js"></script>
+
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-200278352-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-200278352-2', { 'anonymize_ip': true });
+    </script>
+<script type="text/javascript">
+    var disqus_shortname = 'https-pastorjordi-github-io';
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+</body>
+</html>
