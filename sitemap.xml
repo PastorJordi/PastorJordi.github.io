@@ -5,21 +5,21 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pastorjordi.github.io/</loc>
-<lastmod>2022-05-16T16:52:40-00:00</lastmod>
+<lastmod>2022-05-16T17:06:33-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pastorjordi.github.io/tags/</loc>
-<lastmod>2022-05-16T16:52:40-00:00</lastmod>
+<lastmod>2022-05-16T17:06:33-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
 <loc>https://pastorjordi.github.io/archive/</loc>
-<lastmod>2022-05-16T16:52:40-00:00</lastmod>
+<lastmod>2022-05-16T17:06:33-00:00</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
@@ -34,6 +34,13 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://pastorjordi.github.io/Links_of_interest/</loc>
 <lastmod>2021-07-25T00:10:00+02:00</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pastorjordi.github.io/blog/2022/bootstrap_wrapper/</loc>
+<lastmod>2022-05-15T22:15:00+02:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
@@ -95,16 +102,23 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://pastorjordi.github.io/blog/2021/bootstrap_wrapper/</loc>
-<lastmod>2021-05-15T22:15:00+02:00</lastmod>
+<loc>https://pastorjordi.github.io/terrassa/2021/Eleccions_14F/</loc>
+<lastmod>2021-02-17T21:49:00+01:00</lastmod>
 <changefreq>monthly</changefreq>
 <priority>0.5</priority>
 </url>
 
 <url>
-<loc>https://pastorjordi.github.io/terrassa/2021/Eleccions_14F/</loc>
-<lastmod>2021-02-17T21:49:00+01:00</lastmod>
-<changefreq>monthly</changefreq>
+<loc>https://pastorjordi.github.io/tags/python/</loc>
+<lastmod>2022-05-15T22:15:00+00:09</lastmod>
+<changefreq>daily</changefreq>
+<priority>0.5</priority>
+</url>
+
+<url>
+<loc>https://pastorjordi.github.io/tags/productivity/</loc>
+<lastmod>2022-05-15T22:15:00+00:09</lastmod>
+<changefreq>daily</changefreq>
 <priority>0.5</priority>
 </url>
 
@@ -130,13 +144,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 </url>
 
 <url>
-<loc>https://pastorjordi.github.io/tags/productivity/</loc>
-<lastmod>2022-02-06T20:00:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
 <loc>https://pastorjordi.github.io/tags/memes/</loc>
 <lastmod>2022-02-06T20:00:00+00:09</lastmod>
 <changefreq>daily</changefreq>
@@ -152,13 +159,6 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 <loc>https://pastorjordi.github.io/tags/paywall/</loc>
-<lastmod>2021-09-08T10:15:00+00:09</lastmod>
-<changefreq>daily</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://pastorjordi.github.io/tags/python/</loc>
 <lastmod>2021-09-08T10:15:00+00:09</lastmod>
 <changefreq>daily</changefreq>
 <priority>0.5</priority>

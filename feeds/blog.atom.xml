@@ -1,5 +1,355 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>JP's word salads - Blog</title><link href="https://pastorjordi.github.io/" rel="alternate"></link><link href="https://pastorjordi.github.io/feeds/blog.atom.xml" rel="self"></link><id>https://pastorjordi.github.io/</id><updated>2022-02-06T20:00:00+01:00</updated><subtitle>random thoughts that might be worth sharing (?)</subtitle><entry><title>Vscode macros</title><link href="https://pastorjordi.github.io/blog/2022/vscode-macros/" rel="alternate"></link><published>2022-02-06T20:00:00+01:00</published><updated>2022-02-06T20:00:00+01:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2022-02-06:/blog/2022/vscode-macros/</id><summary type="html">&lt;p&gt;Thoughts about productivity + a custom solution&lt;/p&gt;</summary><content type="html">&lt;h1 id="how-i-wasted-30-min-to-create-a-shortcut-in-vscode"&gt;&lt;a class="toclink" href="#how-i-wasted-30-min-to-create-a-shortcut-in-vscode"&gt;How I wasted 30 min to create a shortcut in vscode&lt;/a&gt;&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>JP's word salads - Blog</title><link href="https://pastorjordi.github.io/" rel="alternate"></link><link href="https://pastorjordi.github.io/feeds/blog.atom.xml" rel="self"></link><id>https://pastorjordi.github.io/</id><updated>2022-05-15T22:15:00+02:00</updated><subtitle>random thoughts that might be worth sharing (?)</subtitle><entry><title>Writing a wrapper to bootstrap</title><link href="https://pastorjordi.github.io/blog/2022/bootstrap_wrapper/" rel="alternate"></link><published>2022-05-15T22:15:00+02:00</published><updated>2022-05-15T22:15:00+02:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2022-05-15:/blog/2022/bootstrap_wrapper/</id><summary type="html">&lt;p&gt;Adding bootstrap capabilities to your functions using a single wrapper function instead of repeating code&lt;/p&gt;</summary><content type="html">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"&gt;&lt;/script&gt;
+
+&lt;style type="text/css"&gt;
+div.code_cell {
+    //border: 2px solid red;
+    font-size: 0.75em;
+}
+
+
+/* div.markdown_cell 
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h1 
+disabling links in notebooks till i cannot fix newline char*/
+.anchor-link {
+    display: none;
+    visibility: hidden;
+{
+
+}
+&lt;/style&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h1 id="Motivation"&gt;Motivation&lt;a class="anchor-link" href="#Motivation"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Often times I find myself re-writing functions to add an optional calculation of confidence interval by sampling with replacement (a.k.a bootstrap).
+I'll try to write a wrapper which adds this functionality in order to:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Avoid writing repetitive code and minimizing maintenance&lt;/li&gt;
+&lt;li&gt;Improve my coding skills / practice something that I tend to overlook&lt;/li&gt;
+&lt;li&gt;Increase productivity by saving future time&lt;/li&gt;
+&lt;li&gt;Share some piece of code that is actually useful in this site&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;So then, here we go!&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="wrapper"&gt;wrapper&lt;a class="anchor-link" href="#wrapper"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The idea is to pass a function as an argument to a wrapping function that will return the 1st function "modified"&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[1]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tqdm.notebook&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;tqdm&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;add_bootstrap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bootstrap&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n_bootstrap&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+    &lt;span class="n"&gt;ci&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;.95&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;random_state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;threads&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt; &lt;span class="c1"&gt;# TODO: bool to use threading or multiproc.&lt;/span&gt;
+&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Decorator that adds bootstrapping capabilities to a given function. If kwarg &lt;/span&gt;
+&lt;span class="sd"&gt;    bootstrap==True wrapped function will return -&amp;gt; &lt;/span&gt;
+&lt;span class="sd"&gt;                            tuple (original output, lower_ci, upper_ci)&lt;/span&gt;
+&lt;span class="sd"&gt;    It will do the sampling with replacement in the 0th axis of args. Uses ndarrays.&lt;/span&gt;
+&lt;span class="sd"&gt;    It will bootstrap all args, either if it is a single multidimensional array &lt;/span&gt;
+&lt;span class="sd"&gt;    or various 1-D arrays, etc. As long as axis to bootstrap is 0th, all good. &lt;/span&gt;
+&lt;span class="sd"&gt;    CIs are also calculated in 0th axis of func&amp;#39;s outcome&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;tweaked_inner&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bootstrap&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;bootstrap&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n_bootstrap&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;n_bootstrap&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ci&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;ci&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
+        &lt;span class="n"&gt;random_state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;random_state&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;threads&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;threads&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unique&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;first dimension of args must match and they&amp;#39;&lt;/span&gt;\
+                &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39; are &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        
+        &lt;span class="n"&gt;original_output&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;bootstrap&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;N&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# number of samples&lt;/span&gt;
+            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;random_state&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;randomstate not set&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="n"&gt;rng&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;
+            &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+                &lt;span class="n"&gt;rng&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;RandomState&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;random_state&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+            &lt;span class="c1"&gt;# sampling with replacement indexing original args&lt;/span&gt;
+            &lt;span class="n"&gt;strap_indexes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rng&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;randint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;high&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n_bootstrap&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+            
+            &lt;span class="n"&gt;res_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+
+            &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;strap&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;tqdm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tqdm&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+                &lt;span class="n"&gt;strap_indexes&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;desc&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;bootstrapping &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;...&amp;#39;&lt;/span&gt;
+            &lt;span class="p"&gt;):&lt;/span&gt;
+                &lt;span class="n"&gt;res_list&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+                    &lt;span class="c1"&gt;# Check addendum at the bottom of the page about why&lt;/span&gt;
+                    &lt;span class="c1"&gt;# switching from percentile to empirical bootstrapping&lt;/span&gt;
+                    &lt;span class="n"&gt;original_output&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+                        &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;arg&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;strap&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;arg&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="c1"&gt;# resampled args&lt;/span&gt;
+                        &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;
+                    &lt;span class="p"&gt;)&lt;/span&gt;
+                &lt;span class="p"&gt;)&lt;/span&gt;
+
+            &lt;span class="n"&gt;CIs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mf"&gt;.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;.5&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;ci&lt;/span&gt;
+            &lt;span class="n"&gt;lower_ci&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;upper_ci&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;quantile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+                    &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;vstack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;res_list&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;CIs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;
+                &lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;original_output&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lower_ci&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;upper_ci&lt;/span&gt;
+        &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;original_output&lt;/span&gt;
+
+    &lt;span class="n"&gt;tweaked_inner&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__doc__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__doc__&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;decorated with @add_bootstrap which appends following kwargs:&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\t&lt;/span&gt;&lt;span class="s2"&gt;bootstrap: bool, whether to calc CI by bootstrapping 0th dimension of args&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\t&lt;/span&gt;&lt;span class="s2"&gt;n_bootstrap: int, number of bootstrap iterations to compute CI&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\t&lt;/span&gt;&lt;span class="s2"&gt;ci: size of confidence interval (0 to 1)&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
+    &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\t&lt;/span&gt;&lt;span class="s2"&gt;random_state: int, if not None, sets random state for reproducibility&amp;quot;&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;tweaked_inner&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;tweaked_inner&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="Minimal-testing"&gt;Minimal testing&lt;a class="anchor-link" href="#Minimal-testing"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Adding &lt;code&gt;@decorator_name&lt;/code&gt; above a function definition, we tell python that we actually want to define is &lt;code&gt;new_fun = decorator_name(new_fun)&lt;/code&gt; or, in other words, we wrap &lt;code&gt;new_fun&lt;/code&gt; inside &lt;code&gt;decorator_name&lt;/code&gt;.&lt;br&gt;
+So below we define functions to test the decorator and some data to feed as args for those functions.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[2]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@add_bootstrap&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;return_mean_matrix&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;matrix&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;function to test decorator&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;matrix&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="nd"&gt;@add_bootstrap&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;return_means_arrays&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arr1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arr2&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;function to test decorator with alternative dimensionality&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;arr1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;arr2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;()])&lt;/span&gt;
+
+
+&lt;span class="n"&gt;rng&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;RandomState&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;123&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rng&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;normal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;scale&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rng&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;normal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="o"&gt;=-&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;scale&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Time to test!&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[3]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
+&lt;span class="c1"&gt;# test&lt;/span&gt;
+&lt;span class="n"&gt;xposition&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;arange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reshape&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subplots&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fun&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;zip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;return_mean_matrix&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;return_means_arrays&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+    &lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c_&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;]],&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+&lt;span class="p"&gt;)):&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fun&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fun&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__doc__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;l_ci&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;u_ci&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fun&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bootstrap&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;random_state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;123&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+    &lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;errorbar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;xposition&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;yerr&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;l_ci&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;u_ci&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;fun&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;marker&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;o&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;capsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;legend&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_xlim&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+    &lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;return_mean_matrix
+function to test decorator
+decorated with @add_bootstrap which appends following kwargs:
+	bootstrap: bool, whether to calc CI by bootstrapping 0th dimension of args
+	n_bootstrap: int, number of bootstrap iterations to compute CI
+	ci: size of confidence interval (0 to 1)
+	random_state: int, if not None, sets random state for reproducibility
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_area"&gt;
+
+    &lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+
+
+
+ 
+ 
+&lt;div id="0df2ef13-ddf7-4809-b320-9800bd0fa10f"&gt;&lt;/div&gt;
+&lt;div class="output_subarea output_widget_view "&gt;
+&lt;script type="text/javascript"&gt;
+var element = $('#0df2ef13-ddf7-4809-b320-9800bd0fa10f');
+&lt;/script&gt;
+&lt;script type="application/vnd.jupyter.widget-view+json"&gt;
+{"model_id": "5649c5811f514783b0d7b4c46a7f9492", "version_major": 2, "version_minor": 0}
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div class="output_area"&gt;
+
+    &lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;return_means_arrays
+function to test decorator with alternative dimensionality
+decorated with @add_bootstrap which appends following kwargs:
+	bootstrap: bool, whether to calc CI by bootstrapping 0th dimension of args
+	n_bootstrap: int, number of bootstrap iterations to compute CI
+	ci: size of confidence interval (0 to 1)
+	random_state: int, if not None, sets random state for reproducibility
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_area"&gt;
+
+    &lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+
+
+
+ 
+ 
+&lt;div id="0d4f6172-4564-4e32-ac0c-7b4b860084af"&gt;&lt;/div&gt;
+&lt;div class="output_subarea output_widget_view "&gt;
+&lt;script type="text/javascript"&gt;
+var element = $('#0d4f6172-4564-4e32-ac0c-7b4b860084af');
+&lt;/script&gt;
+&lt;script type="application/vnd.jupyter.widget-view+json"&gt;
+{"model_id": "499de5979a5b4b44a8eb78a351d325e0", "version_major": 2, "version_minor": 0}
+&lt;/script&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div class="output_area"&gt;
+
+    &lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+
+
+&lt;div class="output_png output_subarea "&gt;
+&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYQAAAD4CAYAAADsKpHdAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjQuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8rg+JYAAAACXBIWXMAAAsTAAALEwEAmpwYAAAqXUlEQVR4nO3deXwUhf3/8dcnIRxyKkTkUg4BQcIZRIpyVAGFFhARrfpVtIi2Vb+VeoD4q6i1Imip59divaq2VakXBEQUqFpFDIIEQUUlXKJSkEsRAnx+f+wkhpiQYye7m+T9fDzmkZ3Z2ZnPDmw+2Zl5z5i7IyIikhTvAkREJDGoIYiICKCGICIiATUEEREB1BBERCRQLd4FHE6jRo28ZcuW8S5DRKTCWLp06X/dPbUsr03ohtCyZUsyMzPjXYaISIVhZuvK+lrtMhIREUANQUREAmoIIiICJPgxBJGqJCcnh40bN/L999/HuxSpAGrWrEnz5s1JSUkJbZlqCCIJYuPGjdStW5eWLVtiZvEuRxKYu7N161Y2btxIq1atQluudhmJJIjvv/+ehg0bqhlIscyMhg0bhv5tUg1BJIGoGUhJlcf/Fe0yEqmAps//hHteX/Oj6f97WluuGdguDhVJZaCGUAL68EnoFt4B/55y6LTBz8LOBlCvSbEvv2ZgO64Z2I5z//IOAM9c3rscipSqRruMSuCage3InjKUXq2Oolero8ieMpTsKUPVDKTsBkyEyTvguFMiw+Qd0ODYEjWDXC8u28Sy9dt5d+02+kxZwIvLNpVjwT/Yvn07Dz74YEzWVdEtWrSIt99+u8jnX375ZaZMmVLk87GmhiBSAb24bBMTn89i34GDAGzavoeJz2eF2hTcnYMHD/5oelkbwoEDB8Ioq0I5XEPYv38/w4YNY8KECTGuqmjaZSSSgG6Z9SGrvthZ5PPL1m/Pawa59uQc4PqZK/jHkvWFvqZj03rc/PMTD7ve7OxsBg8eTK9evVi6dCmjR49m9uzZ7N27l7POOotbbrmFCRMm8Nlnn9G1a1cGDhzI0KFDueuuu5g9ezYAV155Jenp6YwZM4aWLVty7rnnMn/+fK6//nomTJjAxRdfzKxZs8jJyeG5557jhBNOKLSWyZMns3btWj7//HPWr1/P9OnTWbx4MXPnzqVZs2bMmjWLlJQUli5dyvjx49m9ezeNGjXi8ccfp0mTJjz88MPMmDGDffv2cfzxx/Pkk09yxBFHMGbMGOrVq0dmZiZffvklU6dOZdSoUYXWsGjRIm6++WYaNGhAVlYWo0ePJi0tjXvuuYc9e/bw4osv0qZNG2bNmsUf/vAH9u3bR8OGDXn66afZs2cPDz30EMnJyTz11FPcd999PPLII9SsWZNly5bRp08fOnfuTGZmJvfffz/Dhw/n7LPP5qKLLuIvf/kLb7zxBk8//fRh/73Cpm8IIhVQwWZQ3PTSWLNmDb/+9a+ZPn06mzZtYsmSJSxfvpylS5fyxhtvMGXKFNq0acPy5cuZNm1asctr2LAh77//Pueddx4AjRo14v333+dXv/oVd91112Ff+9lnn7FgwQJefvllLrzwQgYMGEBWVha1atUiIyODnJwcrrrqKmbOnMnSpUu59NJLmTRpEgAjR47kvffe44MPPqBDhw488sgjecvdvHkzb731FrNnzy72L/QPPviAhx56iNWrV/Pkk0/yySefsGTJEsaOHct9990HwCmnnMLixYtZtmwZ5513HlOnTqVly5ZcccUVXHPNNSxfvpxTTz0ViORN3n77bf70pz8dsp4ZM2Zw66238uabb3L33XfnLTuW9A1BJAEV95d8nykL2LR9z4+mN2tQK+oDzMcddxwnn3wy1157La+++irdunUDYPfu3axZs4Zjjz22VMs799xzDxkfOXIkAD169OD5558/7GvPPPNMUlJSSEtL48CBA5xxxhkApKWlkZ2dzccff8zKlSsZOHAgENkt1aRJ5DjMypUruemmm9i+fTu7d+9m8ODBecsdMWIESUlJdOzYka+++uqwNfTs2TNvmW3atGHQoEF5NSxcuBCI/JI/99xz2bx5M/v27TtsWOycc84hOTn5R9MbN27MrbfeyoABA3jhhRc46qijDltXeVBDEKmArhvcnonPZ7En54f98rVSkrlucPuol127dm0gcgxh4sSJXH755Yc8n52dfch4tWrVDjnWUDAslbu8XDVq1AAgOTmZ/fv3H7aW3HmTkpJISUnJO/c+KSmJ/fv34+6ceOKJvPPOOz967ZgxY3jxxRfp0qULjz/+OIsWLfrRcnPfZ0lqyF1v/ppy67/qqqsYP348w4YNY9GiRUyePLnI5RXcHvllZWXRsGFDvvjii8PWVF5C2WVkZmeY2cdm9qmZ/ej7l5nVMLNnguffNbOWYaxXpKoa0a0Zd4xMo3py5CPcrEEt7hiZxohuzUJbx+DBg3n00UfZvXs3AJs2beLrr7+mbt267Nq1K2++4447jlWrVrF37162b9/O66+/HloNxWnfvj1btmzJawg5OTl8+OGHAOzatYsmTZqQk5NT7vvid+zYQbNmkW3/xBNP5E0vuK0OZ8mSJcydO5dly5Zx1113sXbt2nKp9XCibghmlgw8AJwJdAR+YWYdC8z2S+Abdz8emA7cGe16Raq6Ed2a0e3YBvRqdRT/mfDTUJsBwKBBgzj//PPp3bs3aWlpjBo1il27dtGwYUP69OlDp06duO6662jRogWjR4+mU6dOjB49Om8XUyxUr16dmTNncsMNN9ClSxe6du2ad1bPbbfdRq9evejTp0+RB67DMnnyZM455xx69OhBo0aN8qb//Oc/54UXXqBr1668+eabRb5+7969XHbZZTz66KM0bdqUu+++m0svvbTYby9hs2hXaGa9gcnuPjgYnwjg7nfkm2deMM87ZlYN+BJI9WJWnp6e7ol0xzSFgCR0jw2N/Lwkg9WrV9OhQ4cSvUxhSQEK/T9jZkvdPb0sywvjGEIzYEO+8Y1Ar6Lmcff9ZrYDaAj8t+DCzGwcMA4o9cErkaoiN6ksEqaEO6js7jOAGRD5hhDnckSknD322GPcc889h0zr06cPDzzwQMxqyMrK4n/+538OmVajRg3efffdmNWQCMJoCJuAFvnGmwfTCptnY7DLqD6wNYR1i0gFd8kll3DJJZfEtYa0tDSWL18e1xoSQRhnGb0HtDWzVmZWHTgPeLnAPC8DFwePRwELijt+ICIisRX1N4TgmMCVwDwgGXjU3T80s1uBTHd/GXgEeNLMPgW2EWkaIiKSQEI5huDuc4A5Bab9Pt/j74FzwliXiFD45bMB+k2IXElVpAx0LSORiqiwy2dP3hGTZqDLX1deaggiFdWKZ2Hje7DuLZjeKTIeIl3+OjoF329FeP9qCCIV0YpnYdbVcGBvZHzHhsh4lE0hOzub9u3bc9FFF9GpUyduu+02evbsSefOnbn55psBDrn89XXXXceiRYv42c9+lreMK6+8kscffxyAli1bcsMNN9C9e3eee+45WrZsyc0330z37t1JS0vjo48+KrKWyZMnc/HFF3Pqqady3HHH8fzzz3P99deTlpbGGWecQU5ODgBLly6lX79+9OjRg8GDB7N582YAHn74YXr27EmXLl04++yz+e6774DINY6uvvpqfvKTn9C6dWtmzpwJRK6A2rdvX7p27UqnTp0Omyz+1a9+RXp6OieeeGLedinq/eYfL6ymXbt20apVq7z3s3Pnzrzxe++9l44dO9K5c+e8q8WWp4TLIYgIMHcCfJlV9PMb3/uhGeTK2QMvXQlLnyj8NcekwZnF351rzZo1PPHEE+zcuZOZM2eyZMkS3J1hw4blXf565cqVeadp5r9oXGFyL38NkWaSe/nrBx98kLvuuou//vWvRb72s88+Y+HChaxatYrevXvzr3/9i6lTp3LWWWeRkZHB0KFDueqqq3jppZdITU3lmWeeYdKkSTz66KOMHDmSyy67DICbbrqJRx55hKuuugr44fLXH330EcOGDWPUqFH8/e9/Z/DgwUyaNIkDBw7kNZDC3H777Rx11FEcOHCA0047jRUrVtC5c+dC32/+8a1btxZaU//+/cnIyGDEiBH885//ZOTIkaSkpDBlyhTWrl1LjRo12L59++H/4UKghiBSERVsBsVNL4Wqevnrnj17cumll5KTk8OIESPo2rVrkXU9++yzzJgxg/3797N582ZWrVqV1xAKvt/840XVNHbsWKZOncqIESN47LHHePjhhwHo3LkzF1xwASNGjGDEiBGH3VZhUEMQSUTF/SU/vVNkN1FB9VvAJRlRrbqqXv66b9++vPHGG2RkZDBmzBjGjx/PRRdd9KPlrl27lrvuuov33nuPI488kjFjxhzyngu+3/zjRdXUp08fsrOzWbRoEQcOHKBTp04AZGRk8MYbbzBr1ixuv/12srKyqFat/H5t6xiCSEV02u8hpdah01JqRaaHpKpd/nrdunU0btyYyy67jLFjx+bt5ilo586d1K5dm/r16/PVV18xd+7cEtd7uJouuugizj///LzU9sGDB9mwYQMDBgzgzjvvZMeOHXn/FuVF3xBEKqLOoyM/X7oyspuofotIM8idHoJBgwaxevVqeveOXN23Tp06PPXUU7Rp0ybv8tdnnnkm06ZNy7v8datWreJy+eurr76aHTt2sH//fn77299y4okn5l3+OjU1lV69ehV7X4JFixYxbdo0UlJSqFOnDn/7298Kna9Lly5069aNE044gRYtWtCnT58S13u4mi644AJuuukmfvGLXwCR3V8XXnghO3bswN25+uqradCgQYnXVRZRX/66POny11LplfHy14W9Xiq2mTNn8tJLL/Hkk0+W+DWJePlrEYm1gknlyfUjP5VUrpCuuuoq5s6dy5w5c4qfuRypIYhURAMmVppf/Ilw+eui9OrVi717Dz1z68knnyQtLS3U9dx3332hLq+s1BBEJK4S4fLXRalq90PQWUYl9OKyTSxbv513126jz5QFvLis4C0fREqp4KUn9n0b83voSsVVHv9X1BBK4MVlm5j4fBb7DkTOtd60fQ8Tn89SU5CyK+TSEzW/WsrWL9apKUix3J2tW7dSs2bNUJerXUYlMG3ex+zJOfTCVHtyDjBt3seM6NYsTlVJhfb6rZFLTeTTPPOPbEyuzpadJ8epKKlIatasSfPmzUNdphpCCXyxfU+pposUa8fGH01K2bedVm9eA5O3x74eEbTLqESaNqhVqukixapfxF92RU0XiYGoGoKZHWVm881sTfDzyCLmO2Bmy4Oh4P2WE951g9tTKyX5kGk1U5K4bnD7OFUkFV4MLj0hUlrRfkOYALzu7m2B14Pxwuxx967BMCzKdcbciG7NuGNkGtWTf9hcPVsepeMHUnadR8PP74XkGvmmnRfqpSdESivaYwjDgf7B4yeARcANUS4zIY3o1ox/LFkPQJuj6/Dsexv4fMtuWqfWiXNlUmF1Hh25d4E77N8Dn8yDfd9B9SPiXZlUUdF+Q2js7puDx18CjYuYr6aZZZrZYjMbEeU64+63p7elRrUk7nyl6Ls9iZSYGQz6A+z6AhbHP50rVVexDcHMXjOzlYUMw/PP55GTp4s6gfq44GJL5wN/NrM2h1nfuKB5ZG7ZsqU07yVmjq5bkyv6tWHeh1+xZO22eJcjlUHLPnDCz+CtP8Pur+NdjVRRxTYEdz/d3TsVMrwEfGVmTQCCn4X+T3b3TcHPz4nsViry+rjuPsPd0909PTU1tQxvKTbGntqaY+rV5PaMVRw8qCCRhOD0W2D/97Dwj/GuRKqoaHcZvQxcHDy+GHip4AxmdqSZ1QgeNwL6AKuiXG/c1aqezLWD2/PBxh3MWvFFvMuRyqDR8ZD+S3j/CfhauyMl9qJtCFOAgWa2Bjg9GMfM0s0s987ZHYBMM/sAWAhMcfcK3xAAzurWjI5N6jH1lY/5vkCSWaRM+t0A1evAfJ1+KrEXVUNw963ufpq7tw12LW0Lpme6+9jg8dvunubuXYKfj4RReCJITjImDe3Apu17eOLt7HiXI5VB7YZw6u9gzTz4fFG8q5EqRknlKPU5vhED2qdy/8JP2fbtvniXI5VBrysit8R89SbId/N6kfKmhhCCiUM68O3e/dz7+pp4lyKVQUpNOO1m+DILVjwT72qkClFDCEG7xnU576RjeWrxOj7fsjve5Uhl0OlsaNo9clXUfd/FuxqpItQQQqKwmoQqKUlhNYk5NYSQKKwmoVNYTWJMDSFEY09tTeN6NRRWk/DkhtUW3RHvSqQKUEMIUa3qyVw7KBJWm521ufgXiBSn0fGQfmnkIngKq0k5U0MI2cjuzenQpB53zv1IYTUJR78boHpteO3meFcilZwaQsiSk4ybFFaTMNVuFAmrffIKfP7veFcjlZgaQjlQWE1ClxdWm6SwmpQbNYRyorCahEphNYkBNYRy0q5xXc7tGQmrrf3vt/EuRyqDTmdD026w4DaF1aRcqCGUo2sGtqV6tSTunKuzQyQEuWG1nZtg8YPxrkYqITWEcpQbVnvlwy95L1thNQlBy1Og/VB4a7rCahI6NYRydlkQVvtDxmqF1SQcA29VWE3KhRpCOcsLq23YrrCahENhNSknaggxoLCahE5hNSkHaggxkJxkTBoSCav97Z3seJcjlUHtRnDqeIXVJFRRNQQzO8fMPjSzg2aWfpj5zjCzj83sUzObEM06K6pT2jaif/tU7lvwKd8orCZh0J3VJGTRfkNYCYwE3ihqBjNLBh4AzgQ6Ar8ws45RrrdCujE3rLZAYTUJQUotOO338OUKyHo23tVIJRBVQ3D31e7+cTGznQR86u6fu/s+4J/A8GjWW1HlhtWefEdhNQlJp1GRsJrurCYhiMUxhGbAhnzjG4NphTKzcWaWaWaZW7ZsKffiYk1hNQmVwmoSomIbgpm9ZmYrCxnK5a98d5/h7ununp6amloeq4grhdUkdAqrSUiKbQjufrq7dypkeKmE69gEtMg33jyYVmFMn/8JLSdk8O7abby7dhstJ2TQckIG0+d/UqbljT21VV5YzV1htSpp4R0wuT6seysyTK4fGRaWMWw28BbI2QOLpoRbp1QpFsYvJDNbBFzr7pmFPFcN+AQ4jUgjeA84390/LG656enpnpn5o0VWCs9mbuD6mSu47xfd+HmXpvEuRyqDjGsh81H49TuQ2j7e1UicmNlSdy/yrM/Difa007PMbCPQG8gws3nB9KZmNgfA3fcDVwLzgNXAsyVpBpXd2d2bc8IxdbnzlY/Yu19hNQlB/wmRsNp8hdWkbKI9y+gFd2/u7jXcvbG7Dw6mf+HuQ/LNN8fd27l7G3e/PdqiK4PIndU6svGbPfzt7XXxLkcqg7yw2lxYW+SZ4CJFUlI5jn4Iq61RWE3CobCaREENIc4mntmB3QqrSVhyw2qbP1BYTUpNDSHO2h9Tl3N7tlBYTcLTaRQ06RoJq+XsiXc1UoGoISSAa05vR/VqSUx9RWE1CYHCalJGaggJ4Oh6Nbm8bxvmrvySTIXVJAytToX2Q+DN6bC78iX+pXyoISSIy/oqrCYhG3gr5HwH/1ZYTUpGDSFBHFG9Gr8b1J7lG7Yze4XurCYhaNQ2cme1zMdgS3HXoBRRQ0goCqtJ6PpPgJQjFFaTElFDSCDJScakoR0UVpPwKKwmpaCGkGBObZtKv3YKq0mITv4V1GuusJoUSw0hAd04JBJWu2/Bp/EuRSqDQ8Jqz8W7GklgaggJKC+stjibbIXVJAxp5yisJsVSQ0hQ15zejpTkJO5UWE3CkBdW26iwmhRJDSFBKawmoVNYTYqhhpDALuvbiqPrKqwmITr9FoXVpEhqCAnsiOrVuDYIq2VkKawmIUhtB+mXBGG1st0CViovNYQEd3YPhdUkZP2CsNprCqvJodQQElxuWG3Dtj08+Y7CahKCOqmRsNrHc2Dtm/GuRhJItPdUPsfMPjSzg2ZW5E2dzSzbzLLMbLmZZUazzqooN6x27+sKq0lI8sJqkxRWkzzRfkNYCYwESpKJH+DuXd29yMYhRVNYTUKlsJoUIqqG4O6r3V2XUYyB9sfUZXS6wmoSorRzoEkXhdUkT6yOITjwqpktNbNxh5vRzMaZWaaZZW7ZonOl8xs/sB3VkpKYOk9hNQnBIWG1/4t3NZIAim0IZvaama0sZBheivWc4u7dgTOB35hZ36JmdPcZ7p7u7umpqamlWEXld3S9mlzerzVzsr5k6TqF1SQErfpCuzPhzT/Bt/+NdzUSZ8U2BHc/3d07FTK8VNKVuPum4OfXwAvASWUvuWob17e1wmoSrtw7qy1SWK2qK/ddRmZW28zq5j4GBhE5GC1lkBtWW7ZeYTUJSV5Y7VGF1aq4aE87PcvMNgK9gQwzmxdMb2pmc4LZGgNvmdkHwBIgw91fiWa9VZ3CahI6hdWE6M8yesHdm7t7DXdv7O6Dg+lfuPuQ4PHn7t4lGE5099vDKLwqS04ybhyisJqEqE4qnHqNwmpVnJLKFVTfdqn0DcJq279TWE1CcPKvoV4z3VmtClNDqMBuHHKCwmoSnryw2nJYOTPe1UgcqCFUYCccU4/R6S342zvZrNuqsJqEIG20wmpVmBpCBZcbVtOd1SQUuWG1HRsUVquC1BAqOIXVJHQKq1VZagiVgMJqErqBtyisVgWpIVQCR1Svxu8GtWPZ+u3Myfoy3uVIZZDaHnqMiYTV/rsm3tVIjKghVBKjerRQWE3C1X9iJKw2X2G1qkINoZLIDaut3/adwmoSjrywWgZkvxXvaiQG1BAqkdyw2n0LPlVYTcKhsFqVooZQydw45AR2fZ+jsJqEIzes9sUyhdWqADWESuaEY+pxTg+F1SREaaPhmM4Kq1UBagiV0PhBwZ3VXtHdTSUE+cNq7z4U72qkHKkhVEKN69VkXN/WZGRtZum6b+JdjlQGrftBuzMUVqvk1BAqqcv7RcJqt2esUlhNwjHwVtj3Lfz7znhXIuVEDaGSyg2rvb9+O3NXKqwmIVBYrdJTQ6jERvVoQfvGdZkyV2E1CUn/iVCtlsJqlVS0t9CcZmYfmdkKM3vBzBoUMd8ZZvaxmX1qZhOiWaeUXHKSceNQhdUkRHVS4ZTfKqxWSUX7DWE+0MndOwOfABMLzmBmycADwJlAR+AXZtYxyvVKCfVrl8qpbRsprCbhUVit0or2nsqvuvv+YHQx0LyQ2U4CPg3urbwP+CcwPJr1SuncOKQDO7/P4X6F1SQM1Y+An/6/IKz2r3hXIyEK8xjCpcDcQqY3AzbkG98YTCuUmY0zs0wzy9yyZUuI5VVdHZrUY3SPFjzxTjbrt34X73KkMuh8bhBWuwVyvo93NRKSYhuCmb1mZisLGYbnm2cSsB94OtqC3H2Gu6e7e3pqamq0i5NAbljtznm6s5qEQGG1SqnYhuDup7t7p0KGlwDMbAzwM+ACL/yE901Ai3zjzYNpEkN5YbUVCqtJSPLCancrrFZJRHuW0RnA9cAwdy9qX8R7QFsza2Vm1YHzgJejWa+Uzbi+rUlVWE3CpLBapRLtMYT7gbrAfDNbbmYPAZhZUzObAxAcdL4SmAesBp519w+jXK+UQe0a1fjdQIXVJESp7aHHxQqrVRKWyH8ppqene2ZmZrzLqFQOHHSG3PMme3IO8Nr4flSvpmyiRGn313BvN2jdH86L+jCiRMnMlrp7elleq98GVcwhYbXFCqtJCOocDadcAx/Nhuz/xLsaiYIaQhWUG1a79/U17PguJ97lSGWgsFqloIZQReWG1e5boP2+EoK8sNr7CqtVYGoIVVSHJvU4p0dzhdUkPJ3PhWPSFFarwNQQqrDxA9srrCbhSUqCQbcrrFaBqSFUYcfUr8llCqtJmFr3g7aDg7Da1nhXI6WkhlDFXR6E1f44Z7XCahKOQbcprFZBqSFUcblhtaXrvuEVhdUkDHlhtUfgv7rCbkWihiCckx7cWe2Vj9i3X6cMSgj6T4RqNeE13VmtIlFDEJKTjIlDTmDdVoXVJCR1jo7cWU1htQpFDUEAhdWkHJz8G6jbVGG1CkQNQQAwMyaeGdxZbaHCahKC6kfAaUFY7cPn412NlIAaguTp2DQIq729TmE1CUfn8yJhtdcUVqsI1BDkEOMHtic5yZiqsJqEIS+sth6W/CXe1UgxqsW7AEksuWG1e19fw6WnfEP3Y48s8Wunz/+Ee17/8e6m/z2tLdcMbBdmmVKR5IbV3rgbul4ItRuW/LUL74B/T/nx9H4TYMDE8GoUQPdDkEJ8u3c//aYt4riGRzDzit6YWalef+5f3gHgmct7l0d5UhF9/RH8X2/oeRkMmVr61z82NPLzkoxw66qEdD8ECVXtGtX43SCF1SRER58A3RVWS3RqCFKoc3o0p13jOgqrSXgG3KiwWoKLqiGY2TQz+8jMVpjZC2bWoIj5ss0sK7jvsvYBVQDVkpO4cUgH1m39jqcUVpMw5A+rrXs73tVIIaL9hjAf6OTunYFPgMMd5Rng7l3Lum9LYi8vrLZAYTUJSW5Ybd4khdUSUFQNwd1fdff9wehioHn0JUmiyA2r7dijsJqERGG1hBbmMYRLgblFPOfAq2a21MzGHW4hZjbOzDLNLHPLli0hlidl0bFpPUZ1V1hNQpR7ZzWF1RJOsQ3BzF4zs5WFDMPzzTMJ2A88XcRiTnH37sCZwG/MrG9R63P3Ge6e7u7pqamppXw7Uh5+N6g9SUkorCbhSEqGQX9QWC0BFdsQ3P10d+9UyPASgJmNAX4GXOBFhBrcfVPw82vgBeCk0N6BlLtj6tdk3Kmtmb1iM++v153VJASt+0PbQZGwmu6sljCiPcvoDOB6YJi7F7o/wcxqm1nd3MfAIGBlNOuV2Lu8Xxsa1anBHzN0ZzUJycDbYN8ueKMMQTUpF9EeQ7gfqAvMD04pfQjAzJqa2ZxgnsbAW2b2AbAEyHD3V6Jcr8RYblgtc903zPtQYTUJQW5Y7b2/wtbP4l2NEP1ZRse7e4vgdNKu7n5FMP0Ldx8SPP7c3bsEw4nufnsYhUvs5YXV5iqsJiHRndUSipLKUmLVkpOYOKQD2QqrSVjqNoY+v4XVsxRWSwBqCFIq/dulcsrxCqtJiHr/Buo2UVgtAaghSKmYGTcOiYTVHliki5RJCKofAT9VWC0RqCFIqeWG1R7/TzYbtimsJiHoojurJQI1BCmTH8JqH8e7FKkMDgmrzYh3NVWWGoKUSW5YbdYHX7BMYTUJQ15Y7S74blu8q6mS1BCkzMYFYbXbFVaTsAy8NRJW+/ed8a6kSlJDkDKrU6Ma4wcqrCYhOroDdL9IYbU4UUOQqIxOb07boxVWkxD1153V4kUNQaJSLTmJG4dGwmpPv6uwmoTgkLDaO/GupkpRQ5Co5YbV7nl9DTv2KKwmIcgNq706CXR8KmbUECRqZsbEISewY08ODy5UWE1CkBtW27RUYbUYUkOQUJzYtD5nd2/OY//J5vucA/EuRyqDLudB4zR4bTK4jk/FghqChOZ3g9px0A+StWkH767dRp8pC3hx2aZ4lyUVVVIyDLoNtq+HDe/CurdgeidY8Wy8K6u01BAkNO9+vg0wDga7fDdt38PE57PUFKTsvt0ClgQefOvcsQFmXa2mUE7UECQ00+Z9zP6Dhx4A3JNzgGm6vIWU1eu3/nh3Uc6eyHQJnRqChOaL7XtKNV2kWDs2lm66RCXqhmBmt5nZiuAWmq+aWdMi5rvYzNYEw8XRrlcST9MGtUo1XaRY9ZuXbrpEJYxvCNPcvbO7dwVmA78vOIOZHQXcDPQCTgJuNrMjQ1i3JJDrBrenVkryIdNqpSRz3eD2capIKrzTfg8pBf6gSKkVmS6hi7ohuPvOfKO1gcJSJIOB+e6+zd2/AeYDZ0S7bkksI7o1446RaVRPjvy3atagFneMTGNEt2ZxrkwqrM6j4ef3QnKNyHj9FpHxzqPjW1clVS2MhZjZ7cBFwA5gQCGzNAM25BvfGEwrbFnjgHEAxx57bBjlSQyN6NaMfyxZD8Azl/eOczVSKXQeDUufiDy+JCO+tVRyJfqGYGavmdnKQobhAO4+yd1bAE8DV0ZTkLvPcPd0d09PTU2NZlEiIlIKJfqG4O6nl3B5TwNziBwvyG8T0D/feHNgUQmXKSIiMRDGWUZt840OBz4qZLZ5wCAzOzI4mDwomCYiIgkijGMIU8ysPXAQWAdcAWBm6cAV7j7W3beZ2W3Ae8FrbnV33SNPRCSBRN0Q3P3sIqZnAmPzjT8KPBrt+kREpHwoqSwiIoAagoiIBNQQREQEUEMQEZGAGoKIiABqCCIiElBDEBERQA1BREQCaggiIgKoIYiISEANQUREADUEEREJqCGIiAighiAiIgE1BBERAdQQREQkoIYgIiKAGoKIiASiuoVmcJ/k4UTup/w1MMbdvyhkvgNAVjC63t2HRbNeEREJX7TfEKa5e2d37wrMBn5fxHx73L1rMKgZiIgkoKgagrvvzDdaG/DoyhERkXiJ+hiCmd1uZhuACyj6G0JNM8s0s8VmNqKY5Y0L5s3csmVLtOWJiEgJFdsQzOw1M1tZyDAcwN0nuXsL4GngyiIWc5y7pwPnA382szZFrc/dZ7h7urunp6amluEtiYhIWZh7OHt5zOxYYI67dypmvseB2e4+s7hlpqene2ZmZij1SfmbPv8T7nl9zY+m/+9pbblmYLs4VCQV3sI74N9Tfjy93wQYMDH29VQAZrY0+AO89K+NpiGYWVt3XxM8vgro5+6jCsxzJPCdu+81s0bAO8Bwd19V3PLVEERESieahhDVaafAFDNrT+S003XAFUFB6cAV7j4W6AD8xcwOEtlFNaUkzUBERGIrqobg7mcXMT0TGBs8fhtIi2Y9IiJS/pRUFhERQA1BREQCaggiIgKoIYiISEANQUREADUEEREJhJZULg9mtgv4ON51FNAI+G+8iyhANZVMItYEiVmXaiqZRKypvbvXLcsLow2mlbePy5q4Ky9mlqmaiqeaSi4R61JNJZOoNZX1tdplJCIigBqCiIgEEr0hzIh3AYVQTSWjmkouEetSTSVTqWpK6IPKIiISO4n+DUFERGJEDUFERIAEawhmdpSZzTezNcHPI4uY74CZLQ+Gl8upljPM7GMz+9TMJhTyfA0zeyZ4/l0za1kedZSypjFmtiXfthlbzvU8amZfm9nKIp43M7s3qHeFmXUvz3pKWFN/M9uRbxsVdR/wMGtqYWYLzWyVmX1oZv9byDzx2FYlqSum28vMaprZEjP7IKjplkLmielnr4Q1xfSzl2+9yWa2zMxmF/Jc6beTuyfMAEwFJgSPJwB3FjHf7nKuIxn4DGgNVAc+ADoWmOfXwEPB4/OAZxKgpjHA/TH89+oLdAdWFvH8EGAuYMDJwLsJUFN/Irdwjck2CtbZBOgePK4LfFLIv108tlVJ6orp9gref53gcQrwLnBygXli/dkrSU0x/ezlW+944O+F/RuVZTsl1DcEYDjwRPD4CWBEnOo4CfjU3T93933AP4Pa8stf60zgNDOzONcUU+7+BrDtMLMMB/7mEYuBBmbWJM41xZy7b3b394PHu4DVQLMCs8VjW5WkrpgK3v/uYDQlGAqe+RLTz14Ja4o5M2sODAX+WsQspd5OidYQGrv75uDxl0DjIuaraWaZZrbYzEaUQx3NgA35xjfy4w9K3jzuvh/YATQsh1pKUxPA2cEuh5lm1qIc6ymJktYca72Dr/9zzezEWK44+NrejchfmfnFdVsdpi6I8fYKdoMsB74G5rt7kdsqRp+9ktQEsf/s/Rm4nsgtjAtT6u0U84ZgZq+Z2cpChkP+2vXI95yiuvBxHomLnw/82czalHfdFcQsoKW7dwbm88NfB/KD94n8/+kC3Ae8GKsVm1kd4F/Ab919Z6zWW5xi6or59nL3A+7eFWgOnGRmncp7ncUpQU0x/eyZ2c+Ar919aZjLjXlDcPfT3b1TIcNLwFe5X5ODn18XsYxNwc/PgUVE/rIJ0yYgf4dvHkwrdB4zqwbUB7aGXEepanL3re6+Nxj9K9CjHOspiZJsx5hy9525X//dfQ6QYmaNynu9ZpZC5Jfu0+7+fCGzxGVbFVdXvLZXsL7twELgjAJPxfqzV2xNcfjs9QGGmVk2kd3HPzWzpwrMU+rtlGi7jF4GLg4eXwy8VHAGMzvSzGoEjxsR2TCrQq7jPaCtmbUys+pEDsgUPJspf62jgAXBt5ryUmxNBfY5DyOyTzieXgYuCs6gORnYkW+XYFyY2TG5+1HN7CQin4Fy/WUSrO8RYLW7/6mI2WK+rUpSV6y3l5mlmlmD4HEtYCDwUYHZYvrZK0lNsf7suftEd2/u7i2J/C5Y4O4XFpit9NupPI+Al3Ygsn/rdWAN8BpwVDA9Hfhr8PgnQBaRs2yygF+WUy1DiJx18RkwKZh2KzAseFwTeA74FFgCtI7B9imupjuAD4NtsxA4oZzr+QewGcghss/7l8AVwBXB8wY8ENSbBaTHYBsVV9OV+bbRYuAnMajpFCK7P1cAy4NhSAJsq5LUFdPtBXQGlgU1rQR+X8j/85h+9kpYU0w/ewXq609wllG020mXrhARESDxdhmJiEicqCGIiAighiAiIgE1BBERAdQQREQkoIYgIiKAGoKIiAT+PxDAb59RnRY2AAAAAElFTkSuQmCC"
+&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;So far, so good! (there could be something wrong there, still though)&lt;/p&gt;
+&lt;p&gt;Happy bootstrapping!&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="Addendum"&gt;Addendum&lt;a class="anchor-link" href="#Addendum"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Looking for a image for the header I came across &lt;a href="https://elizavetalebedeva.com/bootstrapping-confidence-intervals-the-basics/"&gt;this&lt;/a&gt; which cites &lt;a href="https://klein.mit.edu/~dav/05.dir/class24-prep-a.pdf"&gt;this&lt;/a&gt; which cites &lt;a href="https://books.google.es/books/about/Mathematical_Statistics_and_Data_Analysi.html?id=7SI8AAAAQBAJ&amp;amp;redir_esc=y"&gt;this&lt;/a&gt;.  The latter looks non-open but a using &lt;code&gt;Mathematical Statistics and Data Analysis 2006 filetype:pdf&lt;/code&gt; as a query in a popular search engine led some results :)&lt;br&gt;
+In short, it is advised to avoid percentile method and use alternative bootstrapping methods like empirical bootstrap. I adapted the code and hence the edits/commented lines on the code.&lt;/p&gt;
+&lt;blockquote&gt;&lt;p&gt;Note for future-me: could you actually simulate this and see what happens with non-symmetric distributions using both methods?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Cheers!&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+ 
+
+
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;
+</content><category term="Blog"></category><category term="python"></category><category term="productivity"></category></entry><entry><title>Vscode macros</title><link href="https://pastorjordi.github.io/blog/2022/vscode-macros/" rel="alternate"></link><published>2022-02-06T20:00:00+01:00</published><updated>2022-02-06T20:00:00+01:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2022-02-06:/blog/2022/vscode-macros/</id><summary type="html">&lt;p&gt;Thoughts about productivity + a custom solution&lt;/p&gt;</summary><content type="html">&lt;h1 id="how-i-wasted-30-min-to-create-a-shortcut-in-vscode"&gt;&lt;a class="toclink" href="#how-i-wasted-30-min-to-create-a-shortcut-in-vscode"&gt;How I wasted 30 min to create a shortcut in vscode&lt;/a&gt;&lt;/h1&gt;
 &lt;h2 id="some-context"&gt;&lt;a class="toclink" href="#some-context"&gt;Some context&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The other day I was using Rstudio because I found few functions I needed already written in R. At some point I realized that some widely used operators are EXTREMELY ANNOYING to type. Specifically, I mean assignment "&lt;code&gt;&amp;lt;-&lt;/code&gt;" and pipe "&lt;code&gt;%&amp;gt;%&lt;/code&gt;" operators. Perhaps I have this feeling because their python counterparts are as simple as "&lt;code&gt;=&lt;/code&gt;" and "&lt;code&gt;.&lt;/code&gt;". Luckily, someone thought about this before, and there are plenty of &lt;a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE"&gt;already written shortcuts&lt;/a&gt; to type such combination of symbols. &lt;code&gt;Alt&lt;/code&gt; + &lt;code&gt;-&lt;/code&gt; and &lt;code&gt;Ctrl&lt;/code&gt; + &lt;code&gt;Shift&lt;/code&gt; + &lt;code&gt;M&lt;/code&gt;, respectively.  &lt;/p&gt;
 &lt;h2 id="vscode-shortcuts"&gt;&lt;a class="toclink" href="#vscode-shortcuts"&gt;Vscode shortcuts&lt;/a&gt;&lt;/h2&gt;
@@ -1620,350 +1970,4 @@ $$p(x,t) = \large e^{(x-x_0)\frac{\mu}{\sigma^2} - \frac{\mu^2 t}{2 \sigma^2} } 
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="Blog"></category><category term="tools"></category><category term="personal"></category></entry><entry><title>Writing a wrapper to bootstrap</title><link href="https://pastorjordi.github.io/blog/2021/bootstrap_wrapper/" rel="alternate"></link><published>2021-05-15T22:15:00+02:00</published><updated>2021-05-15T22:15:00+02:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2021-05-15:/blog/2021/bootstrap_wrapper/</id><summary type="html">&lt;p&gt;Adding bootstrap capabilities to your functions using a single wrapper function instead of repeating code&lt;/p&gt;</summary><content type="html">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"&gt;&lt;/script&gt;
-
-&lt;style type="text/css"&gt;
-div.code_cell {
-    //border: 2px solid red;
-    font-size: 0.75em;
-}
-
-
-/* div.markdown_cell 
-h1:hover .anchor-link,
-h2:hover .anchor-link,
-h3:hover .anchor-link,
-h1 
-disabling links in notebooks till i cannot fix newline char*/
-.anchor-link {
-    display: none;
-    visibility: hidden;
-{
-
-}
-&lt;/style&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h1 id="Motivation"&gt;Motivation&lt;a class="anchor-link" href="#Motivation"&gt;&amp;#182;&lt;/a&gt;&lt;/h1&gt;&lt;p&gt;Often times I find myself re-writing functions to add an optional calculation of confidence interval by sampling with replacement (a.k.a bootstrap).
-I'll try to write a wrapper which adds this functionality in order to:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Avoid writing repetitive code and minimizing maintenance&lt;/li&gt;
-&lt;li&gt;Improve my coding skills / practice something that I tend to overlook&lt;/li&gt;
-&lt;li&gt;Increase productivity by saving future time&lt;/li&gt;
-&lt;li&gt;Share some piece of code that is actually useful in this site&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;So then, here we go!&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="wrapper"&gt;wrapper&lt;a class="anchor-link" href="#wrapper"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;The idea is to pass a function as an argument to a wrapping function that will return the 1st function "modified"&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[1]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;tqdm.notebook&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;tqdm&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;add_bootstrap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bootstrap&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n_bootstrap&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
-    &lt;span class="n"&gt;ci&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;.95&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;random_state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;threads&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;False&lt;/span&gt; &lt;span class="c1"&gt;# TODO: bool to use threading or multiproc.&lt;/span&gt;
-&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    Decorator that adds bootstrapping capabilities to a given function. If kwarg bootstrap==True&lt;/span&gt;
-&lt;span class="sd"&gt;    wrapped function will return -&amp;gt; tuple (original output, lower_ci, upper_ci)&lt;/span&gt;
-&lt;span class="sd"&gt;    It will do the sampling without replacement in the 0th axis of args. Uses ndarrays.&lt;/span&gt;
-&lt;span class="sd"&gt;    It will bootstrap all args, either if it is a single multidimensional or various single, etc.&lt;/span&gt;
-&lt;span class="sd"&gt;    As long as axis to bootstrap is 0th, all good. CI are also calculated in 0th axis of the outcome&lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;tweaked_inner&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-        &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bootstrap&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;bootstrap&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n_bootstrap&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;n_bootstrap&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ci&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;ci&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; 
-        &lt;span class="n"&gt;random_state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;random_state&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;threads&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;threads&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unique&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;first dimension of args must match and they&amp;#39;&lt;/span&gt;\
-                &lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39; are &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-        
-        &lt;span class="n"&gt;original_output&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;bootstrap&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="n"&gt;N&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="c1"&gt;# number of samples&lt;/span&gt;
-            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;random_state&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-                &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;randomstate not set&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-                &lt;span class="n"&gt;rng&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;
-            &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-                &lt;span class="n"&gt;rng&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;RandomState&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;random_state&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-            &lt;span class="c1"&gt;# sampling with replacement indexing original args&lt;/span&gt;
-            &lt;span class="n"&gt;strap_indexes&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rng&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;randint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;high&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n_bootstrap&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;N&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-            
-            &lt;span class="n"&gt;res_list&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
-
-            &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;strap&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;tqdm&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tqdm&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;strap_indexes&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;desc&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="sa"&gt;f&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;bootstrapping &lt;/span&gt;&lt;span class="si"&gt;{&lt;/span&gt;&lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s1"&gt;...&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-                &lt;span class="n"&gt;res_list&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-                    &lt;span class="c1"&gt;# Check addendum at the bottom of the page about why&lt;/span&gt;
-                    &lt;span class="c1"&gt;# switching from percentile to empirical bootstrapping&lt;/span&gt;
-                    &lt;span class="n"&gt;original_output&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-                        &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;arg&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;strap&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;arg&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="c1"&gt;# resampled args&lt;/span&gt;
-                        &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kwargs&lt;/span&gt;
-                    &lt;span class="p"&gt;)&lt;/span&gt;
-                &lt;span class="p"&gt;)&lt;/span&gt;
-
-            &lt;span class="n"&gt;CIs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mf"&gt;.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;.5&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;ci&lt;/span&gt;
-            &lt;span class="n"&gt;lower_ci&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;upper_ci&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;quantile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-                    &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;vstack&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;res_list&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;CIs&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;
-                &lt;span class="p"&gt;)&lt;/span&gt;
-            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;original_output&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lower_ci&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;upper_ci&lt;/span&gt;
-        &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;original_output&lt;/span&gt;
-
-    &lt;span class="n"&gt;tweaked_inner&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__doc__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__doc__&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;decorated with @add_bootstrap which appends following kwargs:&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\t&lt;/span&gt;&lt;span class="s2"&gt;bootstrap: bool, whether to calc CI by bootstrapping 0th dimension of args&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\t&lt;/span&gt;&lt;span class="s2"&gt;n_bootstrap: int, number of bootstrap iterations to compute CI&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\t&lt;/span&gt;&lt;span class="s2"&gt;ci: size of confidence interval (0 to 1)&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;
-    &lt;span class="s2"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\t&lt;/span&gt;&lt;span class="s2"&gt;random_state: int, if not None, sets random state for reproducibility&amp;quot;&lt;/span&gt;
-    &lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;tweaked_inner&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;func&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;tweaked_inner&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="Minimal-testing"&gt;Minimal testing&lt;a class="anchor-link" href="#Minimal-testing"&gt;&amp;#182;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Adding &lt;code&gt;@decorator_name&lt;/code&gt; above a function definition, we tell python that we actually want to define is &lt;code&gt;new_fun = decorator_name(new_fun)&lt;/code&gt; or, in other words, we wrap &lt;code&gt;new_fun&lt;/code&gt; inside &lt;code&gt;decorator_name&lt;/code&gt;.&lt;br&gt;
-So below we define functions to test the decorator and some data to feed as args for those functions.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[2]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nd"&gt;@add_bootstrap&lt;/span&gt;
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;return_mean_matrix&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;matrix&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;function to test decorator&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;matrix&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="nd"&gt;@add_bootstrap&lt;/span&gt;
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;return_means_arrays&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arr1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;arr2&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;function to test decorator with alternative dimensionality&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;arr1&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;arr2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;()])&lt;/span&gt;
-
-
-&lt;span class="n"&gt;rng&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;random&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;RandomState&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;123&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rng&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;normal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;scale&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt; &lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rng&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;normal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="o"&gt;=-&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;scale&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1000&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Time to test!&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[3]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
-&lt;span class="c1"&gt;# test&lt;/span&gt;
-&lt;span class="n"&gt;xposition&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;arange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reshape&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subplots&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fun&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;enumerate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;zip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;return_mean_matrix&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;return_means_arrays&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-    &lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c_&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;]],&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
-&lt;span class="p"&gt;)):&lt;/span&gt;
-    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fun&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fun&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__doc__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;l_ci&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;u_ci&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;fun&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;args&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;bootstrap&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;random_state&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;123&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-    &lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;errorbar&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-        &lt;span class="n"&gt;xposition&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;m&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;yerr&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="nb"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;l_ci&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;u_ci&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;fun&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="vm"&gt;__name__&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-        &lt;span class="n"&gt;marker&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;o&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;capsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;
-    &lt;span class="p"&gt;)&lt;/span&gt;
-    &lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;legend&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-    &lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_xlim&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-
-
-&lt;div class="output_area"&gt;
-
-    &lt;div class="prompt"&gt;&lt;/div&gt;
-
-
-&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
-&lt;pre&gt;return_mean_matrix
-function to test decorator
-decorated with @add_bootstrap which appends following kwargs:
-	bootstrap: bool, whether to calc CI by bootstrapping 0th dimension of args
-	n_bootstrap: int, number of bootstrap iterations to compute CI
-	ci: size of confidence interval (0 to 1)
-	random_state: int, if not None, sets random state for reproducibility
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="output_area"&gt;
-
-    &lt;div class="prompt"&gt;&lt;/div&gt;
-
-
-
-
-
- 
- 
-&lt;div id="bb1460a1-a5aa-4272-9db6-6f05761ac179"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_widget_view "&gt;
-&lt;script type="text/javascript"&gt;
-var element = $('#bb1460a1-a5aa-4272-9db6-6f05761ac179');
-&lt;/script&gt;
-&lt;script type="application/vnd.jupyter.widget-view+json"&gt;
-{"model_id": "5649c5811f514783b0d7b4c46a7f9492", "version_major": 2, "version_minor": 0}
-&lt;/script&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;div class="output_area"&gt;
-
-    &lt;div class="prompt"&gt;&lt;/div&gt;
-
-
-&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
-&lt;pre&gt;return_means_arrays
-function to test decorator with alternative dimensionality
-decorated with @add_bootstrap which appends following kwargs:
-	bootstrap: bool, whether to calc CI by bootstrapping 0th dimension of args
-	n_bootstrap: int, number of bootstrap iterations to compute CI
-	ci: size of confidence interval (0 to 1)
-	random_state: int, if not None, sets random state for reproducibility
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="output_area"&gt;
-
-    &lt;div class="prompt"&gt;&lt;/div&gt;
-
-
-
-
-
- 
- 
-&lt;div id="dec1f0d4-e32b-4bcf-bef4-5283db56fc16"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_widget_view "&gt;
-&lt;script type="text/javascript"&gt;
-var element = $('#dec1f0d4-e32b-4bcf-bef4-5283db56fc16');
-&lt;/script&gt;
-&lt;script type="application/vnd.jupyter.widget-view+json"&gt;
-{"model_id": "499de5979a5b4b44a8eb78a351d325e0", "version_major": 2, "version_minor": 0}
-&lt;/script&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;div class="output_area"&gt;
-
-    &lt;div class="prompt"&gt;&lt;/div&gt;
-
-
-
-
-&lt;div class="output_png output_subarea "&gt;
-&lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYQAAAD4CAYAAADsKpHdAAAAOXRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjQuMiwgaHR0cHM6Ly9tYXRwbG90bGliLm9yZy8rg+JYAAAACXBIWXMAAAsTAAALEwEAmpwYAAAqXUlEQVR4nO3deXwUhf3/8dcnIRxyKkTkUg4BQcIZRIpyVAGFFhARrfpVtIi2Vb+VeoD4q6i1Imip59divaq2VakXBEQUqFpFDIIEQUUlXKJSkEsRAnx+f+wkhpiQYye7m+T9fDzmkZ3Z2ZnPDmw+2Zl5z5i7IyIikhTvAkREJDGoIYiICKCGICIiATUEEREB1BBERCRQLd4FHE6jRo28ZcuW8S5DRKTCWLp06X/dPbUsr03ohtCyZUsyMzPjXYaISIVhZuvK+lrtMhIREUANQUREAmoIIiICJPgxBJGqJCcnh40bN/L999/HuxSpAGrWrEnz5s1JSUkJbZlqCCIJYuPGjdStW5eWLVtiZvEuRxKYu7N161Y2btxIq1atQluudhmJJIjvv/+ehg0bqhlIscyMhg0bhv5tUg1BJIGoGUhJlcf/Fe0yEqmAps//hHteX/Oj6f97WluuGdguDhVJZaCGUAL68EnoFt4B/55y6LTBz8LOBlCvSbEvv2ZgO64Z2I5z//IOAM9c3rscipSqRruMSuCage3InjKUXq2Oolero8ieMpTsKUPVDKTsBkyEyTvguFMiw+Qd0ODYEjWDXC8u28Sy9dt5d+02+kxZwIvLNpVjwT/Yvn07Dz74YEzWVdEtWrSIt99+u8jnX375ZaZMmVLk87GmhiBSAb24bBMTn89i34GDAGzavoeJz2eF2hTcnYMHD/5oelkbwoEDB8Ioq0I5XEPYv38/w4YNY8KECTGuqmjaZSSSgG6Z9SGrvthZ5PPL1m/Pawa59uQc4PqZK/jHkvWFvqZj03rc/PMTD7ve7OxsBg8eTK9evVi6dCmjR49m9uzZ7N27l7POOotbbrmFCRMm8Nlnn9G1a1cGDhzI0KFDueuuu5g9ezYAV155Jenp6YwZM4aWLVty7rnnMn/+fK6//nomTJjAxRdfzKxZs8jJyeG5557jhBNOKLSWyZMns3btWj7//HPWr1/P9OnTWbx4MXPnzqVZs2bMmjWLlJQUli5dyvjx49m9ezeNGjXi8ccfp0mTJjz88MPMmDGDffv2cfzxx/Pkk09yxBFHMGbMGOrVq0dmZiZffvklU6dOZdSoUYXWsGjRIm6++WYaNGhAVlYWo0ePJi0tjXvuuYc9e/bw4osv0qZNG2bNmsUf/vAH9u3bR8OGDXn66afZs2cPDz30EMnJyTz11FPcd999PPLII9SsWZNly5bRp08fOnfuTGZmJvfffz/Dhw/n7LPP5qKLLuIvf/kLb7zxBk8//fRh/73Cpm8IIhVQwWZQ3PTSWLNmDb/+9a+ZPn06mzZtYsmSJSxfvpylS5fyxhtvMGXKFNq0acPy5cuZNm1asctr2LAh77//Pueddx4AjRo14v333+dXv/oVd91112Ff+9lnn7FgwQJefvllLrzwQgYMGEBWVha1atUiIyODnJwcrrrqKmbOnMnSpUu59NJLmTRpEgAjR47kvffe44MPPqBDhw488sgjecvdvHkzb731FrNnzy72L/QPPviAhx56iNWrV/Pkk0/yySefsGTJEsaOHct9990HwCmnnMLixYtZtmwZ5513HlOnTqVly5ZcccUVXHPNNSxfvpxTTz0ViORN3n77bf70pz8dsp4ZM2Zw66238uabb3L33XfnLTuW9A1BJAEV95d8nykL2LR9z4+mN2tQK+oDzMcddxwnn3wy1157La+++irdunUDYPfu3axZs4Zjjz22VMs799xzDxkfOXIkAD169OD5558/7GvPPPNMUlJSSEtL48CBA5xxxhkApKWlkZ2dzccff8zKlSsZOHAgENkt1aRJ5DjMypUruemmm9i+fTu7d+9m8ODBecsdMWIESUlJdOzYka+++uqwNfTs2TNvmW3atGHQoEF5NSxcuBCI/JI/99xz2bx5M/v27TtsWOycc84hOTn5R9MbN27MrbfeyoABA3jhhRc46qijDltXeVBDEKmArhvcnonPZ7En54f98rVSkrlucPuol127dm0gcgxh4sSJXH755Yc8n52dfch4tWrVDjnWUDAslbu8XDVq1AAgOTmZ/fv3H7aW3HmTkpJISUnJO/c+KSmJ/fv34+6ceOKJvPPOOz967ZgxY3jxxRfp0qULjz/+OIsWLfrRcnPfZ0lqyF1v/ppy67/qqqsYP348w4YNY9GiRUyePLnI5RXcHvllZWXRsGFDvvjii8PWVF5C2WVkZmeY2cdm9qmZ/ej7l5nVMLNnguffNbOWYaxXpKoa0a0Zd4xMo3py5CPcrEEt7hiZxohuzUJbx+DBg3n00UfZvXs3AJs2beLrr7+mbt267Nq1K2++4447jlWrVrF37162b9/O66+/HloNxWnfvj1btmzJawg5OTl8+OGHAOzatYsmTZqQk5NT7vvid+zYQbNmkW3/xBNP5E0vuK0OZ8mSJcydO5dly5Zx1113sXbt2nKp9XCibghmlgw8AJwJdAR+YWYdC8z2S+Abdz8emA7cGe16Raq6Ed2a0e3YBvRqdRT/mfDTUJsBwKBBgzj//PPp3bs3aWlpjBo1il27dtGwYUP69OlDp06duO6662jRogWjR4+mU6dOjB49Om8XUyxUr16dmTNncsMNN9ClSxe6du2ad1bPbbfdRq9evejTp0+RB67DMnnyZM455xx69OhBo0aN8qb//Oc/54UXXqBr1668+eabRb5+7969XHbZZTz66KM0bdqUu+++m0svvbTYby9hs2hXaGa9gcnuPjgYnwjg7nfkm2deMM87ZlYN+BJI9WJWnp6e7ol0xzSFgCR0jw2N/Lwkg9WrV9OhQ4cSvUxhSQEK/T9jZkvdPb0sywvjGEIzYEO+8Y1Ar6Lmcff9ZrYDaAj8t+DCzGwcMA4o9cErkaoiN6ksEqaEO6js7jOAGRD5hhDnckSknD322GPcc889h0zr06cPDzzwQMxqyMrK4n/+538OmVajRg3efffdmNWQCMJoCJuAFvnGmwfTCptnY7DLqD6wNYR1i0gFd8kll3DJJZfEtYa0tDSWL18e1xoSQRhnGb0HtDWzVmZWHTgPeLnAPC8DFwePRwELijt+ICIisRX1N4TgmMCVwDwgGXjU3T80s1uBTHd/GXgEeNLMPgW2EWkaIiKSQEI5huDuc4A5Bab9Pt/j74FzwliXiFD45bMB+k2IXElVpAx0LSORiqiwy2dP3hGTZqDLX1deaggiFdWKZ2Hje7DuLZjeKTIeIl3+OjoF329FeP9qCCIV0YpnYdbVcGBvZHzHhsh4lE0hOzub9u3bc9FFF9GpUyduu+02evbsSefOnbn55psBDrn89XXXXceiRYv42c9+lreMK6+8kscffxyAli1bcsMNN9C9e3eee+45WrZsyc0330z37t1JS0vjo48+KrKWyZMnc/HFF3Pqqady3HHH8fzzz3P99deTlpbGGWecQU5ODgBLly6lX79+9OjRg8GDB7N582YAHn74YXr27EmXLl04++yz+e6774DINY6uvvpqfvKTn9C6dWtmzpwJRK6A2rdvX7p27UqnTp0Omyz+1a9+RXp6OieeeGLedinq/eYfL6ymXbt20apVq7z3s3Pnzrzxe++9l44dO9K5c+e8q8WWp4TLIYgIMHcCfJlV9PMb3/uhGeTK2QMvXQlLnyj8NcekwZnF351rzZo1PPHEE+zcuZOZM2eyZMkS3J1hw4blXf565cqVeadp5r9oXGFyL38NkWaSe/nrBx98kLvuuou//vWvRb72s88+Y+HChaxatYrevXvzr3/9i6lTp3LWWWeRkZHB0KFDueqqq3jppZdITU3lmWeeYdKkSTz66KOMHDmSyy67DICbbrqJRx55hKuuugr44fLXH330EcOGDWPUqFH8/e9/Z/DgwUyaNIkDBw7kNZDC3H777Rx11FEcOHCA0047jRUrVtC5c+dC32/+8a1btxZaU//+/cnIyGDEiBH885//ZOTIkaSkpDBlyhTWrl1LjRo12L59++H/4UKghiBSERVsBsVNL4Wqevnrnj17cumll5KTk8OIESPo2rVrkXU9++yzzJgxg/3797N582ZWrVqV1xAKvt/840XVNHbsWKZOncqIESN47LHHePjhhwHo3LkzF1xwASNGjGDEiBGH3VZhUEMQSUTF/SU/vVNkN1FB9VvAJRlRrbqqXv66b9++vPHGG2RkZDBmzBjGjx/PRRdd9KPlrl27lrvuuov33nuPI488kjFjxhzyngu+3/zjRdXUp08fsrOzWbRoEQcOHKBTp04AZGRk8MYbbzBr1ixuv/12srKyqFat/H5t6xiCSEV02u8hpdah01JqRaaHpKpd/nrdunU0btyYyy67jLFjx+bt5ilo586d1K5dm/r16/PVV18xd+7cEtd7uJouuugizj///LzU9sGDB9mwYQMDBgzgzjvvZMeOHXn/FuVF3xBEKqLOoyM/X7oyspuofotIM8idHoJBgwaxevVqeveOXN23Tp06PPXUU7Rp0ybv8tdnnnkm06ZNy7v8datWreJy+eurr76aHTt2sH//fn77299y4okn5l3+OjU1lV69ehV7X4JFixYxbdo0UlJSqFOnDn/7298Kna9Lly5069aNE044gRYtWtCnT58S13u4mi644AJuuukmfvGLXwCR3V8X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"
-&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;So far, so good! (there could be something wrong there, still though)&lt;/p&gt;
-&lt;p&gt;Happy bootstrapping!&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Addendum"&gt;Addendum&lt;a class="anchor-link" href="#Addendum"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Looking for a image for the header I came across &lt;a href="https://elizavetalebedeva.com/bootstrapping-confidence-intervals-the-basics/"&gt;this&lt;/a&gt; which cites &lt;a href="https://klein.mit.edu/~dav/05.dir/class24-prep-a.pdf"&gt;this&lt;/a&gt; which cites &lt;a href="https://books.google.es/books/about/Mathematical_Statistics_and_Data_Analysi.html?id=7SI8AAAAQBAJ&amp;amp;redir_esc=y"&gt;this&lt;/a&gt;.  The latter looks non-open but a using &lt;code&gt;Mathematical Statistics and Data Analysis 2006 filetype:pdf&lt;/code&gt; as a query in a popular search engine led some results :)&lt;br&gt;
-In short, it is advised to avoid percentile method and use alternative bootstrapping methods like empirical bootstrap. I adapted the code and hence the edits/commented lines on the code.&lt;/p&gt;
-&lt;blockquote&gt;&lt;p&gt;Note for future-me: could you actually simulate this and see what happens with non-symmetric distributions using both methods?&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Cheers!&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
- 
-
-
-&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: 'center'," +
-        "    displayIndent: '0em'," +
-        "    showMathMenu: true," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['$','$'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        " linebreaks: { automatic: true, width: '95% container' }, " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
-        "    } " +
-        "}); ";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-&lt;/script&gt;
-</content><category term="Blog"></category><category term="python"></category><category term="productivity"></category></entry></feed>
+</content><category term="Blog"></category><category term="tools"></category><category term="personal"></category></entry></feed>
