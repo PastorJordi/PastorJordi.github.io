@@ -372,13 +372,13 @@ decorated with @add_bootstrap which appends following kwargs:
 
  
  
-<div id="0ad2cd00-aa2a-4dfe-908d-2c4f7bc5db69"></div>
+<div id="c0996d29-410b-43c8-8d7a-35c4856f20ec"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#0ad2cd00-aa2a-4dfe-908d-2c4f7bc5db69');
+var element = $('#c0996d29-410b-43c8-8d7a-35c4856f20ec');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "1d610b973e31443eb141031dc6c22c41", "version_major": 2, "version_minor": 0}
+{"model_id": "7e4b9bf097f342f7922e904d3f263e9f", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -411,13 +411,13 @@ decorated with @add_bootstrap which appends following kwargs:
 
  
  
-<div id="195fc33c-b273-4015-afd4-564654991c99"></div>
+<div id="b25becdf-3e0d-44d9-b556-1a5e69ffe007"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#195fc33c-b273-4015-afd4-564654991c99');
+var element = $('#b25becdf-3e0d-44d9-b556-1a5e69ffe007');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "d222a758c363478893c7a20ca45297ac", "version_major": 2, "version_minor": 0}
+{"model_id": "5f5b30099ada4e308969b21bec8afd0a", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
@@ -463,9 +463,9 @@ var element = $('#195fc33c-b273-4015-afd4-564654991c99');
 <span class="c1"># generate some synthetic data</span>
 <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="c1">#+ rng.normal(scale=0.1, size=100)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> 
 <span class="n">y</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">xvals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">xvals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span> <span class="c1"># where to eval lowess</span>
 <span class="n">m</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span> <span class="o">=</span> <span class="n">lowess_on_steroids</span><span class="p">(</span> <span class="c1"># call the wrapped function</span>
     <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">xvals</span><span class="o">=</span><span class="n">xvals</span><span class="p">,</span>
     <span class="n">return_sorted</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> 
@@ -497,13 +497,13 @@ var element = $('#195fc33c-b273-4015-afd4-564654991c99');
 
  
  
-<div id="b5c1b716-9f3f-4ee7-a741-55b857ce9ff5"></div>
+<div id="f54a4913-0d92-40bb-ad92-4101cf7093a4"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#b5c1b716-9f3f-4ee7-a741-55b857ce9ff5');
+var element = $('#f54a4913-0d92-40bb-ad92-4101cf7093a4');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "704c1609d3934cc897945fc0270e800d", "version_major": 2, "version_minor": 0}
+{"model_id": "f67f180c8d7a4b40aebc57c885f4e7c6", "version_major": 2, "version_minor": 0}
 </script>
 </div>
 
