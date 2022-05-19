@@ -5,8 +5,25 @@ https://github.com/sio/potyarkin.ml/blob/master/content/static/attila_override.c
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,700&amp;subset=cyrillic,cyrillic-ext,latin-ext');
 @import url('https://fonts.googleapis.com/css?family=PT+Sans');
 
+/*add some stroke to blog-name and blog-description*/
+
+.has-cover .blog-name {
+    color: red;
+    text-shadow: -5px 5px 2px red;    
+}
+
+.has-cover .blog-description {
+    /* color: #fff */
+    color: red;
+    text-shadow: -5px 5px 2px red;    
+}
+
+
+/* FORMER CONFIG */
+
 body {
     font-family:"PT Sans", Verdana, sans-serif;
+    /*font-family: serif, serif, sans-serif;*/
 }
 
 /* Wider page */
@@ -24,13 +41,16 @@ ul>li:before {
 @media print {
     #blog-header h1 a {
         font-size:130%!important;
+        /*font-family: 'Times New Roman', Times, serif;*/
     }
     html * {
         font-size:12pt!important;
         color:black!important;
     }
     body {line-height:1.3em;}
-    h1 {font-size:125%!important;}
+    h1 {
+        font-size:125%!important;
+    }
     h2 {font-size:115%!important;}
     h3 {font-size:110%!important;}
     p ul ol {margin:0.5em auto!important;}

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>JP's word salads - Blog</title><link href="https://pastorjordi.github.io/" rel="alternate"></link><link href="https://pastorjordi.github.io/feeds/blog.atom.xml" rel="self"></link><id>https://pastorjordi.github.io/</id><updated>2022-05-15T22:15:00+02:00</updated><subtitle>random thoughts that might be worth sharing (?)</subtitle><entry><title>Writing a wrapper to bootstrap</title><link href="https://pastorjordi.github.io/blog/2022/bootstrap_wrapper/" rel="alternate"></link><published>2022-05-15T22:15:00+02:00</published><updated>2022-05-15T22:15:00+02:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2022-05-15:/blog/2022/bootstrap_wrapper/</id><summary type="html">&lt;p&gt;Adding bootstrap capabilities to your functions using a single wrapper function instead of repeating code&lt;/p&gt;</summary><content type="html">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"&gt;&lt;/script&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>JP's word salads - Blog</title><link href="https://pastorjordi.github.io/" rel="alternate"></link><link href="https://pastorjordi.github.io/feeds/blog.atom.xml" rel="self"></link><id>https://pastorjordi.github.io/</id><updated>2022-05-15T22:15:00+02:00</updated><subtitle>random thoughts that might be worth sharing (?)</subtitle><entry><title>Writing a wrapper to bootstrap</title><link href="https://pastorjordi.github.io/blog/2022/bootstrap_wrapper/" rel="alternate"></link><published>2022-05-15T22:15:00+02:00</published><updated>2022-05-15T22:15:00+02:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2022-05-15:/blog/2022/bootstrap_wrapper/</id><summary type="html">&lt;p&gt;How to add bootstrapping capabilities to your functions using a single wrapper function/decorator instead of repeating code (python)&lt;/p&gt;</summary><content type="html">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"&gt;&lt;/script&gt;
 
 &lt;style type="text/css"&gt;
 div.code_cell {
@@ -228,10 +228,10 @@ decorated with @add_bootstrap which appends following kwargs:
 
  
  
-&lt;div id="c0996d29-410b-43c8-8d7a-35c4856f20ec"&gt;&lt;/div&gt;
+&lt;div id="ea3aff70-0ce0-4b8e-99a4-e72a891228a6"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#c0996d29-410b-43c8-8d7a-35c4856f20ec');
+var element = $('#ea3aff70-0ce0-4b8e-99a4-e72a891228a6');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "7e4b9bf097f342f7922e904d3f263e9f", "version_major": 2, "version_minor": 0}
@@ -267,10 +267,10 @@ decorated with @add_bootstrap which appends following kwargs:
 
  
  
-&lt;div id="b25becdf-3e0d-44d9-b556-1a5e69ffe007"&gt;&lt;/div&gt;
+&lt;div id="697d82dc-b3ba-4382-9fed-9c965e06aa8f"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#b25becdf-3e0d-44d9-b556-1a5e69ffe007');
+var element = $('#697d82dc-b3ba-4382-9fed-9c965e06aa8f');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "5f5b30099ada4e308969b21bec8afd0a", "version_major": 2, "version_minor": 0}
@@ -353,10 +353,10 @@ var element = $('#b25becdf-3e0d-44d9-b556-1a5e69ffe007');
 
  
  
-&lt;div id="f54a4913-0d92-40bb-ad92-4101cf7093a4"&gt;&lt;/div&gt;
+&lt;div id="38571451-21e1-42ce-bd8e-437b122fb29b"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#f54a4913-0d92-40bb-ad92-4101cf7093a4');
+var element = $('#38571451-21e1-42ce-bd8e-437b122fb29b');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "f67f180c8d7a4b40aebc57c885f4e7c6", "version_major": 2, "version_minor": 0}
@@ -434,13 +434,13 @@ In short, it is advised to avoid percentile method and use alternative bootstrap
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="Blog"></category><category term="python"></category><category term="productivity"></category></entry><entry><title>Vscode macros</title><link href="https://pastorjordi.github.io/blog/2022/vscode-macros/" rel="alternate"></link><published>2022-02-06T20:00:00+01:00</published><updated>2022-02-06T20:00:00+01:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2022-02-06:/blog/2022/vscode-macros/</id><summary type="html">&lt;p&gt;Thoughts about productivity + a custom solution&lt;/p&gt;</summary><content type="html">&lt;h1 id="how-i-wasted-30-min-to-create-a-shortcut-in-vscode"&gt;&lt;a class="toclink" href="#how-i-wasted-30-min-to-create-a-shortcut-in-vscode"&gt;How I wasted 30 min to create a shortcut in vscode&lt;/a&gt;&lt;/h1&gt;
+</content><category term="Blog"></category><category term="python"></category><category term="productivity"></category><category term="decorators"></category><category term="lowess"></category></entry><entry><title>Vscode macros</title><link href="https://pastorjordi.github.io/blog/2022/vscode-macros/" rel="alternate"></link><published>2022-02-06T20:00:00+01:00</published><updated>2022-02-06T20:00:00+01:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2022-02-06:/blog/2022/vscode-macros/</id><summary type="html">&lt;p&gt;Here I explain one way of creating macros and assigning them to a shortcut (keybinding) in vscode. It is a short process of only 3 steps. Two practical examples are shown. I also provide other useful links to extensions that are useful IMHO.&lt;/p&gt;</summary><content type="html">&lt;h1 id="how-i-wasted-30-min-to-create-a-shortcut-in-vscode"&gt;&lt;a class="toclink" href="#how-i-wasted-30-min-to-create-a-shortcut-in-vscode"&gt;How I wasted 30 min to create a shortcut in vscode&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;You can find the process I followed below  &lt;/p&gt;
 &lt;h2 id="some-context"&gt;&lt;a class="toclink" href="#some-context"&gt;Some context&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The other day I was using Rstudio because I found few functions I needed already written in R. At some point I realized that some widely used operators are EXTREMELY ANNOYING to type. Specifically, I mean assignment "&lt;code&gt;&amp;lt;-&lt;/code&gt;" and pipe "&lt;code&gt;%&amp;gt;%&lt;/code&gt;" operators. Perhaps I have this feeling because their python counterparts are as simple as "&lt;code&gt;=&lt;/code&gt;" and "&lt;code&gt;.&lt;/code&gt;". Luckily, someone thought about this before, and there are plenty of &lt;a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE"&gt;already written shortcuts&lt;/a&gt; to type such combination of symbols. &lt;code&gt;Alt&lt;/code&gt; + &lt;code&gt;-&lt;/code&gt; and &lt;code&gt;Ctrl&lt;/code&gt; + &lt;code&gt;Shift&lt;/code&gt; + &lt;code&gt;M&lt;/code&gt;, respectively.  &lt;/p&gt;
 &lt;h2 id="vscode-shortcuts"&gt;&lt;a class="toclink" href="#vscode-shortcuts"&gt;Vscode shortcuts&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;In the long run you may end up saving quite a lot of time. Then I wondered why I am not exploiting all the vscode shortcuts (vscode is my IDE of choice most of the times). Afterwards, I opened shortcuts tab and I remembered. There are so many of them that in such list-like presentation they can be quite overwhelming. While scrolling down, I refreshed some of them that could be useful that I am not using simply because I don't have the habit or I do not remember the key combination. Recently, those that involve creating multiple cursors caught my attention&lt;/p&gt;
-&lt;h2 id="multiple-cursors"&gt;&lt;a class="toclink" href="#multiple-cursors"&gt;multiple cursors&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id="multiple-cursors-are-cool"&gt;&lt;a class="toclink" href="#multiple-cursors-are-cool"&gt;multiple cursors are cool&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;There are few shortcuts that create cursors and that can come in handy but I missed the following. Wouldn't it be cool to have a key bind that types an equal sign &lt;code&gt;=&lt;/code&gt; with a cursor in each side? It would be quite useful when updating a column value in pandas such as here  &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ugly colname that can&amp;#39;t be .attr autocompleted&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; \
     &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;ugly colname that can&amp;#39;t be .attr autocompleted&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;whatever_method&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -448,8 +448,8 @@ In short, it is advised to avoid percentile method and use alternative bootstrap
 
 &lt;p&gt;and after escaping the 2nd cursor, just keep appending methods.  &lt;/p&gt;
 &lt;p&gt;Unfortunately, this does not exist &lt;em&gt;natively&lt;/em&gt; at the time I am writing this. In other words, there's not such a command in vscode, so to &lt;em&gt;execute&lt;/em&gt; it, I had to chain several commands.&lt;/p&gt;
-&lt;h2 id="creating-a-macro-and-binding-it-to-a-key"&gt;&lt;a class="toclink" href="#creating-a-macro-and-binding-it-to-a-key"&gt;Creating a macro and binding it to a key&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;A couple of google searches revealed that I could try making a macro and binding it to a key.&lt;/p&gt;
+&lt;h2 id="how-to-create-a-macro-and-binding-it-to-a-key"&gt;&lt;a class="toclink" href="#how-to-create-a-macro-and-binding-it-to-a-key"&gt;How to create a macro and binding it to a key&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;A couple of google searches and SO entries revealed that I could accomplish my goal making a macro and binding it to a key.&lt;/p&gt;
 &lt;p&gt;So then, these are the steps I followed:&lt;/p&gt;
 &lt;h3 id="1-download-macros-extension"&gt;&lt;a class="toclink" href="#1-download-macros-extension"&gt;1. Download macros extension&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;I just tried the most downloaded vscode macro extension I found, and it worked. It was &lt;a href="https://marketplace.visualstudio.com/items?itemName=geddski.macros"&gt;this one&lt;/a&gt;, wisely named &lt;em&gt;macros&lt;/em&gt;, by geddski. The documentation is quite succinct (perhaps too much)&lt;/p&gt;
@@ -486,6 +486,7 @@ After a short trial and error, I got it working using the following:&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://marketplace.visualstudio.com/items?itemName=dbankier.vscode-quick-select"&gt;Quick and Simple Text Selection&lt;/a&gt; allows selecting content between tags, quotes, parenthesis, etc.  &lt;/li&gt;
 &lt;li&gt;&lt;a href="https://marketplace.visualstudio.com/items?itemName=WakaTime.vscode-wakatime"&gt;WakaTime&lt;/a&gt; &lt;em&gt;is an open source VS Code plugin for metrics, insights, and time tracking automatically generated from your programming activity.&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://marketplace.visualstudio.com/items?itemName=GitHub.copilot"&gt;GitHub Copilot&lt;/a&gt;??? I do not know because I am still in the waiting list.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one"&gt;Markdown All in One&lt;/a&gt;. Among other stuff, it allows exporting markdown (with Math) to html (I disabled its annoying shortcuts, though).&lt;/li&gt;
 &lt;li&gt;Any GitHub extension on steroids to visualize git-blame live.
 &lt;img alt="git blame meme: where I find out that spaghetti code was written by me" src="https://pastorjordi.github.io/images/git_blame.jpeg" title="git blame"&gt;  &lt;/li&gt;
 &lt;/ul&gt;

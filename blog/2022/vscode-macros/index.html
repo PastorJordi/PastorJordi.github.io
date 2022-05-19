@@ -41,7 +41,7 @@
 
 
 
-    <meta name="description" content="Thoughts about productivity + a custom solution">
+    <meta name="description" content="Here I explain one way of creating macros and assigning them to a shortcut (keybinding) in vscode. It is a short process of only 3...">
 
     <meta name="author" content="Jordi Pastor">
 
@@ -57,7 +57,7 @@
 <!-- Open Graph -->
 <meta property="og:site_name" content="JP's word salads"/>
 <meta property="og:title" content="Vscode macros"/>
-<meta property="og:description" content="Thoughts about productivity + a custom solution"/>
+<meta property="og:description" content="Here I explain one way of creating macros and assigning them to a shortcut (keybinding) in vscode. It is a short process of only 3..."/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="https://pastorjordi.github.io/blog/2022/vscode-macros/"/>
 <meta property="og:type" content="article"/>
@@ -89,7 +89,7 @@
   },
   "image": "https://imgs.developpaper.com/imgs/2019042810545580.jpg",
   "url": "https://pastorjordi.github.io/blog/2022/vscode-macros/",
-  "description": "Thoughts about productivity + a custom solution"
+  "description": "Here I explain one way of creating macros and assigning them to a shortcut (keybinding) in vscode. It is a short process of only 3..."
 }
 </script>
 </head>
@@ -155,7 +155,7 @@
 <p>The other day I was using Rstudio because I found few functions I needed already written in R. At some point I realized that some widely used operators are EXTREMELY ANNOYING to type. Specifically, I mean assignment "<code>&lt;-</code>" and pipe "<code>%&gt;%</code>" operators. Perhaps I have this feeling because their python counterparts are as simple as "<code>=</code>" and "<code>.</code>". Luckily, someone thought about this before, and there are plenty of <a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE">already written shortcuts</a> to type such combination of symbols. <code>Alt</code> + <code>-</code> and <code>Ctrl</code> + <code>Shift</code> + <code>M</code>, respectively.  </p>
 <h2 id="vscode-shortcuts"><a class="toclink" href="#vscode-shortcuts">Vscode shortcuts</a></h2>
 <p>In the long run you may end up saving quite a lot of time. Then I wondered why I am not exploiting all the vscode shortcuts (vscode is my IDE of choice most of the times). Afterwards, I opened shortcuts tab and I remembered. There are so many of them that in such list-like presentation they can be quite overwhelming. While scrolling down, I refreshed some of them that could be useful that I am not using simply because I don't have the habit or I do not remember the key combination. Recently, those that involve creating multiple cursors caught my attention</p>
-<h2 id="multiple-cursors"><a class="toclink" href="#multiple-cursors">multiple cursors</a></h2>
+<h2 id="multiple-cursors-are-cool"><a class="toclink" href="#multiple-cursors-are-cool">multiple cursors are cool</a></h2>
 <p>There are few shortcuts that create cursors and that can come in handy but I missed the following. Wouldn't it be cool to have a key bind that types an equal sign <code>=</code> with a cursor in each side? It would be quite useful when updating a column value in pandas such as here  </p>
 <div class="highlight"><pre><span></span><code><span class="n">df</span><span class="p">[</span><span class="s2">&quot;ugly colname that can&#39;t be .attr autocompleted&quot;</span><span class="p">]</span> <span class="o">=</span> \
     <span class="n">df</span><span class="p">[</span><span class="s2">&quot;ugly colname that can&#39;t be .attr autocompleted&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">whatever_method</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
@@ -163,8 +163,8 @@
 
 <p>and after escaping the 2nd cursor, just keep appending methods.  </p>
 <p>Unfortunately, this does not exist <em>natively</em> at the time I am writing this. In other words, there's not such a command in vscode, so to <em>execute</em> it, I had to chain several commands.</p>
-<h2 id="creating-a-macro-and-binding-it-to-a-key"><a class="toclink" href="#creating-a-macro-and-binding-it-to-a-key">Creating a macro and binding it to a key</a></h2>
-<p>A couple of google searches revealed that I could try making a macro and binding it to a key.</p>
+<h2 id="how-to-create-a-macro-and-binding-it-to-a-key"><a class="toclink" href="#how-to-create-a-macro-and-binding-it-to-a-key">How to create a macro and binding it to a key</a></h2>
+<p>A couple of google searches and SO entries revealed that I could accomplish my goal making a macro and binding it to a key.</p>
 <p>So then, these are the steps I followed:</p>
 <h3 id="1-download-macros-extension"><a class="toclink" href="#1-download-macros-extension">1. Download macros extension</a></h3>
 <p>I just tried the most downloaded vscode macro extension I found, and it worked. It was <a href="https://marketplace.visualstudio.com/items?itemName=geddski.macros">this one</a>, wisely named <em>macros</em>, by geddski. The documentation is quite succinct (perhaps too much)</p>
@@ -201,6 +201,7 @@ After a short trial and error, I got it working using the following:</p>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=dbankier.vscode-quick-select">Quick and Simple Text Selection</a> allows selecting content between tags, quotes, parenthesis, etc.  </li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=WakaTime.vscode-wakatime">WakaTime</a> <em>is an open source VS Code plugin for metrics, insights, and time tracking automatically generated from your programming activity.</em></li>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=GitHub.copilot">GitHub Copilot</a>??? I do not know because I am still in the waiting list.</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one">Markdown All in One</a>. Among other stuff, it allows exporting markdown (with Math) to html (I disabled its annoying shortcuts, though).</li>
 <li>Any GitHub extension on steroids to visualize git-blame live.
 <img alt="git blame meme: where I find out that spaghetti code was written by me" src="https://pastorjordi.github.io/images/git_blame.jpeg" title="git blame">  </li>
 </ul>
@@ -274,7 +275,7 @@ After a short trial and error, I got it working using the following:</p>
                         <section class="post-nav-teaser">
                             <i class="ic ic-arrow-left"></i>
                                 <h2 class="post-nav-title">Writing a wrapper to bootstrap</h2>
-                            <p class="post-nav-excerpt">Adding bootstrap capabilities to your functions using a single wrapper function...</p>
+                            <p class="post-nav-excerpt">How to add bootstrapping capabilities to your functions using a single wrapper...</p>
                         </section>
                     </a>
                     <a class="post-nav-prev" href="https://pastorjordi.github.io/blog/2021/Spanish_paywalled_articles/">
