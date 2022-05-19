@@ -228,10 +228,10 @@ decorated with @add_bootstrap which appends following kwargs:
 
  
  
-&lt;div id="ea3aff70-0ce0-4b8e-99a4-e72a891228a6"&gt;&lt;/div&gt;
+&lt;div id="763c1927-5603-4905-99da-11ea8adf1336"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#ea3aff70-0ce0-4b8e-99a4-e72a891228a6');
+var element = $('#763c1927-5603-4905-99da-11ea8adf1336');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "7e4b9bf097f342f7922e904d3f263e9f", "version_major": 2, "version_minor": 0}
@@ -267,10 +267,10 @@ decorated with @add_bootstrap which appends following kwargs:
 
  
  
-&lt;div id="697d82dc-b3ba-4382-9fed-9c965e06aa8f"&gt;&lt;/div&gt;
+&lt;div id="2f9991e9-ce34-4592-8240-9115d8d1e655"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#697d82dc-b3ba-4382-9fed-9c965e06aa8f');
+var element = $('#2f9991e9-ce34-4592-8240-9115d8d1e655');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "5f5b30099ada4e308969b21bec8afd0a", "version_major": 2, "version_minor": 0}
@@ -353,10 +353,10 @@ var element = $('#697d82dc-b3ba-4382-9fed-9c965e06aa8f');
 
  
  
-&lt;div id="38571451-21e1-42ce-bd8e-437b122fb29b"&gt;&lt;/div&gt;
+&lt;div id="4381372e-2740-4d2d-84bc-072d3e0fe0f7"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#38571451-21e1-42ce-bd8e-437b122fb29b');
+var element = $('#4381372e-2740-4d2d-84bc-072d3e0fe0f7');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "f67f180c8d7a4b40aebc57c885f4e7c6", "version_major": 2, "version_minor": 0}

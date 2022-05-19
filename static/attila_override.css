@@ -6,17 +6,35 @@ https://github.com/sio/potyarkin.ml/blob/master/content/static/attila_override.c
 @import url('https://fonts.googleapis.com/css?family=PT+Sans');
 
 /*add some stroke to blog-name and blog-description*/
-
-.has-cover .blog-name {
-    color: red;
-    text-shadow: -5px 5px 2px red;    
+/* if does not work not try with h1 a */
+#blog-header.has-cover {
+    padding: 9em 0 10em;
+    background: #000;
+    overflow: hidden;
+    text-shadow:-1px 1px 0 #000,
+                1px 1px 0 #000,
+                1px -1px 0 #000,
+                -1px -1px 0 #000;
+}
+#post-header.has-cover {
+    padding: 16em 0 2em;
+    background: #000;
+    overflow: hidden;
+    text-shadow:-1px 1px 0 #000,
+                1px 1px 0 #000,
+                1px -1px 0 #000,
+                -1px -1px 0 #000;
 }
 
+/* else use
+-webkit-text-stroke-width: 1px;
+-webkit-text-stroke-color: black; */
+/* 
 .has-cover .blog-description {
     /* color: #fff */
-    color: red;
+    /* color: red;
     text-shadow: -5px 5px 2px red;    
-}
+} */ */
 
 
 /* FORMER CONFIG */
