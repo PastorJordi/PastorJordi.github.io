@@ -14,7 +14,7 @@ body {
     font-family:"PT Sans", Verdana, sans-serif;
 }
 /*add some stroke to blog-name and blog-description*/
-/* #blog-header.has-cover {
+#blog-header.has-cover {
     padding: 9em 0 10em;
     background: #000;
     overflow: hidden;
@@ -33,7 +33,7 @@ body {
                 1px -1px 0 #000,
                 -1px -1px 0 #000;
     font-style: inherit;
-} */
+}
 /* Wider page */
 .inner {
     max-width:40em;
