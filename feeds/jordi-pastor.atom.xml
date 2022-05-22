@@ -228,10 +228,10 @@ decorated with @add_bootstrap which appends following kwargs:
 
  
  
-&lt;div id="763c1927-5603-4905-99da-11ea8adf1336"&gt;&lt;/div&gt;
+&lt;div id="1df1c039-e1d6-45fa-a730-0d1510a5b95c"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#763c1927-5603-4905-99da-11ea8adf1336');
+var element = $('#1df1c039-e1d6-45fa-a730-0d1510a5b95c');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "7e4b9bf097f342f7922e904d3f263e9f", "version_major": 2, "version_minor": 0}
@@ -267,10 +267,10 @@ decorated with @add_bootstrap which appends following kwargs:
 
  
  
-&lt;div id="2f9991e9-ce34-4592-8240-9115d8d1e655"&gt;&lt;/div&gt;
+&lt;div id="f35f70e5-55df-45f2-a3b2-305f2d1bebee"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#2f9991e9-ce34-4592-8240-9115d8d1e655');
+var element = $('#f35f70e5-55df-45f2-a3b2-305f2d1bebee');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "5f5b30099ada4e308969b21bec8afd0a", "version_major": 2, "version_minor": 0}
@@ -353,10 +353,10 @@ var element = $('#2f9991e9-ce34-4592-8240-9115d8d1e655');
 
  
  
-&lt;div id="4381372e-2740-4d2d-84bc-072d3e0fe0f7"&gt;&lt;/div&gt;
+&lt;div id="81fd4778-3614-4bd8-9bab-6f8bbec68e8b"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#4381372e-2740-4d2d-84bc-072d3e0fe0f7');
+var element = $('#81fd4778-3614-4bd8-9bab-6f8bbec68e8b');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "f67f180c8d7a4b40aebc57c885f4e7c6", "version_major": 2, "version_minor": 0}
@@ -487,6 +487,7 @@ After a short trial and error, I got it working using the following:&lt;/p&gt;
 &lt;li&gt;&lt;a href="https://marketplace.visualstudio.com/items?itemName=WakaTime.vscode-wakatime"&gt;WakaTime&lt;/a&gt; &lt;em&gt;is an open source VS Code plugin for metrics, insights, and time tracking automatically generated from your programming activity.&lt;/em&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://marketplace.visualstudio.com/items?itemName=GitHub.copilot"&gt;GitHub Copilot&lt;/a&gt;??? I do not know because I am still in the waiting list.&lt;/li&gt;
 &lt;li&gt;&lt;a href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one"&gt;Markdown All in One&lt;/a&gt;. Among other stuff, it allows exporting markdown (with Math) to html (I disabled its annoying shortcuts, though).&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree"&gt;TODO tree&lt;/a&gt;. Shows todo's scattered around.&lt;/li&gt;
 &lt;li&gt;Any GitHub extension on steroids to visualize git-blame live.
 &lt;img alt="git blame meme: where I find out that spaghetti code was written by me" src="https://pastorjordi.github.io/images/git_blame.jpeg" title="git blame"&gt;  &lt;/li&gt;
 &lt;/ul&gt;

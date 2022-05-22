@@ -5,8 +5,15 @@ https://github.com/sio/potyarkin.ml/blob/master/content/static/attila_override.c
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,700&amp;subset=cyrillic,cyrillic-ext,latin-ext');
 @import url('https://fonts.googleapis.com/css?family=PT+Sans');
 
+
+
+
+/* POTYARKIN CONFIG */
+
+body {
+    font-family:"PT Sans", Verdana, sans-serif;
+}
 /*add some stroke to blog-name and blog-description*/
-/* if does not work not try with h1 a */
 #blog-header.has-cover {
     padding: 9em 0 10em;
     background: #000;
@@ -15,6 +22,7 @@ https://github.com/sio/potyarkin.ml/blob/master/content/static/attila_override.c
                 1px 1px 0 #000,
                 1px -1px 0 #000,
                 -1px -1px 0 #000;
+    font-style: inherit;
 }
 #post-header.has-cover {
     padding: 16em 0 2em;
@@ -24,26 +32,8 @@ https://github.com/sio/potyarkin.ml/blob/master/content/static/attila_override.c
                 1px 1px 0 #000,
                 1px -1px 0 #000,
                 -1px -1px 0 #000;
+    font-style: inherit;
 }
-
-/* else use
--webkit-text-stroke-width: 1px;
--webkit-text-stroke-color: black; */
-/* 
-.has-cover .blog-description {
-    /* color: #fff */
-    /* color: red;
-    text-shadow: -5px 5px 2px red;    
-} */ */
-
-
-/* FORMER CONFIG */
-
-body {
-    font-family:"PT Sans", Verdana, sans-serif;
-    /*font-family: serif, serif, sans-serif;*/
-}
-
 /* Wider page */
 .inner {
     max-width:40em;
