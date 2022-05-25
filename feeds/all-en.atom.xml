@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>JP's word salads</title><link href="https://pastorjordi.github.io/" rel="alternate"></link><link href="https://pastorjordi.github.io/feeds/all-en.atom.xml" rel="self"></link><id>https://pastorjordi.github.io/</id><updated>2022-05-15T22:15:00+02:00</updated><subtitle>random thoughts that might be worth sharing (?)</subtitle><entry><title>Writing a wrapper to bootstrap</title><link href="https://pastorjordi.github.io/blog/2022/bootstrap_wrapper/" rel="alternate"></link><published>2022-05-15T22:15:00+02:00</published><updated>2022-05-15T22:15:00+02:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2022-05-15:/blog/2022/bootstrap_wrapper/</id><summary type="html">&lt;p&gt;How to add bootstrapping capabilities to your functions using a single wrapper function/decorator instead of repeating code (python)&lt;/p&gt;</summary><content type="html">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"&gt;&lt;/script&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>JP's word salads</title><link href="https://pastorjordi.github.io/" rel="alternate"></link><link href="https://pastorjordi.github.io/feeds/all-en.atom.xml" rel="self"></link><id>https://pastorjordi.github.io/</id><updated>2022-05-15T22:15:00+02:00</updated><subtitle>random thoughts that might be worth sharing (?)</subtitle><entry><title>Writing a wrapper to bootstrap confidence intervals</title><link href="https://pastorjordi.github.io/blog/2022/bootstrap_wrapper/" rel="alternate"></link><published>2022-05-15T22:15:00+02:00</published><updated>2022-05-15T22:15:00+02:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2022-05-15:/blog/2022/bootstrap_wrapper/</id><summary type="html">&lt;p&gt;How to add CIs calculation capabilities to your functions using a single wrapper function/decorator to bootstrap instead of repeating (python) code&lt;/p&gt;</summary><content type="html">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"&gt;&lt;/script&gt;
 
 &lt;style type="text/css"&gt;
 div.code_cell {
@@ -228,10 +228,10 @@ decorated with @add_bootstrap which appends following kwargs:
 
  
  
-&lt;div id="41ee5ad8-c43b-41d2-a0f3-c3166110836e"&gt;&lt;/div&gt;
+&lt;div id="96561989-699c-48ef-9ed5-721e46d7fe6a"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#41ee5ad8-c43b-41d2-a0f3-c3166110836e');
+var element = $('#96561989-699c-48ef-9ed5-721e46d7fe6a');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "7e4b9bf097f342f7922e904d3f263e9f", "version_major": 2, "version_minor": 0}
@@ -267,10 +267,10 @@ decorated with @add_bootstrap which appends following kwargs:
 
  
  
-&lt;div id="51d1e341-8c32-4cf2-830c-f97deb4c3b45"&gt;&lt;/div&gt;
+&lt;div id="1ca158d1-584a-46d1-81b9-a5fd5ef3af6f"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#51d1e341-8c32-4cf2-830c-f97deb4c3b45');
+var element = $('#1ca158d1-584a-46d1-81b9-a5fd5ef3af6f');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "5f5b30099ada4e308969b21bec8afd0a", "version_major": 2, "version_minor": 0}
@@ -353,10 +353,10 @@ var element = $('#51d1e341-8c32-4cf2-830c-f97deb4c3b45');
 
  
  
-&lt;div id="0a8ac5d9-e228-4225-94f1-8f83edfe055f"&gt;&lt;/div&gt;
+&lt;div id="5fd166ff-ac08-4d8e-ac28-2582b9622056"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#0a8ac5d9-e228-4225-94f1-8f83edfe055f');
+var element = $('#5fd166ff-ac08-4d8e-ac28-2582b9622056');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "f67f180c8d7a4b40aebc57c885f4e7c6", "version_major": 2, "version_minor": 0}
@@ -434,7 +434,7 @@ In short, it is advised to avoid percentile method and use alternative bootstrap
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="Blog"></category><category term="python"></category><category term="productivity"></category><category term="decorators"></category><category term="lowess"></category></entry><entry><title>Vscode macros</title><link href="https://pastorjordi.github.io/blog/2022/vscode-macros/" rel="alternate"></link><published>2022-02-06T20:00:00+01:00</published><updated>2022-02-06T20:00:00+01:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2022-02-06:/blog/2022/vscode-macros/</id><summary type="html">&lt;p&gt;Here I explain one way of creating macros and assigning them to a shortcut (keybinding) in vscode. It is a short process of only 3 steps. Two practical examples are shown. I also provide other useful links to extensions that are useful IMHO.&lt;/p&gt;</summary><content type="html">&lt;h1 id="how-i-wasted-30-min-to-create-a-shortcut-in-vscode"&gt;&lt;a class="toclink" href="#how-i-wasted-30-min-to-create-a-shortcut-in-vscode"&gt;How I wasted 30 min to create a shortcut in vscode&lt;/a&gt;&lt;/h1&gt;
+</content><category term="Blog"></category><category term="python"></category><category term="productivity"></category><category term="decorators"></category><category term="lowess"></category><category term="bootstrap"></category><category term="CIs"></category></entry><entry><title>Vscode macros</title><link href="https://pastorjordi.github.io/blog/2022/vscode-macros/" rel="alternate"></link><published>2022-02-06T20:00:00+01:00</published><updated>2022-02-06T20:00:00+01:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2022-02-06:/blog/2022/vscode-macros/</id><summary type="html">&lt;p&gt;Here I explain one way of creating macros and assigning them to a shortcut (keybinding) in vscode. It is a short process of only 3 steps. Two practical examples are shown. I also provide other useful links to extensions that are useful IMHO.&lt;/p&gt;</summary><content type="html">&lt;h1 id="how-i-wasted-30-min-to-create-a-shortcut-in-vscode"&gt;&lt;a class="toclink" href="#how-i-wasted-30-min-to-create-a-shortcut-in-vscode"&gt;How I wasted 30 min to create a shortcut in vscode&lt;/a&gt;&lt;/h1&gt;
 &lt;p&gt;You can find the process I followed below  &lt;/p&gt;
 &lt;h2 id="some-context"&gt;&lt;a class="toclink" href="#some-context"&gt;Some context&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;The other day I was using Rstudio because I found few functions I needed already written in R. At some point I realized that some widely used operators are EXTREMELY ANNOYING to type. Specifically, I mean assignment "&lt;code&gt;&amp;lt;-&lt;/code&gt;" and pipe "&lt;code&gt;%&amp;gt;%&lt;/code&gt;" operators. Perhaps I have this feeling because their python counterparts are as simple as "&lt;code&gt;=&lt;/code&gt;" and "&lt;code&gt;.&lt;/code&gt;". Luckily, someone thought about this before, and there are plenty of &lt;a href="https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts-in-the-RStudio-IDE"&gt;already written shortcuts&lt;/a&gt; to type such combination of symbols. &lt;code&gt;Alt&lt;/code&gt; + &lt;code&gt;-&lt;/code&gt; and &lt;code&gt;Ctrl&lt;/code&gt; + &lt;code&gt;Shift&lt;/code&gt; + &lt;code&gt;M&lt;/code&gt;, respectively.  &lt;/p&gt;
@@ -2833,7 +2833,7 @@ disabling links in notebooks till i cannot fix newline char*/
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Resultats-electorals-14F-(Generalitat,-2021)-a-Terrassa"&gt;Resultats electorals 14F (Generalitat, 2021) a Terrassa&lt;a class="anchor-link" href="#Resultats-electorals-14F-(Generalitat,-2021)-a-Terrassa"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Per tal de trastejar amb geopandas, plotly i mapes fa un temps vaig intentar visualitzar els resultats de les eleccions a la Generalitat a Terrassa. Sempre resulta una mica més interessant (safreig pur i dur) saber què voten els teus veïns. El codi original es pot trobar &lt;a href="https://github.com/PastorJordi/site_notebooks/blob/main/notebooks/20210217eleccions14F.ipynb"&gt;aquí&lt;/a&gt;. Ressucito les figures per penjarles a la web.&lt;br&gt;
+&lt;h3 id="Resultats-electorals-14F-(Generalitat,-2021)-a-Terrassa"&gt;Resultats electorals 14F (Generalitat, 2021) a Terrassa&lt;a class="anchor-link" href="#Resultats-electorals-14F-(Generalitat,-2021)-a-Terrassa"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Per tal de trastejar amb geopandas, plotly i mapes fa un temps vaig intentar visualitzar els resultats de les eleccions a la Generalitat a Terrassa. Sempre resulta una mica més interessant (safreig pur i dur) saber què voten els teus veïns. El codi original es pot trobar &lt;a href="https://github.com/PastorJordi/site_notebooks/blob/main/notebooks/20210217eleccions14F.ipynb"&gt;aquí&lt;/a&gt;. Ressuscito les figures per penjarles a la web.&lt;br&gt;
 Com la divisió més petita del cens (mapa) que vaig saber trobar al portal de dades de l'ajuntament van ser per secció, representaré aquestes.&lt;/p&gt;
 
 &lt;/div&gt;
