@@ -62,7 +62,7 @@
 <meta property="og:url" content="https://pastorjordi.github.io/blog/2021/wallascrap/"/>
 <meta property="og:type" content="article"/>
 <meta property="article:published_time" content="2021-08-24 20:00:00+02:00"/>
-<meta property="article:modified_time" content=""/>
+<meta property="article:modified_time" content="2022-06-20 09:00:00+02:00"/>
 <meta property="article:author" content="https://pastorjordi.github.io/">
 <meta property="article:section" content="Blog"/>
 <meta property="article:tag" content="python"/>
@@ -81,7 +81,7 @@
   "name": "Scraping wallapop",
   "headline": "Scraping wallapop",
   "datePublished": "2021-08-24 20:00:00+02:00",
-  "dateModified": "",
+  "dateModified": "2022-06-20 09:00:00+02:00",
   "author": {
     "@type": "Person",
     "name": "Jordi Pastor",
@@ -137,6 +137,7 @@
             | <time datetime="2021-08-24">2021-08-24</time>
         </span>
         <!-- TODO : Modified check -->
+            <span class="post-meta"> | Updated on 2022-06-20</span>
             <div class="post-cover cover" style="background-image: url('https://s1.eestatic.com/2019/02/15/social/wallapop-twitter-redes_sociales_376474087_114819743_1706x960.jpg')">
       </div>
     </header>
@@ -181,7 +182,7 @@
 <li>store new (filtered) items in a dataframe and trigger a slack message with the item and the link  </li>
 </ul>
 <p>I did it with an endless script with 4 functions. I'll briefly comment those functions and then just paste the whole script. (Later me: I'll share the whole script and comment it)</p>
-<p>Here's the anonymized code (<a href="https://gist.github.com/PastorJordi/189d660a7d4498e71fc4a3a84d8f6427">gist</a>). I am not sharing the entire repo because my code ended up intermingled with other stuff and had even poorer coding practices.   </p>
+<p>Here's the anonymized code (<a href="https://gist.github.com/PastorJordi/189d660a7d4498e71fc4a3a84d8f6427">gist</a>). I am not sharing the entire repo because my code ended up intermingled with other stuff/bots and had even poorer coding practices.   </p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">requests</span> <span class="c1"># post to webhook</span>
 <span class="kn">import</span> <span class="nn">json</span> <span class="c1"># post to webhook</span>
 <span class="kn">import</span> <span class="nn">os</span> <span class="c1"># retrieve environmental var webhook</span>
@@ -416,7 +417,11 @@ You can find similar resources <a href="https://programadorwebvalencia.com/walla
 <p>Cheers and happy shopping :)</p>
 <p><strong>EDIT</strong><br>
 I just found <a href="https://github.com/z0r3f/wallbot">this repo</a>, which I haven't tried but looks way more complete + ready to deploy  </p>
-<p>cheers!</p>
+<p><strong>EDIT2</strong>
+Because this page is getting some views, here's an important addendum I did not know back when I wrote this post. <br>
+After trying to crawl sites reluctant to robots, I learned that when using headless mode, selenium sets user-agent to <code>headless-chromium</code> or something I cannot recall at the moment. In any case, we are telling plain-sight that our browser instance is <em>run by a bot.</em> Perhaps this is not what you want.</p>
+<p>Check <a href="https://github.com/ultrafunkamsterdam/undetected-chromedriver">this repo</a> or those posts (<a href="https://piprogramming.org/articles/How-to-make-Selenium-undetectable-and-stealth--7-Ways-to-hide-your-Bot-Automation-from-Detection-0000000017.html">1</a>, <a href="https://intoli.com/blog/making-chrome-headless-undetectable/">2</a>) for more info (or google it, there are a lot of results).</p>
+<p>Cheers!</p>
             </section>
 
             <section class="post-info">

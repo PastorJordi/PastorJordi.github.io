@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>JP's word salads</title><link href="https://pastorjordi.github.io/" rel="alternate"></link><link href="https://pastorjordi.github.io/feeds/all.atom.xml" rel="self"></link><id>https://pastorjordi.github.io/</id><updated>2022-05-15T22:15:00+02:00</updated><subtitle>random thoughts that might be worth sharing (?)</subtitle><entry><title>Writing a wrapper to bootstrap confidence intervals</title><link href="https://pastorjordi.github.io/blog/2022/bootstrap_wrapper/" rel="alternate"></link><published>2022-05-15T22:15:00+02:00</published><updated>2022-05-15T22:15:00+02:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2022-05-15:/blog/2022/bootstrap_wrapper/</id><summary type="html">&lt;p&gt;How to add CIs calculation capabilities to your functions using a single wrapper function/decorator to bootstrap instead of repeating (python) code&lt;/p&gt;</summary><content type="html">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"&gt;&lt;/script&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>JP's word salads</title><link href="https://pastorjordi.github.io/" rel="alternate"></link><link href="https://pastorjordi.github.io/feeds/all.atom.xml" rel="self"></link><id>https://pastorjordi.github.io/</id><updated>2022-06-20T09:00:00+02:00</updated><subtitle>random thoughts that might be worth sharing (?)</subtitle><entry><title>Writing a wrapper to bootstrap confidence intervals</title><link href="https://pastorjordi.github.io/blog/2022/bootstrap_wrapper/" rel="alternate"></link><published>2022-05-15T22:15:00+02:00</published><updated>2022-05-15T22:15:00+02:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2022-05-15:/blog/2022/bootstrap_wrapper/</id><summary type="html">&lt;p&gt;How to add CIs calculation capabilities to your functions using a single wrapper function/decorator to bootstrap instead of repeating (python) code&lt;/p&gt;</summary><content type="html">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"&gt;&lt;/script&gt;
 
 &lt;style type="text/css"&gt;
 div.code_cell {
@@ -228,10 +228,10 @@ decorated with @add_bootstrap which appends following kwargs:
 
  
  
-&lt;div id="96561989-699c-48ef-9ed5-721e46d7fe6a"&gt;&lt;/div&gt;
+&lt;div id="15b5afd0-1417-4266-a70c-81bfb217b801"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#96561989-699c-48ef-9ed5-721e46d7fe6a');
+var element = $('#15b5afd0-1417-4266-a70c-81bfb217b801');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "7e4b9bf097f342f7922e904d3f263e9f", "version_major": 2, "version_minor": 0}
@@ -267,10 +267,10 @@ decorated with @add_bootstrap which appends following kwargs:
 
  
  
-&lt;div id="1ca158d1-584a-46d1-81b9-a5fd5ef3af6f"&gt;&lt;/div&gt;
+&lt;div id="57cab0bd-556d-4c6f-8348-ad7c8f46b2c6"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#1ca158d1-584a-46d1-81b9-a5fd5ef3af6f');
+var element = $('#57cab0bd-556d-4c6f-8348-ad7c8f46b2c6');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "5f5b30099ada4e308969b21bec8afd0a", "version_major": 2, "version_minor": 0}
@@ -353,10 +353,10 @@ var element = $('#1ca158d1-584a-46d1-81b9-a5fd5ef3af6f');
 
  
  
-&lt;div id="5fd166ff-ac08-4d8e-ac28-2582b9622056"&gt;&lt;/div&gt;
+&lt;div id="7dde9d4e-8701-4f77-90b4-5c305dd4853b"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#5fd166ff-ac08-4d8e-ac28-2582b9622056');
+var element = $('#7dde9d4e-8701-4f77-90b4-5c305dd4853b');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "f67f180c8d7a4b40aebc57c885f4e7c6", "version_major": 2, "version_minor": 0}
@@ -722,7 +722,7 @@ Cheers!&lt;/p&gt;
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="Blog"></category><category term="beautifulsoup"></category><category term="paywall"></category><category term="python"></category><category term="miser"></category></entry><entry><title>Scraping wallapop</title><link href="https://pastorjordi.github.io/blog/2021/wallascrap/" rel="alternate"></link><published>2021-08-24T20:00:00+02:00</published><updated>2021-08-24T20:00:00+02:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2021-08-24:/blog/2021/wallascrap/</id><summary type="html">&lt;p&gt;Automatically look for products in wallapop (2nd hand portal) using selenium&lt;/p&gt;</summary><content type="html">&lt;h3 id="how-i-scraped-wallapop"&gt;&lt;a class="toclink" href="#how-i-scraped-wallapop"&gt;How I scraped wallapop&lt;/a&gt;&lt;/h3&gt;
+</content><category term="Blog"></category><category term="beautifulsoup"></category><category term="paywall"></category><category term="python"></category><category term="miser"></category></entry><entry><title>Scraping wallapop</title><link href="https://pastorjordi.github.io/blog/2021/wallascrap/" rel="alternate"></link><published>2021-08-24T20:00:00+02:00</published><updated>2022-06-20T09:00:00+02:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2021-08-24:/blog/2021/wallascrap/</id><summary type="html">&lt;p&gt;Automatically look for products in wallapop (2nd hand portal) using selenium&lt;/p&gt;</summary><content type="html">&lt;h3 id="how-i-scraped-wallapop"&gt;&lt;a class="toclink" href="#how-i-scraped-wallapop"&gt;How I scraped wallapop&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Hehe, you took the bait? I did not scrap them. Probably scraping their content is illegal. So I did not scrap wallapop &lt;em&gt;per se&lt;/em&gt; but tried to extend their built-in functionalities. They can deliver &lt;del&gt;quite inaccurate&lt;/del&gt; results for custom-saved searches once a day. Unfortunately, this latency was too high for the kind of product I was interested in and it gave poor results. Instead of pressing f5 every 5 minutes personally, I guess it is fine to program something that does it for you (legitimate purpose mantra accomplished).&lt;/p&gt;
 &lt;p&gt;It is obvious that search query gets url encoded, so it appeared as a quite straight-forward task. Not that easy bud. Using beautiful soup directly with the query url returned nothing. After inspecting the page source, I noticed that the page is loaded/rendered on the air using react/javascript (excuse me if I am not technically correct because I ignore this kind of jargon/technology). Then I asked god google what I could do next (using python). Some people suggested to use &lt;a href="https://www.selenium.dev/"&gt;Selenium&lt;/a&gt;, so I tried (and succeeded).&lt;/p&gt;
 &lt;p&gt;Selenium is a webDriver (&lt;em&gt;browser emulator&lt;/em&gt;) that have some bindings build upon it, providing an API-like functionalities (e.g. &lt;a href="https://selenium-python.readthedocs.io/]"&gt;selenium-python&lt;/a&gt;). So then, let's go to the point.&lt;/p&gt;
@@ -754,7 +754,7 @@ Cheers!&lt;/p&gt;
 &lt;li&gt;store new (filtered) items in a dataframe and trigger a slack message with the item and the link  &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;I did it with an endless script with 4 functions. I'll briefly comment those functions and then just paste the whole script. (Later me: I'll share the whole script and comment it)&lt;/p&gt;
-&lt;p&gt;Here's the anonymized code (&lt;a href="https://gist.github.com/PastorJordi/189d660a7d4498e71fc4a3a84d8f6427"&gt;gist&lt;/a&gt;). I am not sharing the entire repo because my code ended up intermingled with other stuff and had even poorer coding practices.   &lt;/p&gt;
+&lt;p&gt;Here's the anonymized code (&lt;a href="https://gist.github.com/PastorJordi/189d660a7d4498e71fc4a3a84d8f6427"&gt;gist&lt;/a&gt;). I am not sharing the entire repo because my code ended up intermingled with other stuff/bots and had even poorer coding practices.   &lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt; &lt;span class="c1"&gt;# post to webhook&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;json&lt;/span&gt; &lt;span class="c1"&gt;# post to webhook&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt; &lt;span class="c1"&gt;# retrieve environmental var webhook&lt;/span&gt;
@@ -989,7 +989,11 @@ You can find similar resources &lt;a href="https://programadorwebvalencia.com/wa
 &lt;p&gt;Cheers and happy shopping :)&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;EDIT&lt;/strong&gt;&lt;br&gt;
 I just found &lt;a href="https://github.com/z0r3f/wallbot"&gt;this repo&lt;/a&gt;, which I haven't tried but looks way more complete + ready to deploy  &lt;/p&gt;
-&lt;p&gt;cheers!&lt;/p&gt;</content><category term="Blog"></category><category term="python"></category><category term="selenium"></category><category term="wallapop"></category><category term="miser"></category><category term="bots"></category></entry><entry><title>Housing, 1st act</title><link href="https://pastorjordi.github.io/blog/2021/housing_1st_act/" rel="alternate"></link><published>2021-08-09T14:30:00+02:00</published><updated>2021-08-09T14:30:00+02:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2021-08-09:/blog/2021/housing_1st_act/</id><summary type="html">&lt;p&gt;Exploring whether it is easy for the youth to save some money to buy a home (I rage because a meme)&lt;/p&gt;</summary><content type="html">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"&gt;&lt;/script&gt;
+&lt;p&gt;&lt;strong&gt;EDIT2&lt;/strong&gt;
+Because this page is getting some views, here's an important addendum I did not know back when I wrote this post. &lt;br&gt;
+After trying to crawl sites reluctant to robots, I learned that when using headless mode, selenium sets user-agent to &lt;code&gt;headless-chromium&lt;/code&gt; or something I cannot recall at the moment. In any case, we are telling plain-sight that our browser instance is &lt;em&gt;run by a bot.&lt;/em&gt; Perhaps this is not what you want.&lt;/p&gt;
+&lt;p&gt;Check &lt;a href="https://github.com/ultrafunkamsterdam/undetected-chromedriver"&gt;this repo&lt;/a&gt; or those posts (&lt;a href="https://piprogramming.org/articles/How-to-make-Selenium-undetectable-and-stealth--7-Ways-to-hide-your-Bot-Automation-from-Detection-0000000017.html"&gt;1&lt;/a&gt;, &lt;a href="https://intoli.com/blog/making-chrome-headless-undetectable/"&gt;2&lt;/a&gt;) for more info (or google it, there are a lot of results).&lt;/p&gt;
+&lt;p&gt;Cheers!&lt;/p&gt;</content><category term="Blog"></category><category term="python"></category><category term="selenium"></category><category term="wallapop"></category><category term="miser"></category><category term="bots"></category></entry><entry><title>Housing, 1st act</title><link href="https://pastorjordi.github.io/blog/2021/housing_1st_act/" rel="alternate"></link><published>2021-08-09T14:30:00+02:00</published><updated>2021-08-09T14:30:00+02:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2021-08-09:/blog/2021/housing_1st_act/</id><summary type="html">&lt;p&gt;Exploring whether it is easy for the youth to save some money to buy a home (I rage because a meme)&lt;/p&gt;</summary><content type="html">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"&gt;&lt;/script&gt;
 
 &lt;style type="text/css"&gt;
 div.code_cell {
