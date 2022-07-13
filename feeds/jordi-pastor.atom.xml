@@ -32,7 +32,9 @@ Intentaré resumir el post anterior en tres punts per estalviar-vos el suplici:&
 &lt;li&gt;No és així, o no està fet a l'escala que desitjaria -&amp;gt; rondino i ploro una mica.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id="Cosetes-noves-bones"&gt;Cosetes noves bones&lt;a class="anchor-link" href="#Cosetes-noves-bones"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;h4 id="1.-Es-consideren-m&amp;#233;s-caselles-de-la-declaraci&amp;#243;-de-la-renda"&gt;1. Es consideren m&amp;#233;s caselles de la declaraci&amp;#243; de la renda&lt;a class="anchor-link" href="#1.-Es-consideren-m&amp;#233;s-caselles-de-la-declaraci&amp;#243;-de-la-renda"&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Com més completa sigui la valoració dels ingressos familiars, més potencialitat a ser una mesura equilibrada&lt;/p&gt;
-&lt;h4 id="2.-Preu-&amp;#250;nic"&gt;2. Preu &amp;#250;nic&lt;a class="anchor-link" href="#2.-Preu-&amp;#250;nic"&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Considero que és un encert tenir una tarifa única mensual i no permetre abonar un import menor a les famílies que en fan un ús parcial (per exemple només als matins o tardes). Per què? Doncs perquè les que pretenguin dur l'infant a l'escola durant la jornada completa faran un ús més eficient dels recursos públics. En altres paraules, un infant/família que ocupa una plaça una fracció de la jornada consumeix els mateixos recursos públics (plaça escolar, ratio infant/educador) que el que l'ocupa tot el dia. Per tant, em sembla just que tinguin el mateix dret a ocupar-la, però també els mateixos deures (&lt;strong&gt;A PAGAR!&lt;/strong&gt;). Si convé o no, ja queda a criteri dels sol·licitants, que potser podran trobar un servei alternatiu que es pagui per hores setmanals alliberant deixant la plaça lliure a famílies que l'utilitzin de manera més eficient. Tot i les frases absurdament llargues em &lt;em&gt;pilleu&lt;/em&gt;, no?&lt;/p&gt;
+&lt;h4 id="2.-Preu-&amp;#250;nic"&gt;2. Preu &amp;#250;nic&lt;a class="anchor-link" href="#2.-Preu-&amp;#250;nic"&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Considero que és un encert tenir una tarifa única mensual i no permetre abonar un import menor a les famílies que en fan un ús parcial (per exemple només als matins o tardes).&lt;br&gt;
+Per què? Doncs perquè les que pretenguin dur l'infant a l'escola durant la jornada completa faran un ús més eficient dels recursos públics. En altres paraules, un infant/família que ocupa una plaça una fracció de la jornada consumeix els mateixos recursos públics (plaça escolar, ratio infant/educador) que el que l'ocupa tot el dia. Per tant, em sembla just que tinguin el mateix dret a ocupar-la, però també els mateixos deures (&lt;strong&gt;A PAGAR!&lt;/strong&gt;).&lt;br&gt;
+Si convé o no, ja queda a criteri dels sol·licitants, que potser podran trobar un servei alternatiu que es pagui per hores setmanals alliberant la plaça i fent-la accessible a famílies que l'utilitzin de manera més eficient. Tot i les frases absurdament llargues em &lt;em&gt;pilleu&lt;/em&gt;, no?&lt;/p&gt;
 &lt;h3 id="Cosetes-noves-dolentes"&gt;Cosetes noves dolentes&lt;a class="anchor-link" href="#Cosetes-noves-dolentes"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;h4 id="Segueix-sent-un-timo"&gt;Segueix sent un &lt;em&gt;timo&lt;/em&gt;&lt;a class="anchor-link" href="#Segueix-sent-un-timo"&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;En realitat a mi tant me fa perquè el MHP ja m'ha comprat el vot exercint les seves polítiques populistes i clientelars fent infantil2 universal (espero haver fet prou evident el sarcasme). L'ajust quota/ingressos no em fa el pes. Va en la bona direcció però a pas de formiga. Intentaré explicar el perquè a la resta de post.&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://pastorjordi.github.io/images/tarifes2022.png" alt="retall taula noves tarifes" title="tarifes2022"&gt;&lt;/p&gt;
 &lt;p&gt;Nota:&lt;br&gt;
@@ -545,10 +547,10 @@ decorated with @add_bootstrap which appends following kwargs:
 
  
  
-&lt;div id="7f4ea6d3-1bc4-4514-ae86-93b12c2ee6b9"&gt;&lt;/div&gt;
+&lt;div id="f420c583-ec2e-42c4-a50a-5feed68f5738"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#7f4ea6d3-1bc4-4514-ae86-93b12c2ee6b9');
+var element = $('#f420c583-ec2e-42c4-a50a-5feed68f5738');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "7e4b9bf097f342f7922e904d3f263e9f", "version_major": 2, "version_minor": 0}
@@ -584,10 +586,10 @@ decorated with @add_bootstrap which appends following kwargs:
 
  
  
-&lt;div id="67075cae-2811-489a-83b6-5579bd727385"&gt;&lt;/div&gt;
+&lt;div id="f093eacf-d4cf-4a69-8526-3caf4dc2b99b"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#67075cae-2811-489a-83b6-5579bd727385');
+var element = $('#f093eacf-d4cf-4a69-8526-3caf4dc2b99b');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "5f5b30099ada4e308969b21bec8afd0a", "version_major": 2, "version_minor": 0}
@@ -670,10 +672,10 @@ var element = $('#67075cae-2811-489a-83b6-5579bd727385');
 
  
  
-&lt;div id="e7daa887-2ee6-4f45-adb9-be38338a5614"&gt;&lt;/div&gt;
+&lt;div id="0f9ba6c8-8128-411c-93ca-d1deb1501cf6"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#e7daa887-2ee6-4f45-adb9-be38338a5614');
+var element = $('#0f9ba6c8-8128-411c-93ca-d1deb1501cf6');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "f67f180c8d7a4b40aebc57c885f4e7c6", "version_major": 2, "version_minor": 0}
