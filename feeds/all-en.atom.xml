@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>JP's word salads</title><link href="https://pastorjordi.github.io/" rel="alternate"></link><link href="https://pastorjordi.github.io/feeds/all-en.atom.xml" rel="self"></link><id>https://pastorjordi.github.io/</id><updated>2022-07-07T21:49:00+02:00</updated><subtitle>random thoughts that might be worth sharing (?)</subtitle><entry><title>Tarifació social EBM 2.0</title><link href="https://pastorjordi.github.io/terrassa/2022/tarifes_EBM_Terrassa2022/" rel="alternate"></link><published>2022-07-07T21:49:00+02:00</published><updated>2022-07-07T21:49:00+02:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2022-07-07:/terrassa/2022/tarifes_EBM_Terrassa2022/</id><summary type="html">&lt;p&gt;Torno a discutir és justa o no la tarifa de les escoles bressol municipals egarenques i ho comparo amb el curs anterior&lt;/p&gt;</summary><content type="html">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"&gt;&lt;/script&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>JP's word salads</title><link href="https://pastorjordi.github.io/" rel="alternate"></link><link href="https://pastorjordi.github.io/feeds/all-en.atom.xml" rel="self"></link><id>https://pastorjordi.github.io/</id><updated>2022-07-14T09:00:00+02:00</updated><subtitle>random thoughts that might be worth sharing (?)</subtitle><entry><title>Tarifació social EBM 2.0</title><link href="https://pastorjordi.github.io/terrassa/2022/tarifes_EBM_Terrassa2022/" rel="alternate"></link><published>2022-07-07T21:49:00+02:00</published><updated>2022-07-07T21:49:00+02:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2022-07-07:/terrassa/2022/tarifes_EBM_Terrassa2022/</id><summary type="html">&lt;p&gt;Torno a discutir és justa o no la tarifa de les escoles bressol municipals egarenques i ho comparo amb el curs anterior&lt;/p&gt;</summary><content type="html">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"&gt;&lt;/script&gt;
 
 &lt;style type="text/css"&gt;
 div.code_cell {
@@ -31,7 +31,7 @@ Intentaré resumir el post anterior en tres punts per estalviar-vos el suplici:&
 &lt;li&gt;Independentment del dilema anterior, si s'opta per ajustar la contribució de les famílies (novament) aplicant una quota de les EBM en funció de la renda, (2 rondes de redistribució), caldria esperar que a més renda més es pagui.&lt;/li&gt;
 &lt;li&gt;No és així, o no està fet a l'escala que desitjaria -&amp;gt; rondino i ploro una mica.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id="Cosetes-noves-bones"&gt;Cosetes noves bones&lt;a class="anchor-link" href="#Cosetes-noves-bones"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;h4 id="1.-Es-consideren-m&amp;#233;s-caselles-de-la-declaraci&amp;#243;-de-la-renda"&gt;1. Es consideren m&amp;#233;s caselles de la declaraci&amp;#243; de la renda&lt;a class="anchor-link" href="#1.-Es-consideren-m&amp;#233;s-caselles-de-la-declaraci&amp;#243;-de-la-renda"&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Com més completa sigui la valoració dels ingressos familiars, més potencialitat a ser una mesura equilibrada&lt;/p&gt;
+&lt;h3 id="Cosetes-noves-bones"&gt;Cosetes noves bones&lt;a class="anchor-link" href="#Cosetes-noves-bones"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;h4 id="1.-Es-consideren-m&amp;#233;s-caselles-de-la-declaraci&amp;#243;-de-la-renda"&gt;1. Es consideren m&amp;#233;s caselles de la declaraci&amp;#243; de la renda&lt;a class="anchor-link" href="#1.-Es-consideren-m&amp;#233;s-caselles-de-la-declaraci&amp;#243;-de-la-renda"&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Com més completa sigui la valoració dels ingressos familiars, més potencialitat a ser una mesura equilibrada. Tot això ho dic desde la barra del bar, perquè parlo de memòria, i no he mirat quins són els conceptes de les caselles.&lt;/p&gt;
 &lt;h4 id="2.-Preu-&amp;#250;nic"&gt;2. Preu &amp;#250;nic&lt;a class="anchor-link" href="#2.-Preu-&amp;#250;nic"&gt;&amp;#182;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;Considero que és un encert tenir una tarifa única mensual i no permetre abonar un import menor a les famílies que en fan un ús parcial (per exemple només als matins o tardes).&lt;br&gt;
 Per què? Doncs perquè les que pretenguin dur l'infant a l'escola durant la jornada completa faran un ús més eficient dels recursos públics. En altres paraules, un infant/família que ocupa una plaça una fracció de la jornada consumeix els mateixos recursos públics (plaça escolar, ratio infant/educador) que el que l'ocupa tot el dia. Per tant, em sembla just que tinguin el mateix dret a ocupar-la, però també els mateixos deures (&lt;strong&gt;A PAGAR!&lt;/strong&gt;).&lt;br&gt;
 Si convé o no, ja queda a criteri dels sol·licitants, que potser podran trobar un servei alternatiu que es pagui per hores setmanals alliberant la plaça i fent-la accessible a famílies que l'utilitzin de manera més eficient. Tot i les frases absurdament llargues em &lt;em&gt;pilleu&lt;/em&gt;, no?&lt;/p&gt;
@@ -234,7 +234,7 @@ Em va generar una mica de confusió la primera fila (1 membre). Resulta que no �
 &lt;p&gt;AYLMAO però si és calcat!?!!? XD. La mateixa &lt;em&gt;inyustícia&lt;/em&gt; altre cop. De fet, només el 5è tram paga menys en % respecte a l'any anterior. Trams 6, 7, 8 gairebé el mateix. Tram 9 paga ínfimament més... Si gairebé tots els trams paguen igual o més, a no ser que la majoria de la població usuària de les EBM caigui en el tram 5, vol dir que han apujat el preu :D&lt;br&gt;
 S'ha de dir que tenint en compte la inflació que hi ha i que aquestes quotes inclouen el servei de menjador, l'increment és molt baix.&lt;br&gt;
 Com a punt positiu, reconèixer que la merdeta de canvis que hi ha van en la bona direcció (aplanar aquesta muntanyota als trams centrals). Però bé, són canvis insignificants.&lt;/p&gt;
-&lt;p&gt;I per anar acabant, l'increment respecte a l'any passat fent servir com a unitat de mesura el % d'ingressos de la unitat familiar que suposa l'EBM&lt;/p&gt;
+&lt;p&gt;I per anar acabant, l'increment respecte a l'any passat fent servir com a unitat de mesura el % d'ingressos de la unitat familiar que suposa l'EBM. És a dir, la diferència entre les dues series de la figura anterior.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -547,10 +547,10 @@ decorated with @add_bootstrap which appends following kwargs:
 
  
  
-&lt;div id="f420c583-ec2e-42c4-a50a-5feed68f5738"&gt;&lt;/div&gt;
+&lt;div id="4cfb2418-c0d0-4283-a324-12a3771ff336"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#f420c583-ec2e-42c4-a50a-5feed68f5738');
+var element = $('#4cfb2418-c0d0-4283-a324-12a3771ff336');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "7e4b9bf097f342f7922e904d3f263e9f", "version_major": 2, "version_minor": 0}
@@ -586,10 +586,10 @@ decorated with @add_bootstrap which appends following kwargs:
 
  
  
-&lt;div id="f093eacf-d4cf-4a69-8526-3caf4dc2b99b"&gt;&lt;/div&gt;
+&lt;div id="516f25ec-9b4d-4e12-895c-316f54028f13"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#f093eacf-d4cf-4a69-8526-3caf4dc2b99b');
+var element = $('#516f25ec-9b4d-4e12-895c-316f54028f13');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "5f5b30099ada4e308969b21bec8afd0a", "version_major": 2, "version_minor": 0}
@@ -672,10 +672,10 @@ var element = $('#f093eacf-d4cf-4a69-8526-3caf4dc2b99b');
 
  
  
-&lt;div id="0f9ba6c8-8128-411c-93ca-d1deb1501cf6"&gt;&lt;/div&gt;
+&lt;div id="f44217f2-71aa-4cae-b84e-a1524f67a870"&gt;&lt;/div&gt;
 &lt;div class="output_subarea output_widget_view "&gt;
 &lt;script type="text/javascript"&gt;
-var element = $('#0f9ba6c8-8128-411c-93ca-d1deb1501cf6');
+var element = $('#f44217f2-71aa-4cae-b84e-a1524f67a870');
 &lt;/script&gt;
 &lt;script type="application/vnd.jupyter.widget-view+json"&gt;
 {"model_id": "f67f180c8d7a4b40aebc57c885f4e7c6", "version_major": 2, "version_minor": 0}
@@ -2266,7 +2266,7 @@ which is 5.25% of the &amp;#34;borrowed&amp;#34; money from taxes
 &lt;p&gt;Thanks to the organizers (Alex, Silvana and Diogo) almost everything was smooth despite restrictions etc.&lt;/p&gt;
 &lt;p&gt;BTW, &lt;a href="https://goo.gl/maps/Jci39WXspivf9Yhs6"&gt;IEC&lt;/a&gt; is beautiful, visit it if you can&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://pastorjordi.github.io/htmlfigs/barccsyn2021.pdf"&gt;Here&lt;/a&gt; you can find the poster I presented, which IMO it has way too much text but now it may come in handy.&lt;/p&gt;
-&lt;p&gt;Cheers!&lt;/p&gt;</content><category term="Blog"></category><category term="scientific-content"></category></entry><entry><title>Tarifació social EBM Terrassa</title><link href="https://pastorjordi.github.io/terrassa/2021/tarifes_EBM_Terrassa/" rel="alternate"></link><published>2021-06-22T21:49:00+02:00</published><updated>2021-06-22T21:49:00+02:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2021-06-22:/terrassa/2021/tarifes_EBM_Terrassa/</id><summary type="html">&lt;p&gt;Petita discussió sobre si és justa o no la tarifa de les escoles bressol municipals&lt;/p&gt;</summary><content type="html">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"&gt;&lt;/script&gt;
+&lt;p&gt;Cheers!&lt;/p&gt;</content><category term="Blog"></category><category term="scientific-content"></category></entry><entry><title>Tarifació social EBM Terrassa</title><link href="https://pastorjordi.github.io/terrassa/2021/tarifes_EBM_Terrassa/" rel="alternate"></link><published>2021-06-22T21:49:00+02:00</published><updated>2022-07-14T09:00:00+02:00</updated><author><name>Jordi Pastor</name></author><id>tag:pastorjordi.github.io,2021-06-22:/terrassa/2021/tarifes_EBM_Terrassa/</id><summary type="html">&lt;p&gt;Petita discussió sobre si és justa o no la tarifa de les escoles bressol municipals egarenques&lt;/p&gt;</summary><content type="html">&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"&gt;&lt;/script&gt;
 
 &lt;style type="text/css"&gt;
 div.code_cell {
@@ -2291,7 +2291,8 @@ disabling links in notebooks till i cannot fix newline char*/
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;última actualització 24/06: Afluixo el to, afegeixo alguna dada i corregeixo errors d'ortografia&lt;/p&gt;
+&lt;p&gt;actualització 14/07/2022: podeu trobar una entrada més recent sobre el mateix tema i amb les tarifes actualitzades &lt;a href="https://pastorjordi.github.io/terrassa/2022/tarifes_EBM_Terrassa2022/"&gt;aqui&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;actualització 24/06/2021: Afluixo el to, afegeixo alguna dada i corregeixo errors d'ortografia&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
