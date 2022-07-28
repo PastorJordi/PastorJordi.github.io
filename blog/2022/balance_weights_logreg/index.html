@@ -423,7 +423,7 @@ balanced model best threshold was 0.235 with 0.951 sensitivity and 0.35 specific
 <p>With calibration curves we can clearly see that 'balanced' model overestimates $p(y)$ because predicted probability &gt; actual probability in all the bins.</p>
 <blockquote><p>But I just care about sensitivity!</p>
 </blockquote>
-<p>Well then, go ahead. Remember though that $p(y)$ estimate is wrong and because having same discriminability the modest improvement in specificity in this particular setup will come-back elsewhere. Also, the resources I shared above about the topic, may have points stronger than mines.</p>
+<p>Well then, go ahead. Remember though that $p(y)$ estimate is wrong and because having same discriminability the modest improvement in specificity in this particular setup will come-back elsewhere. Also, the resources I shared above about the topic, may have points stronger than mine.</p>
 
 </div>
 </div>
@@ -519,10 +519,10 @@ For the calibration curves, we will use a custom function to control bins so we 
 
  
  
-<div id="ab5e7480-3217-4093-a6c9-b2ba9647b585"></div>
+<div id="2782b896-9aa7-4b80-ad54-c91cce3cdb9c"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#ab5e7480-3217-4093-a6c9-b2ba9647b585');
+var element = $('#2782b896-9aa7-4b80-ad54-c91cce3cdb9c');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "1c41fce11a0b4c14ac2457bdf02f8cee", "version_major": 2, "version_minor": 0}
@@ -664,10 +664,12 @@ Because back when I was asked to, I found no working implementation <del>working
 <div class="prompt input_prompt">In&nbsp;[153]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">DCA</span><span class="p">():</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">DCA</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    incomplete, written just to fulfill my own needs. (several probs already calculated elsewhere)</span>
-<span class="sd">    check rdma R package for a complete and high qual solution&quot;&quot;&quot;</span>
+<span class="sd">    incomplete, written just to fulfill my own requirements:</span>
+<span class="sd">    (several probs already calculated elsewhere)</span>
+<span class="sd">    check rdma R package for a complete and high qual solution</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -701,14 +703,15 @@ Because back when I was asked to, I found no working implementation <del>working
         <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">f</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 
-        <span class="k">if</span> <span class="n">labels</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">),</span> <span class="s2">&quot;if provided, labels must have same len as cols&quot;</span>
-        <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">labels</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">labels</span> <span class="o">=</span> <span class="n">cols</span> 
-
+            
         <span class="c1"># plot trat none and treat all strategies</span>
-        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">thresholds</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">thresholds</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;treat none&#39;</span><span class="p">)</span>
-        <span class="n">treat_all</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gt</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="p">(</span><span class="o">~</span><span class="bp">self</span><span class="o">.</span><span class="n">gt</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span>  <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">thresholds</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">thresholds</span><span class="p">))</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">thresholds</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">thresholds</span><span class="o">.</span><span class="n">size</span><span class="p">),</span> 
+            <span class="n">c</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;treat none&#39;</span><span class="p">)</span>
+        <span class="n">treat_all</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">gt</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">-</span> <span class="p">(</span><span class="o">~</span><span class="bp">self</span><span class="o">.</span><span class="n">gt</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">*</span>  
+            <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">thresholds</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">thresholds</span><span class="p">)))</span>
 
         <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">thresholds</span><span class="p">,</span> <span class="n">treat_all</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;magenta&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;treat all&#39;</span><span class="p">)</span>
 
