@@ -178,7 +178,7 @@ $$
 LogLoss = - \frac{1}{N} \sum \limits_{n=1} ^{N} w_{n} · \Bigg [y_{n}\log\hat{y}_{n} + 
 (1 - y_{n})\log(1-\hat{y}_{n}) \Bigg ],
 $$<p></p>
-<p>where $w_{n}$ is the weigth associated with $y_{n}$ class. If we want to "fix" the class imbalance, $w_{under-represented class} &gt; w_{over-represented class}$ so that a training example from the under-represented part "weights more" than one from the over-represented class.</p>
+<p>where $w_{n}$ is the weigth associated with $y_{n}$ class. If we want to "fix" the class imbalance, $w_{under-represented} &gt; w_{over-represented}$ so that a training example from the under-represented class "weights more" than one from the over-represented class.</p>
 <p>I am citing scikit-learn <code>class_weight='balanced'</code> below:</p>
 <blockquote><p>The “balanced” mode uses the values of y to automatically adjust weights inversely proportional to class frequencies in the input data as <code>n_samples / (n_classes * np.bincount(y))</code>.</p>
 </blockquote>
@@ -321,8 +321,8 @@ Reading/googling about it I found a <a href="https://chandlerzuo.github.io/blog/
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>They show almost the same ROC and associated AUC.</p>
-<h3 id="What-about-sensitivity-and-specificity?-And-the-predicted-probability-distribution?">What about sensitivity and specificity? And the predicted probability distribution?<a class="anchor-link" href="#What-about-sensitivity-and-specificity?-And-the-predicted-probability-distribution?">&#182;</a></h3><p>Given that we aim at getting a 95% sensitivity, search for the lowest threshold that fulfills it, and the corresponding
-specificity. We will also show how is $\hat{y}$ distributed and the calibration curves (a.k.a predicted vs real probabilities, binned)</p>
+<h3 id="What-about-sensitivity-and-specificity?-And-the-predicted-probability-distribution?">What about sensitivity and specificity? And the predicted probability distribution?<a class="anchor-link" href="#What-about-sensitivity-and-specificity?-And-the-predicted-probability-distribution?">&#182;</a></h3><p>Given that we aim at getting a 95% sensitivity, search for the lowest threshold that fulfills it, and retrieve the corresponding
+specificity. We will also show $\hat{y}$ distribution and the calibration curves (a.k.a predicted vs real probabilities, binned)</p>
 
 </div>
 </div>
@@ -419,7 +419,7 @@ balanced model best threshold was 0.235 with 0.951 sensitivity and 0.35 specific
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>as we can see, specificity tends to be slightly lower. Thus, one might be tempted to use balanced model. However, if we have imbalanced data, is it OK for our model to output "normal-like" predictions? If the model does a good job predicting the probabilities for a relatively uncommon event to happen, they should be skewed, as well.</p>
+<p>As we can see, specificity tends to be slightly lower in naive model. Thus, one might be tempted to use balanced model. However, if we have imbalanced data, is it OK for our model to output "normal-shaped" predictions? If the model does a good job predicting the probabilities for a relatively uncommon event to happen, they should be skewed, as well.</p>
 <p>With calibration curves we can clearly see that 'balanced' model overestimates $p(y)$ because predicted probability &gt; actual probability in all the bins.</p>
 <blockquote><p>But I just care about sensitivity!</p>
 </blockquote>
@@ -432,7 +432,7 @@ balanced model best threshold was 0.235 with 0.951 sensitivity and 0.35 specific
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Run-the-experiment-several-times">Run the experiment several times<a class="anchor-link" href="#Run-the-experiment-several-times">&#182;</a></h3><p>So we can draw some bands/errors.<br>
-I will stack some metrics taking naive model's as a reference. Hence, $\Delta auROC = auROC_{balanced} - auROC_{naive}$<br>
+I will stack some metrics taking naive model's as a reference. Hence, $\Delta auROC = auROC_{balanced} - auROC_{naive}$, etc.<br>
 For the calibration curves, we will use a custom function to control bins so we stack the same thing when aggregating them. Remember that items per bin might differ quite a lot across bins/curves.</p>
 
 </div>
@@ -519,10 +519,10 @@ For the calibration curves, we will use a custom function to control bins so we 
 
  
  
-<div id="2782b896-9aa7-4b80-ad54-c91cce3cdb9c"></div>
+<div id="93ffd89d-b656-478c-b2c9-3b60837f79a6"></div>
 <div class="output_subarea output_widget_view ">
 <script type="text/javascript">
-var element = $('#2782b896-9aa7-4b80-ad54-c91cce3cdb9c');
+var element = $('#93ffd89d-b656-478c-b2c9-3b60837f79a6');
 </script>
 <script type="application/vnd.jupyter.widget-view+json">
 {"model_id": "1c41fce11a0b4c14ac2457bdf02f8cee", "version_major": 2, "version_minor": 0}
@@ -584,7 +584,7 @@ var element = $('#2782b896-9aa7-4b80-ad54-c91cce3cdb9c');
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Woah this was truly unexpected! I wonder why it is different from 0 in all 3 cases.<br>
+<p>Woah this was truly unexpected! I wonder why it is different from 0 in all 3 cases. Although the effects are small, this goes against previous claims. Unfortunately, I cannot come up with any intuition behind it.<br>
 And now calibration curves averaging experiments or pooling results.</p>
 
 </div>
